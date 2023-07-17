@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  belamarca:
+    build: .
+    container_name: belamarca-app-hlg
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./belamarca:/belamarca
+    env_file:
+      - ./.env
+    networks:
+      - belamarca-hlg
+
+  web:
+    image: nginx:1.15
+    container_name: belamarca-web-hlg
+    volumes:
+      - ./belamarca:/usr/src/belamarca
+      - ./nginx-hlg.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8080:80"
+    networks:
+      - belamarca-hlg
+
+networks:
+  belamarca-hlg:

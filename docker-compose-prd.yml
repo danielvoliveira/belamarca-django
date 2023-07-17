@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  belamarca:
+    build: .
+    container_name: belamarca-app
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./belamarca:/belamarca
+    env_file:
+      - ./.env
+    networks:
+      - belamarca-prd
+
+  web:
+    image: nginx:1.15
+    container_name: belamarca-web
+    volumes:
+      - ./belamarca:/usr/src/belamarca
+      - ./nginx-prd.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    networks:
+      - belamarca-prd
+
+networks:
+  belamarca-prd:
