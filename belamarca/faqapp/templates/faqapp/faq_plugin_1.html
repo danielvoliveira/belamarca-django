@@ -1,0 +1,25 @@
+{% load static cms_tags %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 border-balls">
+            <section id="informations-faq">
+                <h3 class="dark-blue-text">{{ instance.title }}</h3>
+                <ul>
+                    {% for question in questions %}
+                        {% render_model_block question %}
+                            <li id="faq-list">
+                                <div class="faq-item" data-id="{{ quention.number }}">
+                                    <h4 class="{{ question.title_color }}">{{ question.number }}. {{ question.title }} </h4>
+                                    <img src="{% static 'assets/icons/icon-chevron-down-thin.svg' %}" alt="Ícone expansível" />
+                                </div>
+                                <div id="faq-text-{{forloop.counter0}}">
+                                    {{ question.description }}
+                                </div>
+                            </li>
+                        {% endrender_model_block %}
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>
