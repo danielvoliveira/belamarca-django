@@ -1,0 +1,19 @@
+{% load static cms_tags %}
+
+<!-- ***** Main Banner Area Start ***** -->
+<div class="page-heading about-page-heading" id="top">
+    <picture>
+        <img class="img-generic" src="{{ background_image.desktop }}"  alt="{{ instance.background_text_alt }}"/>
+    </picture>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <h2>{{ instance.title }}</h2>
+                    <span>{{ instance.subtitle }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
