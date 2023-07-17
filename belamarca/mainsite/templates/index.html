@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+{% load static i18n cms_tags sekizai_tags menu_tags %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'main' %}
+
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <title>{% page_attribute "page_title" %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta http-equiv="Content-Type" content="text/html; charset = UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="shortcut icon" href="{% static 'assets/favicon/favicon.ico'%}"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+        {% render_block "css" %}
+    </head>
+    <body>
+        {% cms_toolbar %}
+
+        {% block header %}
+            {% static_placeholder "header" %}
+        {% endblock header %}
+
+        <main>
+            {% block principal %}
+                {% placeholder "principal" %}
+            {% endblock principal %}
+
+            {% block secundario %}
+                {% placeholder "secundario" %}
+            {% endblock secundario %}
+        </main>
+
+        {% block footer %}
+            {% static_placeholder "footer" %}
+        {% endblock footer %}
+
+        <div class="modal-default" id="contact_return_message">
+            <div class="modal-default-container">
+                <h2 id="modal-title">Atenção</h2>
+                <p id="return-message"></p>
+                <button class="modal-btn">Entendi</button>
+            </div>
+        </div>
+
+        {% render_block "js" %}
+
+    </body>
+</html>
