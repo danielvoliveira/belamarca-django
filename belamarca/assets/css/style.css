@@ -1,0 +1,78 @@
+:root {
+    --dark-pink-belamarca: #F653A9;
+    --pink-belamarca: #FDACBA;
+    --blue-belamarca: #55CFC4;
+    --orange-belamarca: #FDC3B8;
+    --yellow-belamarca: #F4DDDA;
+    --dark-text-belamarca: #484848;
+    --light-text-belamarca: #FFFFFF;
+    --placeholder-belamarca: #C4C4C4;
+    --background-belamarca: #F9F9F9;
+}
+
+@font-face {
+    font-family: "Marisa Bold";
+    src: url('../fonts/Marisa-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Marisa Light";
+    src: url('../fonts/Marisa-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Marisa Medium";
+    src: url('../fonts/Marisa-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Marisa';
+    src: url('../fonts/Marisa.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Questrial Regular';
+    src: url('../fonts/Questrial-Regular.ttf') format('truetype');
+}
+
+/* GERAL */
+/*
+* {
+    box-sizing: border-box;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.035em;
+}
+
+a {
+    text-decoration: none;
+}
+
+html,
+body {
+    margin: 0;
+    background-color: var(--light-text);
+    color: var(--dark-text);
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+}
+
+button {
+    cursor: pointer;
+}
+
+main {
+    flex-grow: 1;
+}
+
+header {
+    background-color: var(--blue);
+}*/
