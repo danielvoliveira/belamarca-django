@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% load cms_tags static sekizai_tags menu_tags %}
+{% block title %}Política de Reagendamento, Cancelamento e No-Show{% endblock title %}
+
+{% block principal %}
+    <section class="no-show">
+        {% if title %}
+            <h1>{{ title }}</h1>
+        {% else %}
+            <p>Você precisa cadastrar uma Política de Reagendamento, Cancelamento e No-Show para exibir aqui.</p>
+        {% endif %}
+        {% if text %}
+            <p>{{ text }}</p>
+        {% endif %}
+    </section>
+{% endblock principal %}

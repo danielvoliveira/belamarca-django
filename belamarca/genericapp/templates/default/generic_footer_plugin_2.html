@@ -1,0 +1,39 @@
+{% load cms_tags static sekizai_tags menu_tags %}
+<footer>
+    <source srcset="{{ logo_image.mobile }}"  media="(max-width: 400px)" alt="{{ instance.text_alt }}">
+    <source srcset="{{ logo_image.tablet }}"  media="(max-width: 800px)" alt="{{ instance.text_alt }}">
+    <img class="img-generic" src="{{ logo_image.desktop }}"  alt="{{ instance.text_alt }}"/>
+    <ul>
+        <li>{{ instance.text_address }}</li>
+        <li><a href="tel:{{ instance.text_phone }}">{{ instance.text_phone }}</a></li>
+        <li><a href="mailto:{{instance.text_email}}">{{ instance.text_email }}</a></li>
+        <li>{{ instance.text_hours }}</li>
+    </ul>
+    <ul>
+        <li><a href="{{ instance.url_external }}">GRAMADO PARKS</a></li>
+        <li><a href="{{ instance.url_faq }}">PERGUNTAS FREQUENTES</a></li>
+        <li>POLÍTICA DE PRIVACIDADE</li>
+        <li>TERMOS E CONDIÇÕES</li>
+    </ul>
+    <ul>
+        <li>
+            <p>{{ instance.url_instagram }}</p>
+            <p>{{ instance.text_alt_instagram }}</p>
+        </li>
+        <li>
+            <p>{{ instance.url_facebook }}</p>
+            <p>{{ instance.text_alt_facebook }}</p>
+        </li>
+        <li>
+            <p>{{ instance.url_tiktok }}</p>
+            <p>{{ instance.text_alt_tiktok }}</p>
+        </li>
+        <li>
+            <p>{{ instance.url_youtube }}</p>
+            <p>{{ instance.text_alt_youtube }}</p>
+        </li>
+    </ul>
+    <div>
+        <p>{{ title_newsletter }}</p>
+    </div>
+</footer>

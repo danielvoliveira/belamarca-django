@@ -1,0 +1,45 @@
+{% load cms_tags static sekizai_tags menu_tags %}
+
+<!-- include "./generic_policy_cookies.html" -->
+<!-- ***** Footer Start ***** -->
+<footer>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-3">
+              <div class="first-item">
+                  <div class="logo">
+                      <img src="{{ logo_image.desktop }}" alt="{{ instance.text_alt }}">
+                  </div>
+              </div>
+          </div>
+
+          <div class="util-links col-md-5 col-lg-3 offset-lg-1">
+            <!--<h4>Links Úteis:</h4>-->
+              <ul>
+                  <li><a href="{% url 'genericapp:privacy_policy' %}">Políticas de privacidade</a></li>
+                  <li><a href="{% url 'genericapp:terms_and_conditions' %}">Termos e condições</a></li>
+                  <li><a href="/contato#informations-faq">Perguntas frequentes</a></li>
+                  <li><a href="/contato/">Contato</a></li>
+              </ul>
+          </div>
+
+          <div class="col-md-4 offset-md-3 col-lg-3 offset-lg-2">
+            <h4>Funcionamento:</h4>
+            <ul>
+              <!--<li><a href="#">{{ instance.text_address }}</a></li>-->
+              <!--<li><a href="#">{{ instance.text_email }}</a></li>-->
+              <li>{{ instance.text_hours }}</li>
+              <li><p class="phone">{{ instance.text_phone }}</p></li>
+            </ul>
+          </div>
+          <div class="col-lg-12">
+              <div class="under-footer">
+                  <p>©2022, BELA MARCA, Todos os Direitos Reservados.</p>
+                  <!--<ul>
+                      <li><a href="{{ instance.url_instagram }}"><img src="{% static 'assets/images/icon-instagram.svg' %}" alt="{{instance.text_alt_instagram}}"></a></li>
+                  </ul>-->
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>

@@ -1,0 +1,16 @@
+{% load cms_tags static menu_tags %}
+
+<section class="absolute-icons">
+    <div class="whats-icon">
+        <div>
+            <a href="https://api.whatsapp.com/send?phone={{instance.whatsapp_number}}">
+                <picture>
+                    <img width="auto" height="auto" src="{{ logo_image.desktop }}"  alt="{{ instance.text_alt }}" loading="lazy" />
+                </picture>
+            </a>    
+        </div>
+    </div>
+    <div id="back-top" class="back-arrow">
+            <img width="auto" height="auto" src="{% static 'assets/icons/icon-arrow-up.svg' %}" alt="Botão para ir para o topo da página">
+    </div>
+</section>

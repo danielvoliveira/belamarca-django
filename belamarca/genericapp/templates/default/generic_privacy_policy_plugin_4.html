@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% load cms_tags static sekizai_tags menu_tags %}
+{% block principal %}
+    {% if title %}
+        <h1>{{ title }}</h1>
+    {% else %}
+        <p>Você precisa cadastrar uma Política de Privacidade para essa língua.</p>
+    {% endif %}
+    {% if text %}
+        <p>{{ text }}</p>
+    {% endif %}
+{% endblock principal %}

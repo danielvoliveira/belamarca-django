@@ -1,0 +1,13 @@
+{% load cms_tags static menu_tags %}
+
+<header>
+    <picture>
+        <source srcset="{{ logo_image.mobile }}"  media="(max-width: 400px)" alt="{{ instance.text_alt }}">
+        <source srcset="{{ logo_image.tablet }}"  media="(max-width: 800px)" alt="{{ instance.text_alt }}">
+        <img class="img-generic" src="{{ logo_image.desktop }}"  alt="{{ instance.text_alt }}"/>
+    </picture>
+    <ul>
+        <li>{{ instance.text_alt }}</li>
+        <li>{{ instance.url_whatsapp }}</li>
+    </ul>
+</header>

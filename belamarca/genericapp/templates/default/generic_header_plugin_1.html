@@ -1,0 +1,16 @@
+{% load cms_tags static menu_tags %}
+<header>
+    <ul>
+        {% show_menu 0 100 100 %}
+        <li>
+            <a href="{{instance.link_menu}}">
+                {{instance.text_menu}}
+            </a>
+        </li>
+        <li>
+            <a href="{{instance.link_button}}">
+                {{instance.text_button}}
+            </a>
+        </li>
+    </ul>
+</header>

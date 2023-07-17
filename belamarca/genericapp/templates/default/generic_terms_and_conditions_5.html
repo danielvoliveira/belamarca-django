@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load cms_tags static sekizai_tags menu_tags %}
+{% block principal %}
+    {% if title %}
+        <h1>{{ title }}</h1>
+    {% else %}
+        <p>Você precisa cadastrar os Termos e Condições para essa língua.</p>
+    {% endif %}
+    {% if subtitle %}
+        <h2>{{ subtitle }}</h2>
+    {% endif %}
+    {% if text %}
+        <p>{{ text }}</p>
+    {% endif %}
+{% endblock principal %}

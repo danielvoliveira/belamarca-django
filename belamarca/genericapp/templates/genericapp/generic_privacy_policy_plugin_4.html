@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load cms_tags static sekizai_tags menu_tags %}
+
+{% block title %}Política de Privacidade | Acquamotion Gramado{% endblock title %}
+
+{% block principal %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="privacy-policy">
+                {% if title %}
+                    <h1>{{ title }}</h1>
+                {% else %}
+                    <p>Você precisa cadastrar uma Política de Privacidade para exibir aqui.</p>
+                {% endif %}
+                {% if text %}
+                    <p>{{ text }}</p>
+                {% endif %}
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock principal %}
