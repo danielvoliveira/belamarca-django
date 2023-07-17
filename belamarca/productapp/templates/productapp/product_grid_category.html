@@ -1,0 +1,153 @@
+
+{% load cms_tags static sekizai_tags menu_tags %}
+{% load product_filters %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="menu-filters">
+                <div class="filters">
+                    <div class="filter" id="open_filter">
+                        <p>Filtros</p>
+                        <img src="{% static 'assets/images/down-arrow-white.webp' %}" alt="Seta para baixo">
+                    </div>
+                    <!--<div class="filter">
+                        <p>Ordem</p>
+                        <img src="{% static 'assets/images/down-arrow.svg' %}" alt="Seta para baixo">
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        {% with product_filters=request|product_filters %}
+            <div class="col-lg-12">
+                <div id="products_category" class="none">
+                    <div class="filters">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="categories filter">
+                                    <h4>Categorias</h4>
+                                    <ul>
+                                        {% for category in product_filters.categories %}
+                                            <li class="{{ category.selected }}" data-filter="category" data-id="{{ category.id }}" data-text="{{ category.name }}">
+                                                <p class="name">{{ category.name }}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="sizes filter">
+                                    <h4>Tamanhos</h4>
+                                    <ul>
+                                        {% for size in product_filters.sizes %}
+                                            <li class="{{ size.selected }}" data-filter="size" data-id="{{ size.id }}" data-text="{{ size.text }}">
+                                                <p>{{ size.text }}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="colors filter">
+                                    <h4>Cores</h4>
+                                    <ul>
+                                        {% for color in product_filters.colors %}
+                                            <li class="{{ color.selected }}" data-filter="color" data-id="{{ color.id }}" data-text="{{ color.name }}" data-color="{{ color.color }}">
+                                                <div class="color">
+                                                    <p style="background-color: {{ color.color }}; border: solid 0.5px #eee;"></p></p>
+                                                </div>
+                                                <p class="name">{{ color.name }}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="prints filter">
+                                    <h4>Estampas</h4>
+                                    <ul>
+                                        {% for print in product_filters.prints %}
+                                            <li class="{{ print.selected }}" data-filter="print" data-id="{{ print.id }}" data-text="{{ print.name }}" data-imageurl="{{ print.image.url }}" data-imagealt="{{ print.image.alt }}">
+                                                <div class="print">
+                                                    <img src="{{ print.image.url }}" alt="{{ print.image.alt }}">
+                                                </div>
+                                                <p class="name">{{ print.name }}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--<div class="col-md-6 col-lg-2">
+                                <div class="price filter">
+                                    <h4>Preços</h4>
+                                    <ul>
+                                        <li>
+                                            <p>Slider de preço</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                    <div class="order"></div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div id="selected_filters">
+                    <ul>
+                        {% for category in product_filters.categories %}
+                            {% if category.selected == 'selected' %}
+                            <li class="category unselect_filter" data-filter="category" data-id="{{ category.id }}">
+                                <div class="container">
+                                    <p>{{ category.name }}</p>
+                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                </div>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for size in product_filters.sizes %}
+                            {% if size.selected == 'selected' %}
+                            <li class="size unselect_filter" data-filter="size"  data-id="{{ size.id }}">
+                                <div class="container">
+                                    <p>{{ size.text }}</p>
+                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                </div>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for color in product_filters.colors %}
+                            {% if color.selected == 'selected' %}
+                                <li class="color unselect_filter" data-filter="color"  data-id="{{ color.id }}">
+                                    <div class="container">
+                                        <div>
+                                            <p style="background-color: {{ color.color }}; border: solid 0.5px #eee;"></p></p>
+                                        </div>
+                                        <p class="name">{{ color.name }}</p>
+                                        <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for print in product_filters.prints %}
+                            {% if print.selected == 'selected' %}
+                                <li class="print unselect_filter" data-filter="print" data-id="{{ print.id }}">
+                                    <div class="container">
+                                        <div>
+                                            <img src="{{ print.image.url }}" alt="{{ print.image.alt }}">
+                                        </div>
+                                        <p class="name">{{ print.name }}</p>
+                                        <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endwith %}
+    </div>
+</div>

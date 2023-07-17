@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+{% load cms_tags static sekizai_tags menu_tags %}
+{% load product_detail %}
+
+{% block title %}Política de Privacidade | Acquamotion Gramado{% endblock title %}
+
+{% block principal %}
+    <section class="section" id="product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                <div class="left-images">
+                    {% with product_detail=object|product_detail %}
+                        {% if product_detail != False %}
+                            {% for image in product_detail.resized_images %}
+                                <img src="{{ image.desktop }}" alt="{{ image.alt }}">
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="right-content">
+                    <h4>{{ object.name }}</h4>
+                    <span class="price">R$ {{ price }}</span>
+                    <!--<ul class="stars">
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                    </ul>-->
+                    {{ object.description }}
+                    <div class="product_attribute">
+                        <ul>
+                            {% for attribute in garment_print %}
+                                <li>
+                                    <div class="product_attribute">
+                                        <img src='{{ attribute.image }}' alt="{{ attribute.alt }}">
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <ul>
+                            {% for attribute in garment_color %}
+                                <li>
+                                    <div>
+                                        <p style="background-color: {{ attribute }}; border: solid 0.5px #eee;"></p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <ul>
+                            {% for attribute in garment_size %}
+                                <li>
+                                    <div>
+                                        <p>{{ attribute }}</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <p class="code">Ref: <span>{{ object.code }}</span></p>
+                    <div class="whats">
+                        <button id="make_order_whats" class="require" data-message="Olá, estou interessada no produto {{ object.name }} ({{ object.code }})">Eu quero!</button>
+                        <!--<button id="make_order_whats" class="love_it">Amei!</button>-->
+                    </div>
+                    <!--<div class="quote">
+                        <i class="fa fa-quote-left"></i><p>{{ object.description }}</p>
+                    </div>
+                    <div class="quote">
+                        <i class="fa fa-quote-left"></i><p>{{ object.datasheet }}</p>
+                    </div>
+                    <div class="quantity-content">
+                        <div class="left-content">
+                            <h6>Quantidade</h6>
+                        </div>
+                        <div class="right-content">
+                            <div class="quantity buttons_added">
+                                <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total">
+                        <h4>Total: $210.00</h4>
+                        <div class="main-border-button"><a href="#">Add To Cart</a></div>
+                    </div>-->
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+{% endblock principal %}
