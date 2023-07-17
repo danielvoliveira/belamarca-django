@@ -1,0 +1,10 @@
+belamarca/project.db
+belamarca/node_modules
+belamarca/static
+belamarca/webpack-stats.json
+belamarca/mainsite/media
+belamarca/media
+
+*.pyc
+
+/node_modules
