@@ -1,0 +1,46 @@
+{% load cms_tags static sekizai_tags menu_tags %}
+
+<!-- ***** Subscribe Area Starts ***** -->
+<div class="subscribe">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading">
+            <h2>{{ instance.title }}</h2>
+            <span>{{ instance.subtitle }}</span>
+        </div>
+        <form id="subscribe" class="newsletter-form" method="post" value="{% url 'formapp:newsletter_cadastro' %}"><!--id="newsletter-form"-->
+          {% csrf_token %}
+          <input type="hidden" name="tipo" value="newsletter">
+          <div class="row">
+            <div class="col-lg-6">
+              <fieldset>
+                <input name="nome" type="text" id="nome" placeholder="Nome">
+              </fieldset>
+            </div>
+            <div class="col-lg-6">
+              <fieldset>
+                <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="E-mail">
+              </fieldset>
+            </div>
+            <div class="col-lg-12">
+              <fieldset class="form-check form-check-inline contact-check newsletter-check">
+                <input class="form-check-input" type="checkbox" id="news-check" name="news-check">
+                <label class="form-check-label" for="news-check">
+                  Concordo com as <a href="{% url 'genericapp:privacy_policy' %}">Políticas de Privacidade</a>.
+                </label>
+              </fieldset>
+            </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <button id="btn-news" class="btn-news">Enviar</button>
+          <p id="newsletter_return_message"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ***** Subscribe Area Ends ***** -->

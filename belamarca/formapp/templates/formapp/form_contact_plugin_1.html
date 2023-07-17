@@ -1,0 +1,74 @@
+{% load static i18n %}
+
+<!-- ***** Contact Area Starts ***** -->
+<div class="contact-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading">
+            <h2>{{ instance.title }}</h2>
+            {{ instance.subtitle }}
+        </div>
+        <form id="contact" action="" method="post"> <!--id="contact-form-sender" -> id para funcionar o envio-->
+          {% csrf_token %}
+          <input type="hidden" id="contact-url" value="{% url 'formapp:contact_registration' %}">
+          <input type="hidden" name="tipo" value="contato">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <input name="name" type="text" id="contact-name" placeholder="Nome*">
+                </fieldset>
+              </div>
+
+              <div class="col-lg-12">
+                <fieldset>
+                  <input name="email" type="text" id="contact-email" placeholder="Email*">
+                </fieldset>
+              </div>
+
+              <div class="col-lg-12">
+                <fieldset>
+                  <input name="phone" type="telephone" id="contact-telephone" onkeypress="mask(this, mphone);" placeholder="Telefone">
+                </fieldset>
+              </div>
+
+              <div class="col-lg-12">
+                <fieldset>
+                  <select class="select-assunto" name="subject" id="contact-subject">
+                    <option value="" disabled selected>Assunto*</option>
+                    {% for value in subjects %}
+                      <option value="{{ value }}">
+                          {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <textarea name="message" rows="6" id="contact-textarea" placeholder="Sua mensagem*"></textarea>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-12">
+                <fieldset class="form-check form-check-inline contact-check">
+                  <input class="form-check-input" type="checkbox" id="contact-check" name="contact-check">
+                  <label class="form-check-label" for="contact-check">
+                    <strong>Aceito receber comunicações e ofertas da Bela Marca:</strong>
+                    ao enviar, concorda com a Política de Privacidade e está ciente que seus dados poderão ser utilizados para envio de promoções e ações de marketing da Bela Marca.
+                  </label>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+      </div>
+      <div class="col-lg-12">
+        <fieldset>
+          <button value="Enviar" id="btn-contact" class="main-dark-button">Enviar</button>
+          <p id="contact_return_message"></p>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ***** Contact Area Ends ***** -->
