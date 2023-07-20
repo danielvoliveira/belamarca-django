@@ -35,7 +35,7 @@ class BannerPlugin1(CMSPluginBase):
     module = 'Banner'
     model = BannerPlugin1
     form = BannerPlugin1Form
-    name = "01 - Banner"
+    name = "01 - Banner - Título e subtítulo centralizados com imagem de fundo"
     render_template = "bannerapp/banner_plugin_1.html"
     allow_children = False
 
@@ -79,7 +79,7 @@ class BannerPlugin2(CMSPluginBase):
     module = 'Banner'
     model = BannerPlugin2
     form = BannerPlugin2Form
-    name = "02 - Banner"
+    name = "02 - Banner - Título e parágrafo para direita e imagem na esquerda"
     render_template = "bannerapp/banner_plugin_2.html"
     allow_children = False
 
@@ -123,7 +123,7 @@ class BannerPlugin3(CMSPluginBase):
     module = 'Banner'
     model = BannerPlugin3
     form = BannerPlugin3Form
-    name = "03 - Banner"
+    name = "03 - Banner - Título, subtítulo e 3 tópicos com texto e imagem"
     render_template = "bannerapp/banner_plugin_3.html"
     allow_children = False
 
