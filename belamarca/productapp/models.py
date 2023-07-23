@@ -321,7 +321,7 @@ class Product(models.Model):
 class ProductPrice(models.Model):
     id_product = models.ForeignKey(
         Product,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
 
     price = models.FloatField(
@@ -335,8 +335,7 @@ class ProductPrice(models.Model):
         verbose_name='Última atualização',
         null=False,
         blank=False,
-        #auto_now_add=True,
-        default=datetime.now
+        auto_now_add=True,
     )
 
     def __str__(self):
