@@ -49,6 +49,18 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4">
+                                <div class="materials filter">
+                                    <h4>Tipos</h4>
+                                    <ul>
+                                        {% for type in product_filters.types %}
+                                            <li class="{{ type.selected }}" data-filter="type" data-id="{{ type.id }}" data-text="{{ type.text }}">
+                                                <p>{{ type.text }}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
                                 <div class="colors filter">
                                     <h4>Cores</h4>
                                     <ul>

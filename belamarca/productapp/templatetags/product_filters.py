@@ -19,31 +19,37 @@ register = template.Library()
 def product_filters(request):
     selected_categories = request.GET.get('categories', '')
     selected_sizes = request.GET.get('sizes', '')
+    selected_types = request.GET.get('types', '')
     selected_colors = request.GET.get('colors', '')
     selected_prints = request.GET.get('prints', '')
     selected_materials = request.GET.get('materials', '')
 
-    if selected_categories is not '':
+    if selected_categories != '':
         selected_categories = ast.literal_eval(selected_categories)
     else:
         selected_categories = []
 
-    if selected_sizes is not '':
+    if selected_sizes != '':
         selected_sizes = ast.literal_eval(selected_sizes)
     else:
         selected_sizes = []
 
-    if selected_colors is not '':
+    if selected_types != '':
+        selected_types = ast.literal_eval(selected_types)
+    else:
+        selected_types = []
+
+    if selected_colors != '':
         selected_colors = ast.literal_eval(selected_colors)
     else:
         selected_colors = []
 
-    if selected_prints is not '':
+    if selected_prints != '':
         selected_prints = ast.literal_eval(selected_prints)
     else:
         selected_prints = []
 
-    if selected_materials is not '':
+    if selected_materials != '':
         selected_materials = ast.literal_eval(selected_materials)
     else:
         selected_materials = []
@@ -64,6 +70,7 @@ def product_filters(request):
 
     attributes = Attribute.objects.filter(disp='disponivel')
     final_sizes = []
+    final_types = []
     final_colors = []
     final_prints = []
     final_materials = []
@@ -94,6 +101,17 @@ def product_filters(request):
                     selected = 'selected'
 
                 final_materials.append({
+                    'id': attribute_option.id,
+                    'name': attribute_option.name,
+                    'text': attribute_option.text,
+                    'selected': selected,
+                })
+
+            if attribute.name == 'Tipo':
+                if attribute_option.id in selected_types:
+                    selected = 'selected'
+
+                final_types.append({
                     'id': attribute_option.id,
                     'name': attribute_option.name,
                     'text': attribute_option.text,
@@ -154,6 +172,7 @@ def product_filters(request):
     return {
         'categories': final_categories,
         'sizes': final_sizes,
+        'types': final_types,
         'colors': final_colors,
         'prints': final_prints,
         'materials': final_materials,
