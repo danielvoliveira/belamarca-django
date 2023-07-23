@@ -52,6 +52,7 @@ def get_products_from_csv(request):
         ficha_tecnica = None
         categoria = None
         subcategoria = None
+        atributos_tipo = None
         atributos_cor = None
         atributos_estampa = None
         atributos_tamanho = None
@@ -80,20 +81,22 @@ def get_products_from_csv(request):
                     if y == 5:
                         subcategorias = data
                     if y == 6:
-                        atributos_cor = data
+                        atributos_tipo = data
                     if y == 7:
-                        atributos_estampa = data
+                        atributos_cor = data
                     if y == 8:
-                        atributos_tamanho = data
+                        atributos_estampa = data
                     if y == 9:
-                        atributos_tecido = data
+                        atributos_tamanho = data
                     if y == 10:
-                        price = data
+                        atributos_tecido = data
                     if y == 11:
-                        disponibilidade = data
+                        price = data
                     if y == 12:
-                        imagens_nome = data
+                        disponibilidade = data
                     if y == 13:
+                        imagens_nome = data
+                    if y == 14:
                         slug = data
                 y += 1
 
@@ -102,6 +105,7 @@ def get_products_from_csv(request):
             # Listas para armazenar os objetos finais de cada categiria, subcategoria e atributos
             final_categorias = []
             final_subcategorias = []
+            final_atributos_tipo = []
             final_atributos_cor = []
             final_atributos_estampa = []
             final_atributos_tamanho = []
@@ -150,6 +154,7 @@ def get_products_from_csv(request):
 
             # Verificando se atributos já existem e cadastrando caso não existam
             attributes_names_list = [
+                'Tipo', # Estampado ou Liso
                 'Cor',
                 'Tamanho',
                 'Estampa',
@@ -162,6 +167,10 @@ def get_products_from_csv(request):
                 attribute_obj = Attribute.objects.filter(name=attribute_name)
 
                 if attribute_obj.count() == 0:
+                    if attribute_name == 'Tipo':
+                        is_color = False
+                        is_text = True
+                        is_image = False
                     if attribute_name == 'Cor':
                         is_color = True
                         is_text = False
@@ -184,7 +193,7 @@ def get_products_from_csv(request):
                         is_text=is_text,
                         is_image=is_image,
                         is_color=is_color,
-                        disp=disponibilidade,
+                        disp='disponivel',
                     )
 
                     new_attribute.save()
@@ -198,6 +207,7 @@ def get_products_from_csv(request):
 
             # Recuperar ou cadastrar os "AttributesOptions" desse tipo de "Attributes"
 
+            # Tratando "atributos_tipo" para cadastrar caso não exista
             # Tratando "atributos_cor" para cadastrar caso não exista
             # Tratando "atributos_estampa" para cadastrar caso não exista
             # Tratando "atributos_tamanho" para cadastrar caso não exista
@@ -207,6 +217,34 @@ def get_products_from_csv(request):
                 attribute_name = attribute_obj_and_name.get('name')
                 attribute_obj = attribute_obj_and_name.get('object')[0]
 
+                if attribute_name == 'Tipo': #final_atributos_tipo
+                    atributos_tipo_list = atributos_tipo.split(',')
+
+                    for tipo in atributos_tipo_list:
+                        if tipo != '-' and tipo != '':
+                            tipo_obj = AttributeOption.objects.filter(
+                                attribute=attribute_obj,
+                                name=tipo.strip(),
+                            )
+
+                            if tipo_obj.count() == 0:
+                                    # Adicionar nova cor caso ela não exista
+                                    new_attribute_option = AttributeOption(
+                                        attribute=attribute_obj,
+                                        name=tipo.strip(),
+                                        text=tipo.strip(),
+                                    )
+                                    new_attribute_option.save()
+
+                                    tipo_obj = AttributeOption.objects.filter(
+                                        attribute=attribute_obj,
+                                        name=tipo.strip(),
+                                    )
+
+                                    if tipo_obj.count() > 0:
+                                        final_atributos_tipo.append(tipo_obj[0])
+                            else:
+                                final_atributos_tipo.append(tipo_obj[0])
                 if attribute_name == 'Cor':
                     atributos_cor_list = atributos_cor.split(',')
 
@@ -331,21 +369,22 @@ def get_products_from_csv(request):
             slug = '{}-{}-{}'.format(produto_parte, tecido_parte, codigo_parte)
 
             if codigo != '':
-                # print('---------------------------------')
-                # print(codigo)
-                # print(produto)
-                # print(descricao)
-                # print(ficha_tecnica)
-                # print(price)
-                # print(disponibilidade)
-                # print(imagem_nome)
-                # print(slug)
-                # print(final_categorias)
-                # print(final_subcategorias)
-                # print(final_atributos_cor)
-                # print(final_atributos_estampa)
-                # print(final_atributos_tamanho)
-                # print(final_atributos_tecido)
+                print('---------------------------------')
+                print(codigo)
+                print(produto)
+                print(descricao)
+                print(ficha_tecnica)
+                print(price)
+                print(disponibilidade)
+                print(imagem_nome)
+                print(slug)
+                print(final_categorias)
+                print(final_subcategorias)
+                print(final_atributos_tipo)
+                print(final_atributos_cor)
+                print(final_atributos_estampa)
+                print(final_atributos_tamanho)
+                print(final_atributos_tecido)
 
                 # Verificando se o produto não existe através do "slug"
                 # e apagando caso exista para adicionar novamente
@@ -381,6 +420,9 @@ def get_products_from_csv(request):
 
                 for obj in final_subcategorias:
                     new_product.subcategory.add(obj)
+
+                for obj in final_atributos_tipo:
+                    new_product.attribute_options.add(obj)
 
                 for obj in final_atributos_cor:
                     new_product.attribute_options.add(obj)
