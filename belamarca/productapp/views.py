@@ -58,7 +58,7 @@ def get_products_from_csv(request):
         atributos_tecido = None
         price = None
         disponibilidade = None
-        imagem_nome = None
+        imagens_nome = None
         slug = None # Concatenar: produto(sem ascento e minúculo)-codigo-tecido
 
         if x > 1: # Regra para ignorar o cabeçalho do CSV
@@ -92,7 +92,7 @@ def get_products_from_csv(request):
                     if y == 11:
                         disponibilidade = data
                     if y == 12:
-                        imagem_nome = data
+                        imagens_nome = data
                     if y == 13:
                         slug = data
                 y += 1
@@ -106,6 +106,7 @@ def get_products_from_csv(request):
             final_atributos_estampa = []
             final_atributos_tamanho = []
             final_atributos_tecido = []
+            final_imagens_nome = []
 
             # Tratando categoria para cadastrar caso não exista
             categorias_list = categorias.split(',')
@@ -316,7 +317,14 @@ def get_products_from_csv(request):
                             else:
                                 final_atributos_tecido.append(tecido_obj[0])
 
-            # Tratando slug
+            # Tratando imagens para cadastrar caso não exista
+            imagens_nome_list = imagens_nome.split(',')
+
+            for imagem_nome in imagens_nome_list:
+                if imagem_nome != '-' and imagem_nome != '':
+                    final_imagens_nome.append(imagem_nome.strip())
+
+             # Tratando slug
             produto_parte = unidecode(produto.lower().replace(" ", "-").replace(")", "").replace("(", ""))
             tecido_parte = unidecode(atributos_tecido.lower().replace(" ", "-").replace(")", "").replace("(", ""))
             codigo_parte = codigo.lower()
@@ -385,6 +393,19 @@ def get_products_from_csv(request):
 
                 for obj in final_atributos_tecido:
                     new_product.attribute_options.add(obj)
+
+                # Cadastrando imagens do produto
+                for image_name in final_imagens_nome:
+                    if image_name != '' and image_name != '-':
+                        image_path = 'products_images/{}'.format(image_name)
+
+                        new_product_image = ProductImage(
+                            product=new_product,
+                            alt=new_product.name,
+                        )
+                        new_product_image.p3_image_resize = image_path
+                        new_product_image.save()
+
         x += 1
     print('---------------------------------')
     print('Produtos, categorias, atributos e preços cadastrados com sucesso!')
