@@ -21,6 +21,7 @@ def product_filters(request):
     selected_sizes = request.GET.get('sizes', '')
     selected_colors = request.GET.get('colors', '')
     selected_prints = request.GET.get('prints', '')
+    selected_materials = request.GET.get('materials', '')
 
     if selected_categories is not '':
         selected_categories = ast.literal_eval(selected_categories)
@@ -42,6 +43,11 @@ def product_filters(request):
     else:
         selected_prints = []
 
+    if selected_materials is not '':
+        selected_materials = ast.literal_eval(selected_materials)
+    else:
+        selected_materials = []
+
     categories = Category.objects.filter(disp='disponivel').order_by('name')
     final_categories = []
 
@@ -60,19 +66,34 @@ def product_filters(request):
     final_sizes = []
     final_colors = []
     final_prints = []
+    final_materials = []
 
     for attribute in attributes:
-        attribute_options = AttributeOption.objects.filter(attribute=attribute, disp='disponivel')
+        # Regra para ordenar filtros de "Estampa" e "Cores"
+        if attribute.name == 'Tamanho':
+            attribute_options = AttributeOption.objects.filter(attribute=attribute, disp='disponivel')
+        else:
+            attribute_options = AttributeOption.objects.filter(attribute=attribute, disp='disponivel').order_by('name')
 
         for attribute_option in attribute_options:
             selected = ''
-            attribute_name = attribute.name.lower()
 
             if attribute.name == 'Tamanho':
                 if attribute_option.id in selected_sizes:
                     selected = 'selected'
 
                 final_sizes.append({
+                    'id': attribute_option.id,
+                    'name': attribute_option.name,
+                    'text': attribute_option.text,
+                    'selected': selected,
+                })
+
+            if attribute.name == 'Tecído':
+                if attribute_option.id in selected_materials:
+                    selected = 'selected'
+
+                final_materials.append({
                     'id': attribute_option.id,
                     'name': attribute_option.name,
                     'text': attribute_option.text,
@@ -119,12 +140,23 @@ def product_filters(request):
                         },
                         'selected': selected,
                     })
+                else:
+                    final_prints.append({
+                        'id': attribute_option.id,
+                        'name': attribute_option.name,
+                        'image': {
+                            'url': '',
+                            'alt': 'Estampa {}'.format(attribute_option.name),
+                        },
+                        'selected': selected,
+                    })
 
     return {
         'categories': final_categories,
         'sizes': final_sizes,
         'colors': final_colors,
         'prints': final_prints,
+        'materials': final_materials,
         'prices': {
             'max-price': '1000',
             'min-price': '200',
