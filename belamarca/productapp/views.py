@@ -11,21 +11,23 @@ from django.views.generic import ListView, DetailView
 from genericapp.models import ImagesResized
 import ast
 
+from unidecode import unidecode
+
 from .models import (
     Product,
     Category,
     Subcategory,
+    Attribute,
     AttributeOption,
     ProductPrice,
     ProductImage,
+    Disponibility,
 )
 
 
 def get_products_from_csv(request):
 
     file = open('static/csv/products.csv')
-
-    #print(type(file))
 
     csvreader = csv.reader(file)
 
@@ -37,6 +39,8 @@ def get_products_from_csv(request):
         rows.append(row)
 
     products = str(rows).split('[')
+    # final_products = list(products)
+
     x=0
     for product in products:
         #print(x)
@@ -48,15 +52,21 @@ def get_products_from_csv(request):
         ficha_tecnica = None
         categoria = None
         subcategoria = None
-        atributos = None
-        slug = None
+        atributos_cor = None
+        atributos_estampa = None
+        atributos_tamanho = None
+        atributos_tecido = None
         price = None
+        disponibilidade = None
+        imagem_nome = None
+        slug = None # Concatenar: produto(sem ascento e minúculo)-codigo-tecido
 
-        if x > 1:
+        if x > 1: # Regra para ignorar o cabeçalho do CSV
             y = 0
             for data in datas:
                 data = ((data.replace("'", '')).replace("]]", '')).replace("],", '')
-                if y < 12:
+
+                if y < 14:
                     if y == 0:
                         codigo = data
                     if y == 1:
@@ -66,35 +76,315 @@ def get_products_from_csv(request):
                     if y == 3:
                         ficha_tecnica = data
                     if y == 4:
-                        categoria = Category.objects.filter(id=int(data))
+                        categorias = data
                     if y == 5:
-                        subcategoria = Subcategory.objects.filter(id=int(data))
+                        subcategorias = data
                     if y == 6:
-                        atributos = AttributeOption.objects.filter(id=int(data))
+                        atributos_cor = data
+                    if y == 7:
+                        atributos_estampa = data
+                    if y == 8:
+                        atributos_tamanho = data
+                    if y == 9:
+                        atributos_tecido = data
                     if y == 10:
-                        slug = data.replace(" ", "")
+                        price = data
                     if y == 11:
-                        price = float(data)
+                        disponibilidade = data
+                    if y == 12:
+                        imagem_nome = data
+                    if y == 13:
+                        slug = data
                 y += 1
-            #print('---------------------------------')
 
-            new_product = Product(
-                code=codigo,
-                name=produto,
-                description=descricao,
-                datasheet=ficha_tecnica,
-                slug=slug,
-            )
-            new_product.save()
-            new_product.category.set(categoria)
-            new_product.subcategory.set(subcategoria)
-            new_product.attribute_options.set(atributos)
+            # Tratando campos necessários
 
-            product_price = ProductPrice(
-                id_product=new_product,
-                price=price,
-            )
-            product_price.save()
+            # Listas para armazenar os objetos finais de cada categiria, subcategoria e atributos
+            final_categorias = []
+            final_subcategorias = []
+            final_atributos_cor = []
+            final_atributos_estampa = []
+            final_atributos_tamanho = []
+            final_atributos_tecido = []
+
+            # Tratando categoria para cadastrar caso não exista
+            categorias_list = categorias.split(',')
+
+            for categoria in categorias_list:
+                if categoria != '-' and categoria != '':
+                    categoria_obj = Category.objects.filter(name=categoria.strip())
+                    if categoria_obj.count() == 0:
+                        # Criar a categoria caso ela não exista
+                        new_category = Category(
+                            name=categoria,
+                            disp=disponibilidade,
+                        )
+                        new_category.save()
+                        categoria_obj = Category.objects.filter(name=categoria)
+
+                        if categoria_obj.count() > 0:
+                            final_categorias.append(categoria_obj[0])
+                    else:
+                        final_categorias.append(categoria_obj[0])
+
+            # Tratando subcategoria para cadastrar caso não exista
+            subcategorias_list = subcategorias.split(',')
+
+            for subcategoria in subcategorias_list:
+                if subcategoria != '-' and subcategoria != '':
+                    subcategoria_obj = Subcategory.objects.filter(name=subcategoria.strip())
+                    if subcategoria_obj.count() == 0:
+                        # Criar a categoria caso ela não exista
+                        new_subcategory = Subcategory(
+                            name=subcategoria,
+                            disp=disponibilidade,
+                        )
+                        new_subcategory.save()
+                        subcategoria_obj = Subcategory.objects.filter(name=subcategoria)
+
+                        if subcategoria_obj.count() > 0:
+                            final_subcategorias.append(subcategoria_obj[0])
+                    else:
+                        final_subcategorias.append(subcategoria_obj[0])
+
+            # Verificando se atributos já existem e cadastrando caso não existam
+            attributes_names_list = [
+                'Cor',
+                'Tamanho',
+                'Estampa',
+                'Tecído',
+            ]
+
+            attributes_obj_list = []
+
+            for attribute_name in attributes_names_list:
+                attribute_obj = Attribute.objects.filter(name=attribute_name)
+
+                if attribute_obj.count() == 0:
+                    if attribute_name == 'Cor':
+                        is_color = True
+                        is_text = False
+                        is_image = False
+                    elif attribute_name == 'Tamanho':
+                        is_color = False
+                        is_text = True
+                        is_image = False
+                    elif attribute_name == 'Estampa':
+                        is_color = False
+                        is_text = False
+                        is_image = True
+                    elif attribute_name == 'Tecído':
+                        is_color = False
+                        is_text = False
+                        is_image = True
+
+                    new_attribute = Attribute(
+                        name=attribute_name,
+                        is_text=is_text,
+                        is_image=is_image,
+                        is_color=is_color,
+                        disp=disponibilidade,
+                    )
+
+                    new_attribute.save()
+
+                    attribute_obj = Attribute.objects.filter(name=attribute_name)
+
+                attributes_obj_list.append({
+                    'name': attribute_name,
+                    'object': attribute_obj
+                })
+
+            # Recuperar ou cadastrar os "AttributesOptions" desse tipo de "Attributes"
+
+            # Tratando "atributos_cor" para cadastrar caso não exista
+            # Tratando "atributos_estampa" para cadastrar caso não exista
+            # Tratando "atributos_tamanho" para cadastrar caso não exista
+            # Tratando "atributos_tecido" para cadastrar caso não exista
+
+            for attribute_obj_and_name in attributes_obj_list:
+                attribute_name = attribute_obj_and_name.get('name')
+                attribute_obj = attribute_obj_and_name.get('object')[0]
+
+                if attribute_name == 'Cor':
+                    atributos_cor_list = atributos_cor.split(',')
+
+                    for cor in atributos_cor_list:
+                        cor_obj = AttributeOption.objects.filter(
+                            attribute=attribute_obj,
+                            name=cor.strip(),
+                        )
+
+                        if cor != '-' and cor != '':
+                            if cor_obj.count() == 0:
+                                    # Adicionar nova cor caso ela não exista
+                                    new_attribute_option = AttributeOption(
+                                        attribute=attribute_obj,
+                                        name=cor.strip(),
+                                    )
+                                    new_attribute_option.save()
+
+                                    cor_obj = AttributeOption.objects.filter(
+                                        attribute=attribute_obj,
+                                        name=cor.strip(),
+                                    )
+
+                                    if cor_obj.count() > 0:
+                                        final_atributos_cor.append(cor_obj[0])
+                            else:
+                                final_atributos_cor.append(cor_obj[0])
+                if attribute_name == 'Estampa': #final_atributos_estampa
+                    atributos_estampa_list = atributos_estampa.split(',')
+
+                    for estampa in atributos_estampa_list:
+                        estampa_obj = AttributeOption.objects.filter(
+                            attribute=attribute_obj,
+                            name=estampa.strip(),
+                        )
+                        if estampa != '-' and estampa != '':
+                            if estampa_obj.count() == 0:
+                                    # Adicionar nova cor caso ela não exista
+                                    new_attribute_option = AttributeOption(
+                                        attribute=attribute_obj,
+                                        name=estampa.strip(),
+                                    )
+                                    new_attribute_option.save()
+
+                                    estampa_obj = AttributeOption.objects.filter(
+                                        attribute=attribute_obj,
+                                        name=estampa.strip(),
+                                    )
+
+                                    if estampa_obj.count() > 0:
+                                        final_atributos_estampa.append(estampa_obj[0])
+                            else:
+                                final_atributos_estampa.append(estampa_obj[0])
+                if attribute_name == 'Tamanho': #final_atributos_tamanho
+                    atributos_tamanho_list = atributos_tamanho.split(',')
+
+                    for tamanho in atributos_tamanho_list:
+                        if tamanho != '-' and tamanho != '':
+                            tamanho_obj = AttributeOption.objects.filter(
+                                attribute=attribute_obj,
+                                name=tamanho.strip(),
+                            )
+
+                            if tamanho_obj.count() == 0:
+                                    # Adicionar nova cor caso ela não exista
+                                    new_attribute_option = AttributeOption(
+                                        attribute=attribute_obj,
+                                        name=tamanho.strip(),
+                                        text=tamanho.strip(),
+                                    )
+                                    new_attribute_option.save()
+
+                                    tamanho_obj = AttributeOption.objects.filter(
+                                        attribute=attribute_obj,
+                                        name=tamanho.strip(),
+                                    )
+
+                                    if tamanho_obj.count() > 0:
+                                        final_atributos_tamanho.append(tamanho_obj[0])
+                            else:
+                                final_atributos_tamanho.append(tamanho_obj[0])
+                if attribute_name == 'Tecído': #final_atributos_tecido
+                    atributos_tecido_list = atributos_tecido.split(',')
+
+                    for tecido in atributos_tecido_list:
+                        if tecido != '-' and tecido != '':
+                            tecido_obj = AttributeOption.objects.filter(
+                                attribute=attribute_obj,
+                                name=tecido.strip(),
+                            )
+
+                            if tecido_obj.count() == 0:
+                                    # Adicionar nova cor caso ela não exista
+                                    new_attribute_option = AttributeOption(
+                                        attribute=attribute_obj,
+                                        name=tecido.strip(),
+                                        text=tecido.strip(),
+                                    )
+                                    new_attribute_option.save()
+
+                                    tecido_obj = AttributeOption.objects.filter(
+                                        attribute=attribute_obj,
+                                        name=tecido.strip(),
+                                    )
+
+                                    if tecido_obj.count() > 0:
+                                        final_atributos_tecido.append(tecido_obj[0])
+                            else:
+                                final_atributos_tecido.append(tecido_obj[0])
+
+            # Tratando slug
+            produto_parte = unidecode(produto.lower().replace(" ", "-").replace(")", "").replace("(", ""))
+            tecido_parte = unidecode(atributos_tecido.lower().replace(" ", "-").replace(")", "").replace("(", ""))
+            codigo_parte = codigo.lower()
+            slug = '{}-{}-{}'.format(produto_parte, tecido_parte, codigo_parte)
+
+            if codigo != '':
+                # print('---------------------------------')
+                # print(codigo)
+                # print(produto)
+                # print(descricao)
+                # print(ficha_tecnica)
+                # print(price)
+                # print(disponibilidade)
+                # print(imagem_nome)
+                # print(slug)
+                # print(final_categorias)
+                # print(final_subcategorias)
+                # print(final_atributos_cor)
+                # print(final_atributos_estampa)
+                # print(final_atributos_tamanho)
+                # print(final_atributos_tecido)
+
+                # Verificando se o produto não existe através do "slug"
+                # e apagando caso exista para adicionar novamente
+
+                product_obj = Product.objects.filter(
+                    slug=slug,
+                )
+
+                if product_obj.count() > 0:
+                    product_obj[0].delete()
+
+                # Cadastrando o novo produto
+                new_product = Product(
+                    code=codigo,
+                    name=produto,
+                    description=descricao,
+                    datasheet=ficha_tecnica,
+                    slug=slug,
+                )
+                new_product.save()
+
+                # Cadastrando preço do produto
+                if price != '' and price != '-':
+                    product_price = ProductPrice(
+                        id_product=new_product,
+                        price=price,
+                    )
+                    product_price.save()
+
+                # Cadastrando categorias, subcategorias e atributos do produto
+                for obj in final_categorias:
+                    new_product.category.add(obj)
+
+                for obj in final_subcategorias:
+                    new_product.subcategory.add(obj)
+
+                for obj in final_atributos_cor:
+                    new_product.attribute_options.add(obj)
+
+                for obj in final_atributos_estampa:
+                    new_product.attribute_options.add(obj)
+
+                for obj in final_atributos_tamanho:
+                    new_product.attribute_options.add(obj)
+
+                for obj in final_atributos_tecido:
+                    new_product.attribute_options.add(obj)
         x += 1
     print('---------------------------------')
     print('Produtos, categorias, atributos e preços cadastrados com sucesso!')
