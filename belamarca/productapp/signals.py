@@ -6,9 +6,9 @@ from mainsite.utils.image_resizer import (
     delete_images_resized_signals,
 )
 
-from mainsite.utils.product_image_resizer import (
-    create_product_image_resizer,
-    delete_product_image_resizer,
+from mainsite.utils.image_resizer_to_image_field import (
+    create_image_resizer_to_image_field,
+    delete_image_resizer_to_image_field,
 )
 
 from .models import (
@@ -43,18 +43,21 @@ from .models import (
 
 
 @receiver(post_save, sender=AttributeOption)
-def create_generic_header_plugin1(sender, instance, **kwargs):
-    create_images_resized_signals(
+def create_attribute_option_image(sender, instance, **kwargs):
+    create_image_resizer_to_image_field(
         instance,
         model=AttributeOption,
+        final_field_name='p2_image_image_resize',
+        final_field_size='p2_image_image_size',
     )
 
 
 @receiver(post_delete, sender=AttributeOption)
-def delete_generic_header_plugin1(sender, instance, **kwargs):
-    delete_images_resized_signals(
+def delete_attribute_option_image(sender, instance, **kwargs):
+    delete_image_resizer_to_image_field(
         instance,
         model=AttributeOption,
+        final_field_name='p2_image_image_resize',
     )
 
 # ----------------------------------------
@@ -63,14 +66,17 @@ def delete_generic_header_plugin1(sender, instance, **kwargs):
 
 @receiver(post_save, sender=ProductImage)
 def create_product_image(sender, instance, **kwargs):
-    create_product_image_resizer(
+    create_image_resizer_to_image_field(
         instance,
         model=ProductImage,
+        final_field_name='p3_image_resize',
+        final_field_size='p3_image_size',
     )
 
 @receiver(post_delete, sender=ProductImage)
 def delete_product_image(sender, instance, **kwargs):
-    delete_product_image_resizer(
+    delete_image_resizer_to_image_field(
         instance,
         model=ProductImage,
+        final_field_name='p3_image_resize',
     )
