@@ -13,7 +13,7 @@ from genericapp.models import ImagesResized
 from unidecode import unidecode
 
 
-def create_product_image_resizer(instance, model):
+def create_image_resizer_to_image_field(instance, model, final_field_name, final_field_size):
     '''
     Esta função recebe a instância, o modelo e os sizes específicos
     das imagens para criação das versões mobile, tablet e desktop
@@ -23,8 +23,8 @@ def create_product_image_resizer(instance, model):
 
     # Pegando nomes dos campos de imagens e tamanhos recebidos na nova instancia
     # com 'image_resize' e 'image_size' no nome
-    image_to_resize_attributes_names = ['p3_image_resize',]
-    image_size_attributes_names = ['p3_image_size',]
+    image_to_resize_attributes_names = [final_field_name,]
+    image_size_attributes_names = [final_field_size,]
     model_name = model.__name__
 
     # Criando uma lista com os field_names atrelados aos seus respectivos sizes
@@ -85,19 +85,17 @@ def create_product_image_resizer(instance, model):
                         [int((image_size['widht']/2)/2), int((image_size['length']/2)/2)])
 
 
-            image_name = instance.p3_image_resize.name.split('/')[1]
+            # image_name = instance.final_field_name.name.split('/')[1]
 
-            rename = '{}{}{}{}'.format(
+            rename = '{}{}{}'.format(
                 model_name,
                 instance.id,
                 field_name,
-                image_name
+                # image_name
             )
 
-            print(instace_image.name)
-
             rename = hash_image_name(rename)
-            rename = '{}-{}'.format(unidecode(image_name.replace(" ", "-")), rename)
+            rename = '{}-{}'.format(instance.id, rename)
 
             # Em ambos os casos fazemos o redimensionamento e cadastramos novamente
             image_desktop = image_optimizer(
@@ -132,7 +130,7 @@ def create_product_image_resizer(instance, model):
             image_resized.save()
 
 
-def delete_product_image_resizer(instance, model):
+def delete_image_resizer_to_image_field(instance, model, final_field_name):
     '''
     Esta função recebe a instância e o modelo específicos para
     exclusão das versões mobile, tablet e desktop das imagens
@@ -144,7 +142,7 @@ def delete_product_image_resizer(instance, model):
     # Pegando nomes dos campos de imagens recebidas na instancia
     # que foi excluída e que tenham 'image_resize' em seus nomes
     # de atributo.
-    image_to_delete_attributes_names = ['p3_image_resize']
+    image_to_delete_attributes_names = [final_field_name]
 
     # Pegando nome do modelo específico para busca das imagens redimensionadas
     model_name = model.__name__
