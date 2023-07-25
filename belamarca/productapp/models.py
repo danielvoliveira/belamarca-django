@@ -175,13 +175,13 @@ class AttributeOption(models.Model):
         blank=True,
     )
 
-    p2_image_image_resize = FilerImageField(
+    p2_image_image_resize = models.ImageField(
+        upload_to ='products_images/prints/',
         null=True,
         blank=True,
-        related_name='p2_image_image_resize',
+        default='products_images/prints/default.jpg',
         verbose_name='Imagem do atributo.',
-        help_text='Tamanho ideal 100x100.',
-        on_delete=models.PROTECT
+        help_text='Enviar arquivos .png ou .jpg. Tamanho ideal 100x100.',
     )
 
     p2_image_image_size = models.CharField(
