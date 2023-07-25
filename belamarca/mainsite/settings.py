@@ -239,3 +239,48 @@ MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# COLOR OPTIONS FOR FILTERS
+PRODUCSTS_COLORS_HEXADECIMAL = (
+    ('Branco', '#FFFFFF'),
+    ('Euforia', '#55CFC4'),
+    ('Marinho', '#120A8F'),
+    ('Orange Fresh', '#FFA500'),
+    ('Preto', '#000000'),
+    ('Preto com Rosa Pink', '#F653A9/#000000'), # Para duas cores
+    ('Rosa', '#FDACBA'),
+    ('Rosa Pink', '#F653A9'),
+    ('Scarlet', '#BB0622'),
+    ('Laranja', '#FFA500'),
+    ('Amarelo', '#FFD200'),
+)
+
+# PRINTS OPTIONS FOR FILTERS
+PRODUCSTS_PRINTS_IMAGES = (
+    ('Abstrata', 'estampa_1.jpg'),
+    ('Alicia', 'estampa_2.jpg'),
+    ('Amarelo', 'estampa_3.jpg'),
+    ('Berenice', 'estampa_1.jpg'),
+    ('Elisa', 'estampa_2.jpg'),
+    ('Floral', 'estampa_3.jpg'),
+    ('Floral Acqua', 'estampa_1.jpg'),
+    ('Folha Tropical', 'estampa_2.jpg'),
+    ('Folhagens', 'estampa_3.jpg'),
+    ('Folhas', 'estampa_1.jpg'),
+    ('Helen', 'estampa_2.jpg'),
+    ('Listras', 'estampa_3.jpg'),
+    ('Mandala', 'estampa_1.jpg'),
+    ('Manoela', 'estampa_2.jpg'),
+    ('Maya', 'estampa_3.jpg'),
+    ('Olho Grego', 'estampa_1.jpg'),
+    ('Onça', 'estampa_2.jpg'),
+    ('Outuno', 'estampa_3.jpg'),
+    ('Poá', 'estampa_1.jpg'),
+    ('Tigre', 'estampa_2.jpg'),
+    ('Tropical', 'estampa_3.jpg'),
+    ('Virginia', 'estampa_1.jpg'),
+    ('Zebra', 'estampa_2.jpg'),
+    ('Zebra Nude e Rosa', 'estampa_3.jpg'),
+)
+# END - DEFAULTS SETTINGS
+
