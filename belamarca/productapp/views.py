@@ -11,6 +11,8 @@ from django.views.generic import ListView, DetailView
 from genericapp.models import ImagesResized
 import ast
 
+from django.conf import settings
+
 from unidecode import unidecode
 
 from .models import (
@@ -122,7 +124,7 @@ def get_products_from_csv(request):
                         # Criar a categoria caso ela não exista
                         new_category = Category(
                             name=categoria,
-                            disp=disponibilidade,
+                            disp='disponivel',
                         )
                         new_category.save()
                         categoria_obj = Category.objects.filter(name=categoria)
@@ -142,7 +144,7 @@ def get_products_from_csv(request):
                         # Criar a categoria caso ela não exista
                         new_subcategory = Subcategory(
                             name=subcategoria,
-                            disp=disponibilidade,
+                            disp='disponivel',
                         )
                         new_subcategory.save()
                         subcategoria_obj = Subcategory.objects.filter(name=subcategoria)
@@ -256,20 +258,29 @@ def get_products_from_csv(request):
 
                         if cor != '-' and cor != '':
                             if cor_obj.count() == 0:
-                                    # Adicionar nova cor caso ela não exista
-                                    new_attribute_option = AttributeOption(
-                                        attribute=attribute_obj,
-                                        name=cor.strip(),
-                                    )
-                                    new_attribute_option.save()
+                                # Pegar hexadecimal da cor no setings "PRODUCSTS_COLORS_HEXADECIMAL"
+                                def get_hexadecimal_for_option(cor):
+                                    for option, hexadecimal in settings.PRODUCSTS_COLORS_HEXADECIMAL:
+                                        if option == cor.strip():
+                                            return hexadecimal
 
-                                    cor_obj = AttributeOption.objects.filter(
-                                        attribute=attribute_obj,
-                                        name=cor.strip(),
-                                    )
+                                color_hexadecimal = get_hexadecimal_for_option(cor)
 
-                                    if cor_obj.count() > 0:
-                                        final_atributos_cor.append(cor_obj[0])
+                                # Adicionar nova cor caso ela não exista
+                                new_attribute_option = AttributeOption(
+                                    attribute=attribute_obj,
+                                    name=cor.strip(),
+                                    color=color_hexadecimal,
+                                )
+                                new_attribute_option.save()
+
+                                cor_obj = AttributeOption.objects.filter(
+                                    attribute=attribute_obj,
+                                    name=cor.strip(),
+                                )
+
+                                if cor_obj.count() > 0:
+                                    final_atributos_cor.append(cor_obj[0])
                             else:
                                 final_atributos_cor.append(cor_obj[0])
                 if attribute_name == 'Estampa': #final_atributos_estampa
@@ -287,6 +298,20 @@ def get_products_from_csv(request):
                                         attribute=attribute_obj,
                                         name=estampa.strip(),
                                     )
+
+                                    # Pegar nome da imagem da estampa no setings "PRODUCSTS_PRINTS_IMAGES"
+                                    def get_image_name_for_print(estampa):
+                                        for option, image_name in settings.PRODUCSTS_PRINTS_IMAGES:
+                                            if option == estampa.strip():
+                                                return image_name
+
+                                    print_image_name = get_image_name_for_print(estampa)
+
+                                    if print_image_name != None:
+                                        print_image_path = 'products_images/prints/{}'.format(print_image_name)
+
+                                        new_attribute_option.p2_image_image_resize = print_image_path
+
                                     new_attribute_option.save()
 
                                     estampa_obj = AttributeOption.objects.filter(
