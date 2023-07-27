@@ -94,6 +94,21 @@ Finally, access the application in browser with *http://localhost:8080*
 
 And manage your personalized web application accessing *http://localhost:8080/admin*
 
+# Upload of Products:
+
+In this project we have a process to upload products with image, categories, subcategories, attributes and attributeoptions automatically.
+
+To do this access the route "http://localhost:8080/produto/get_products_from_csv/" and check the upload status accessing the Docker log: <code>docker logs -f belamarca-app-hlg</code>.
+
+Details:
+
+- The default sheet for the products is inside the dir "productapp/static/products.csv";
+- If you want to change the list of Products, ProductImages, Categories, Subcategories and AttributeOptions access the sheet and change what you need;
+- All product images are inside the dir "media/products_images" and the prints are inside "media/products_images/prints";
+- If you want to change the images send your new images to the product's images dir.
+- The name of the images should be like the name inside image column "image_name" from products sheet.
+- To change the prints images and hexadecimal colors from AttributeOptions access the default values inside "settings.PRODUCSTS_COLORS_HEXADECIMAL" and "settings.PRODUCSTS_PRINTS_IMAGES".
+
 # Other information:
 
 * The file *.env* in the root has the environment variables.
