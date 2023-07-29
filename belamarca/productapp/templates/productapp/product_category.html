@@ -142,6 +142,17 @@
                             {% endif %}
                         {% endfor %}
 
+                        {% for type in product_filters.types %}
+                            {% if type.selected == 'selected' %}
+                            <li class="size unselect_filter" data-filter="type"  data-id="{{ type.id }}">
+                                <div class="container">
+                                    <p>{{ type.text }}</p>
+                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                </div>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+
                         {% for color in product_filters.colors %}
                             {% if color.selected == 'selected' %}
                                 <li class="color unselect_filter" data-filter="color"  data-id="{{ color.id }}">
@@ -167,6 +178,17 @@
                                         <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
                                     </div>
                                 </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for material in product_filters.materials %}
+                            {% if material.selected == 'selected' %}
+                            <li class="size unselect_filter" data-filter="material"  data-id="{{ material.id }}">
+                                <div class="container">
+                                    <p>{{ material.text }}</p>
+                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                </div>
+                            </li>
                             {% endif %}
                         {% endfor %}
                     </ul>
