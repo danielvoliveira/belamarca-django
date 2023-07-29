@@ -1,17 +1,19 @@
 $(document).ready(function(){
     function set_default_filter_url(){
         let path = window.location.pathname
+
         let searchParams = new URLSearchParams(window.location.search)
         if(
             path == '/produtos/' &&
             searchParams.has('categories') == false &&
             searchParams.has('sizes') == false &&
+            searchParams.has('types') == false &&
             searchParams.has('colors') == false &&
-            searchParams.has('prints') == false
+            searchParams.has('prints') == false &&
+            searchParams.has('materials') == false
         ){
-            default_filters = '?categories=[]&sizes=[]&colors=[]&prints=[]'
+            default_filters = '?categories=[]&sizes=[]&types=[]&colors=[]&prints=[]&materials=[]'
             history.pushState({}, null, default_filters)
-            console.log()
         }
     }
     set_default_filter_url()
@@ -21,8 +23,10 @@ $(document).ready(function(){
 
         let categories
         let sizes
+        let types
         let colors
         let prints
+        let materials
 
         data = {}
 
@@ -34,13 +38,21 @@ $(document).ready(function(){
             sizes = searchParams.get('sizes')
             data.sizes = sizes
         }
+        if(searchParams.has('types') == true){
+            types = searchParams.get('types')
+            data.types = types
+        }
         if(searchParams.has('colors') == true){
             colors = searchParams.get('colors')
-            data.categories = colors
+            data.colors = colors
         }
         if(searchParams.has('prints') == true){
             prints = searchParams.get('prints')
-            data.categories = prints
+            data.prints = prints
+        }
+        if(searchParams.has('materials') == true){
+            materials = searchParams.get('materials')
+            data.materials = materials
         }
 
         $.ajax({
@@ -66,11 +78,17 @@ $(document).ready(function(){
         if(searchParams.has('sizes') == true){
             selected_filters.size = searchParams.get('sizes')
         }
+        if(searchParams.has('types') == true){
+            selected_filters.type = searchParams.get('types')
+        }
         if(searchParams.has('colors') == true){
             selected_filters.color = searchParams.get('colors')
         }
         if(searchParams.has('prints') == true){
             selected_filters.print = searchParams.get('prints')
+        }
+        if(searchParams.has('materials') == true){
+            selected_filters.material = searchParams.get('materials')
         }
 
         return selected_filters
@@ -89,7 +107,7 @@ $(document).ready(function(){
             }
             selected_filters[filter] = '[' + array_selected_filters.toString() + ']'
 
-            final_filters = '?categories=' + selected_filters.category + '&sizes=' + selected_filters.size + '&colors=' + selected_filters.color + '&prints=' + selected_filters.print
+            final_filters = '?categories=' + selected_filters.category + '&sizes=' + selected_filters.size + '&types=' + selected_filters.type + '&colors=' + selected_filters.color + '&prints=' + selected_filters.print + '&materials=' + selected_filters.material
             history.pushState({}, null, final_filters)
         }
     }
@@ -139,6 +157,16 @@ $(document).ready(function(){
             $('div#selected_filters ul').append(filter_html)
         }
 
+        if(filter == 'type'){
+            let filter_html = "<li class='size unselect_filter' data-filter='type'  data-id='"+ id_filter +"'>"
+                                    + "<div class='container'>"
+                                        + "<p>" + filterText + "</p>"
+                                        + "<img class='close-filter' src='/static/assets/images/close-icon.svg' alt='Seta para baixo'>"
+                                    + "</div>"
+                                + "</li>"
+            $('div#selected_filters ul').append(filter_html)
+        }
+
         if(filter == 'color'){
             let filter_html = "<li class='color unselect_filter' data-filter='color'  data-id='"+ id_filter +"'>"
                                     + "<div class='container'>"
@@ -164,6 +192,17 @@ $(document).ready(function(){
                                 + "</li>"
             $('div#selected_filters ul').append(filter_html)
         }
+
+        if(filter == 'material'){
+            let filter_html = "<li class='size unselect_filter' data-filter='material'  data-id='"+ id_filter +"'>"
+                                    + "<div class='container'>"
+                                        + "<p>" + filterText + "</p>"
+                                        + "<img class='close-filter' src='/static/assets/images/close-icon.svg' alt='Seta para baixo'>"
+                                    + "</div>"
+                                + "</li>"
+            $('div#selected_filters ul').append(filter_html)
+        }
+
         close_filter_button()
     }
 
