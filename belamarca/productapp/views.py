@@ -558,7 +558,6 @@ def get_products_images_from_csv(request):
 
     return render(request, "productapp/get_products_images_from_csv.html", context=context)
 
-
 class ProductDetailView(DetailView):
     model = Product
     template_name = "productapp/product_detail.html"
@@ -615,8 +614,10 @@ def ProductListView(request):
     '''
     categories = request.GET.get('categories', '')
     sizes = request.GET.get('sizes', '')
+    types = request.GET.get('types', '')
     colors = request.GET.get('colors', '')
     prints = request.GET.get('prints', '')
+    materials = request.GET.get('materials', '')
 
     if categories is not '':
         categories = ast.literal_eval(categories)
@@ -628,6 +629,11 @@ def ProductListView(request):
     else:
         sizes = []
 
+    if types is not '':
+        types = ast.literal_eval(types)
+    else:
+        types = []
+
     if colors is not '':
         colors = ast.literal_eval(colors)
     else:
@@ -638,99 +644,151 @@ def ProductListView(request):
     else:
         prints = []
 
+    if materials is not '':
+        materials = ast.literal_eval(materials)
+    else:
+        materials = []
+
     products_categories = []
     products_sizes = []
     products_colors = []
     products_prints = []
     products = []
 
-    if len(categories) > 0 or len(sizes) > 0 or len(colors) > 0 or len(prints):
+    # Pegar o obj de cada AttributeOption para fazer a filtragem
+    final_categories = []
+    final_attribute_options = []
+
+    if (len(categories) > 0 or
+        len(sizes) > 0 or
+        len(types) > 0 or
+        len(colors) > 0 or
+        len(prints) > 0 or
+        len(materials)):
         #Pegando produtos de cada filtro selecionado
         if len(categories) > 0:
             for category in categories:
-                category_obj = Category.objects.filter(id=category).get()
+                # Atribuindo os ids das Category na lista 'final_categories'
+                final_categories.append(category)
 
-                products_category = Product.objects.filter(
-                    category=category_obj
-                ).order_by('-id')
+                # category_obj = Category.objects.filter(id=category).get()
 
-                for product in products_category:
-                    if product not in products_categories:
-                        products_categories.append(product)
+                # products_category = Product.objects.filter(
+                #     category=category_obj
+                # ).order_by('-id')
+
+                # for product in products_category:
+                #     if product not in products_categories:
+                #         products_categories.append(product)
 
         if len(sizes) > 0:
             for size in sizes:
-                size_obj = AttributeOption.objects.filter(id=size).get()
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(size)
 
-                products_size = Product.objects.filter(
-                    attribute_options=size_obj
-                ).order_by('-id')
+                # size_obj = AttributeOption.objects.filter(id=size).get()
 
-                for product in products_size:
-                    if product not in products_sizes:
-                        products_sizes.append(product)
+                # products_size = Product.objects.filter(
+                #     attribute_options=size_obj
+                # ).order_by('-id')
+
+                # for product in products_size:
+                #     if product not in products_sizes:
+                #         products_sizes.append(product)
+
+        if len(types) > 0:
+            for type in types:
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(type)
 
         if len(colors) > 0:
             for color in colors:
-                color_obj = AttributeOption.objects.filter(id=color).get()
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(color)
 
-                products_color = Product.objects.filter(
-                    attribute_options=color_obj
-                ).order_by('-id')
+                # color_obj = AttributeOption.objects.filter(id=color).get()
 
-                for product in products_color:
-                    if product not in products_colors:
-                        products_colors.append(product)
+                # products_color = Product.objects.filter(
+                #     attribute_options=color_obj
+                # ).order_by('-id')
+
+                # for product in products_color:
+                #     if product not in products_colors:
+                #         products_colors.append(product)
 
         if len(prints) > 0:
             for print_ in prints:
-                print_obj = AttributeOption.objects.filter(id=print_).get()
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(print_)
 
-                products_print = Product.objects.filter(
-                    attribute_options=print_obj
-                ).order_by('-id')
+                # print_obj = AttributeOption.objects.filter(id=print_).get()
 
-                for product in products_print:
-                    if product not in products_prints:
-                        products_prints.append(product)
+                # products_print = Product.objects.filter(
+                #     attribute_options=print_obj
+                # ).order_by('-id')
+
+                # for product in products_print:
+                #     if product not in products_prints:
+                #         products_prints.append(product)
+
+        if len(materials) > 0:
+            for material in materials:
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(material)
+
 
         #Selecionando produtos finais removendo duplicados
-        if len(products_categories) > 0:
-            for product_category in products_categories:
-                if len(products_sizes) > 0 or len(products_colors) > 0 or len(products_prints) > 0:
-                    if product_category in products_sizes:
-                        if product_category not in products:
-                            products.append(product_category)
+        # if len(products_categories) > 0:
+        #     for product_category in products_categories:
+        #         if len(products_sizes) > 0 or len(products_colors) > 0 or len(products_prints) > 0:
+        #             if product_category in products_sizes:
+        #                 if product_category not in products:
+        #                     products.append(product_category)
 
-                    if product_category in products_colors:
-                        if product_category not in products:
-                            products.append(product_category)
+        #             if product_category in products_colors:
+        #                 if product_category not in products:
+        #                     products.append(product_category)
 
-                    if product_category in products_prints:
-                        if product_category not in products:
-                            products.append(product_category)
-                else:
-                    products.append(product_category)
-        else:
-            if len(sizes) > 0:
-                for product_size in products_sizes:
-                    if product_size not in products:
-                        products.append(product_size)
+        #             if product_category in products_prints:
+        #                 if product_category not in products:
+        #                     products.append(product_category)
+        #         else:
+        #             products.append(product_category)
+        # else:
+        #     if len(sizes) > 0:
+        #         for product_size in products_sizes:
+        #             if product_size not in products:
+        #                 products.append(product_size)
 
-            if len(colors) > 0:
-                for product_color in products_colors:
-                    if product_color not in products:
-                        products.append(product_color)
+        #     if len(colors) > 0:
+        #         for product_color in products_colors:
+        #             if product_color not in products:
+        #                 products.append(product_color)
 
-            if len(prints) > 0:
-                for product_print in products_prints:
-                    if product_print not in products:
-                        products.append(product_print)
+        #     if len(prints) > 0:
+        #         for product_print in products_prints:
+        #             if product_print not in products:
+        #                 products.append(product_print)
+        print(final_categories)
+        print(final_attribute_options)
+
+        products = Product.objects.filter(
+            category__id__in=final_categories,
+            attribute_options__id__in=final_attribute_options,
+            productimage__isnull=False, # Apenas produtos que tenham imagem
+            productprice__price__gt=0, # Apenas produtos com preço > 0
+            disp=Disponibility.DISPONIVEL
+        ).order_by('-id')
+
     else:
-        products = Product.objects.filter().order_by('?')
+        products = Product.objects.filter(
+            productimage__isnull=False, # Apenas produtos que tenham imagem
+            productprice__price__gt=0, # Apenas produtos com preço > 0
+            disp=Disponibility.DISPONIVEL
+        ).order_by('?')
 
     for product in products:
-        #Pegando preço dos produtos
+        # Pegando preço dos produtos
         product_price = ProductPrice.objects.filter(id_product=product).get()
         product.price = product_price.price
 
