@@ -17,7 +17,6 @@ register = template.Library()
 
 @register.filter
 def product_detail(product):
-
     #Pegando preço dos produtos
     product_price = ProductPrice.objects.filter(id_product=product).get()
 
@@ -29,10 +28,6 @@ def product_detail(product):
     for image in product_images:
         model_name = ProductImage.__name__
         resized_images = None
-
-        print('-----------------------')
-        print(vars(image))
-        print('-----------------------')
 
         if ImagesResized.objects.filter(model_id=image.id, model_name=model_name).exists():
             resized_images = ImagesResized.objects.filter(
