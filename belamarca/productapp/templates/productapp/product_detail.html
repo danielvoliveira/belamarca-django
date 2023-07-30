@@ -30,35 +30,56 @@
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
                     </ul>-->
-                    {{ object.description }}
+                    <p class="description">{{ object.description }}</p>
                     <div class="product_attribute">
-                        <ul>
-                            {% for attribute in garment_print %}
-                                <li>
-                                    <div class="product_attribute">
-                                        <img src='{{ attribute.image }}' alt="{{ attribute.alt }}">
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <ul>
-                            {% for attribute in garment_color %}
-                                <li>
-                                    <div>
-                                        <p style="background-color: {{ attribute }}; border: solid 0.5px #eee;"></p>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <ul>
-                            {% for attribute in garment_size %}
-                                <li>
-                                    <div>
-                                        <p>{{ attribute }}</p>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        {% if garment_print %}
+                            <h5 class="attribute_name">Estampas:</h5>
+                            <ul>
+                                {% for attribute in garment_print %}
+                                    <li>
+                                        <div class="product_attribute">
+                                            <img src='{{ attribute.image }}' alt="{{ attribute.alt }}">
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if garment_color %}
+                            <h5 class="attribute_name">Cores:</h5>
+                            <ul>
+                                {% for attribute in garment_color %}
+                                    <li>
+                                        <div>
+                                            <p style="background-color: {{ attribute }}; border: solid 0.5px #eee;"></p>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if garment_size %}
+                            <h5 class="attribute_name">Tamanhos:</h5>
+                            <ul>
+                                {% for attribute in garment_size %}
+                                    <li>
+                                        <div>
+                                            <p>{{ attribute }}</p>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if garment_material %}
+                            <h5 class="attribute_name">Tecídos:</h5>
+                            <ul>
+                                {% for attribute in garment_material %}
+                                    <li class="big-text">
+                                        <div>
+                                            <p>{{ attribute }}</p>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </div>
 
                     <p class="code">Ref: <span>{{ object.code }}</span></p>
