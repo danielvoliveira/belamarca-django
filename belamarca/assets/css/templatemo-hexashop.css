@@ -2507,6 +2507,11 @@ Single Product Page
   line-height: 32px;
 }
 
+#product .right-content p.description {
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
 #product .right-content p.code {
   font-style: normal;
   color: var(--dark-text-belamarca);
@@ -2541,6 +2546,15 @@ Single Product Page
     margin-top: 4vw;
     margin-bottom: 5vw;
   }
+
+  h5.attribute_name{
+    font-size: 18px;
+    font-family: "Questrial Regular" !important;
+    /* padding-top: 5px; */
+    padding-bottom: 0px;
+    color: var(--pink-belamarca);
+  }
+
   ul{
     li{
       display: inline-block;
@@ -2548,7 +2562,7 @@ Single Product Page
         border: solid 0.5px var(--dark-text-belamarca);
         width: 45px;
         height: 45px;
-        margin: 10px 10px 10px 0px;
+        margin: 15px 10px 30px 0px;
         border-radius: 25px;
         padding: 3px;
         img{
@@ -2566,6 +2580,15 @@ Single Product Page
           font-size: 15px;
           color: var(--dark-text-belamarca);
         }
+      }
+    }
+    li.big-text{
+      div{
+        width: auto;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-right: 15px;
+        padding-left: 15px;
       }
     }
   }
