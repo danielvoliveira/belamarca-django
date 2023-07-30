@@ -567,38 +567,50 @@ class ProductDetailView(DetailView):
         product = self.get_object()
         product_price = ProductPrice.objects.filter(id_product=product).get()
 
-        product_attributes = Product.objects.get(pk=product.id).attribute_options.all()
+        product_attribute_options = Product.objects.get(pk=product.id).attribute_options.all()
 
         garment_size = []
+        garment_type = []
         garment_color = []
         garment_print = []
-        for atribute in product_attributes:
-            if atribute.text != None:
-                garment_size.append(atribute.text)
+        garment_material = []
 
-            if atribute.color != None:
-                garment_color.append(atribute.color)
+        for attribute_option in product_attribute_options:
+            if attribute_option.attribute.name == 'Tamanho':
+                garment_size.append(attribute_option.text)
 
-            if atribute.p2_image_image_resize_id != None:
-                model_name = AttributeOption.__name__
-                image_id = atribute.p2_image_image_resize_id
-                resized_images = None
+            if attribute_option.attribute.name == 'Tipo':
+                garment_type.append(attribute_option.text)
 
-                if ImagesResized.objects.filter(model_id=image_id, model_name=model_name).exists():
-                    resized_images = ImagesResized.objects.filter(
-                        model_id=image_id, model_name=model_name
-                    )
+            if attribute_option.attribute.name == 'Cor':
+                garment_color.append(attribute_option.color)
 
-                    garment_print.append({
-                        'image': resized_images[0].image_desktop.url,
-                        'alt': atribute.name,
-                    })
+            if attribute_option.attribute.name == 'Estampa':
+
+                if attribute_option.p2_image_image_resize != None:
+                    model_name = AttributeOption.__name__
+                    image_id = attribute_option.id
+                    resized_images = None
+
+                    if ImagesResized.objects.filter(model_id=image_id, model_name=model_name).exists():
+                        resized_images = ImagesResized.objects.filter(
+                            model_id=image_id, model_name=model_name
+                        )
+
+                        garment_print.append({
+                            'image': resized_images[0].image_desktop.url,
+                            'alt': attribute_option.name,
+                        })
+            if attribute_option.attribute.name == 'Tecído':
+                garment_material.append(attribute_option.text)
 
         context.update({
             'price': product_price.price,
             'garment_size': garment_size,
+            'garment_type': garment_type,
             'garment_color': garment_color,
             'garment_print': garment_print,
+            'garment_material': garment_material,
         })
         return context
 
@@ -654,13 +666,32 @@ def ProductListView(request):
     # Pegar o obj de cada AttributeOption para fazer a filtragem
     final_categories = []
     final_attribute_options = []
+    if (
+        len(categories) > 0 and
+        len(sizes) == 0 and
+        len(types) == 0 and
+        len(colors) == 0 and
+        len(prints) == 0 and
+        len(materials) == 0
+    ):
+        for category in categories:
+            # Atribuindo os ids das Category na lista 'final_categories'
+            final_categories.append(category)
 
-    if (len(categories) > 0 or
+        products = Product.objects.filter(
+            category__id__in=final_categories,
+            productimage__isnull=False, # Apenas produtos que tenham imagem
+            productprice__price__gt=0, # Apenas produtos com preço > 0
+            disp=Disponibility.DISPONIVEL
+        ).order_by('-id')
+    elif (
+        len(categories) > 0 or
         len(sizes) > 0 or
         len(types) > 0 or
         len(colors) > 0 or
         len(prints) > 0 or
-        len(materials)):
+        len(materials) > 0
+    ):
         #Pegando produtos de cada filtro selecionado
         if len(categories) > 0:
             for category in categories:
@@ -699,7 +730,6 @@ def ProductListView(request):
             productprice__price__gt=0, # Apenas produtos com preço > 0
             disp=Disponibility.DISPONIVEL
         ).order_by('-id')
-
     else:
         products = Product.objects.filter(
             productimage__isnull=False, # Apenas produtos que tenham imagem
