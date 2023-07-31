@@ -685,6 +685,45 @@ def ProductListView(request):
             disp=Disponibility.DISPONIVEL
         ).order_by('-id')
     elif (
+        len(categories) == 0 and
+        len(sizes) > 0 or
+        len(types) > 0 or
+        len(colors) > 0 or
+        len(prints) > 0 or
+        len(materials) > 0
+    ):
+        if len(sizes) > 0:
+            for size in sizes:
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(size)
+
+        if len(types) > 0:
+            for type in types:
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(type)
+
+        if len(colors) > 0:
+            for color in colors:
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(color)
+
+        if len(prints) > 0:
+            for print_ in prints:
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(print_)
+
+        if len(materials) > 0:
+            for material in materials:
+                # Atribuindo os ids dos AttributeOption na lista 'final_attribute_options'
+                final_attribute_options.append(material)
+
+        products = Product.objects.filter(
+            attribute_options__id__in=final_attribute_options,
+            productimage__isnull=False, # Apenas produtos que tenham imagem
+            productprice__price__gt=0, # Apenas produtos com preço > 0
+            disp=Disponibility.DISPONIVEL
+        ).order_by('-id')
+    elif (
         len(categories) > 0 or
         len(sizes) > 0 or
         len(types) > 0 or
