@@ -437,6 +437,33 @@ class ProductCategoryGrid(CMSPlugin):
 # 05 - Carrossel de Destaque de Produtos
 # ------------------------------------------
 
+class ProductCarrossel(CMSPlugin):
+
+    title = models.CharField(
+        verbose_name='Nome do produto',
+        max_length=150,
+        null=True,
+        blank=True,
+    )
+
+    subtitle = HTMLField(
+        verbose_name='Descrição',
+        max_length=1000,
+        help_text='Digite a descrições do produto',
+        null=True,
+        blank=True,
+        default='',
+    )
+
+    products = models.ManyToManyField(Product, related_name="products_to_carrossel")
+
+    def __str__(self):
+        return "{}{}".format(self.title, self.subtitle)
+
+    class Meta:
+        verbose_name = 'Carrosel de Produtos'
+        verbose_name_plural = 'Carrossíes de Produtos'
+
 # ------------------------------------------
 # 06 - Grid de Produtos
 # ------------------------------------------
