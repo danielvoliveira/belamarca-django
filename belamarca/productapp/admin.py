@@ -11,6 +11,7 @@ from .models import (
     ProductPrice,
     ProductStock,
     ProductImage,
+    ProductCarrossel,
 )
 
 class ProductAdmin(admin.ModelAdmin):
@@ -26,6 +27,7 @@ admin.site.register(AttributeOption)
 admin.site.register(ProductPrice)
 admin.site.register(ProductStock)
 admin.site.register(ProductImage)
+admin.site.register(ProductCarrossel)
 
 '''class SubcategoryInline(admin.TabularInline):
     model = Subcategory
