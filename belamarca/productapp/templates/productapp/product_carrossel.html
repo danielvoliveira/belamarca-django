@@ -1,0 +1,35 @@
+
+{% load cms_tags static sekizai_tags menu_tags %}
+{% load product_image %}
+<div class="product_list">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" id="products">
+                <h1>{{ instance.title }}</h1>
+                <p>{{ instance.subtitle }}</p>
+
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-lg-4">
+                            <a href="/produto/{{ product.slug }}">
+                                <div class="item">
+                                    <div class="thumb">
+                                        {% with product_image=product|product_image %}
+                                            {% for image in product_image.images %}
+                                                <img src="{% get_media_prefix %}{{ image.path }}" alt="{{ image.alt }}">
+                                            {% endfor %}
+                                        {% endwith %}
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>{{ product.name }}</h4>
+                                        <span>R$ {{ product.price }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
