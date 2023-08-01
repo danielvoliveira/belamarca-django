@@ -1,4 +1,3 @@
-from itertools import product
 from pyexpat import model
 from django.utils.translation import gettext_lazy as _
 from cms.plugin_base import CMSPluginBase
@@ -14,6 +13,7 @@ from .models import (
     Product,
     ProductPrice,
     ProductCategoryGrid,
+    ProductCarrossel,
 )
 
 # ------------------------------------------
@@ -80,6 +80,33 @@ class ProductGridCategory(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         products = Product.objects.filter(disp='disponivel').order_by('-id')
+
+        for product in products:
+            #Pegando preço dos produtos
+            product_price = ProductPrice.objects.filter(id_product=product).get()
+            product.price = product_price.price
+
+        context.update({
+            'instance': instance,
+            'products': products,
+        })
+        return context
+
+# ------------------------------------------
+# 05 - Produtos - Carrosel de Produtos
+# ------------------------------------------
+
+@plugin_pool.register_plugin
+class ProductCarroselPlugin5(CMSPluginBase):
+    module = 'Produto'
+    name = '01 - Produtos - Carrosel de Produtos'
+    model = ProductCarrossel
+    render_template = "productapp/product_carrossel.html"
+    allow_children = False
+
+    def render(self, context, instance, placeholder):
+
+        products = instance.products.all()
 
         for product in products:
             #Pegando preço dos produtos
