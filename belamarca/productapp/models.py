@@ -13,6 +13,13 @@ class Disponibility(models.TextChoices):
     DISPONIVEL = 'disponivel', 'Disponível'
     INDISPONIVEL = 'indisponivel', 'Indisponível'
 
+class ProductCarrosselTypes(models.TextChoices):
+    CATEGORY = 'category', 'Categoria'
+    SUBCATEGORY = 'subcategory', 'Subcategoria'
+    ATTRIBUTE = 'attribute', 'Atributo'
+    ATTRIBUTE_OPTION = 'attribute_option', 'Opção de Atributo'
+    PRODUCT = 'product', 'Produto'
+
 # ------------------------------------------
 # 01 - Categorias
 # ------------------------------------------
@@ -438,32 +445,148 @@ class ProductCategoryGrid(CMSPlugin):
 # ------------------------------------------
 
 class ProductCarrossel(CMSPlugin):
-
     title = models.CharField(
-        verbose_name='Nome do produto',
+        verbose_name='Título do Carrossel',
         max_length=150,
         null=True,
         blank=True,
     )
 
     subtitle = HTMLField(
-        verbose_name='Descrição',
+        verbose_name='Subtítulo do Carrossel',
         max_length=1000,
-        help_text='Digite a descrições do produto',
+        help_text='Insira um subtítulo para o Carrossel',
         null=True,
         blank=True,
         default='',
     )
 
-    products = models.ManyToManyField(Product, related_name="products_to_carrossel")
+    show_only = models.CharField(
+        max_length=16,
+        choices=ProductCarrosselTypes.choices,
+        default=ProductCarrosselTypes.CATEGORY,
+        verbose_name='Usar somente a opção',
+        help_text='Selecione entre Categoria, Subcategoria, Atributo ou Opção de Atributo',
+    )
+
+    categories = models.ManyToManyField(
+        Category,
+        related_name="products_to_carrossel_by_category",
+        blank=True,
+        verbose_name='Selecione as Categorias desejadas',
+    )
+
+    subcategories = models.ManyToManyField(
+        Subcategory,
+        related_name="products_to_carrossel_by_subcategory",
+        blank=True,
+        verbose_name='Selecione as Subategorias desejadas',
+    )
+
+    attributes = models.ManyToManyField(
+        Attribute,
+        related_name="products_to_carrossel_by_attribute",
+        blank=True,
+        verbose_name='Selecione os Atributos desejadas',
+    )
+
+    attribute_options = models.ManyToManyField(
+        AttributeOption,
+        related_name="products_to_carrossel_by_attribute_option",
+        blank=True,
+        verbose_name='Selecione as Opções de Atributos desejadas',
+    )
+
+    products = models.ManyToManyField(
+        Product,
+        related_name="products_to_carrossel_by_product",
+        blank=True,
+    )
 
     def __str__(self):
         return "{}{}".format(self.title, self.subtitle)
 
     class Meta:
-        verbose_name = 'Carrosel de Produtos'
+        verbose_name = 'Carrossel de Produtos'
         verbose_name_plural = 'Carrossíes de Produtos'
 
 # ------------------------------------------
-# 06 - Grid de Produtos
+# 06 - Carrosel de Produtos por Categorias
 # ------------------------------------------
+
+# class ProductCarrossel(CMSPlugin):
+
+#     title = models.CharField(
+#         verbose_name='Título do Carrossel',
+#         max_length=150,
+#         null=True,
+#         blank=True,
+#     )
+
+#     subtitle = HTMLField(
+#         verbose_name='Subtítulo do Carrossel',
+#         max_length=1000,
+#         help_text='Insira um subtítulo para o Carrossel',
+#         null=True,
+#         blank=True,
+#         default='',
+#     )
+
+#     show_only = models.CharField(
+#         max_length=12,
+#         choices=ProductCarrosselTypes.choices,
+#         default=ProductCarrosselTypes.CATEGORY,
+#         verbose_name='Usar somente a opção',
+#         help_text='Selecione entre Categoria, Subcategoria, Atributo ou Opção de Atributo',
+#     )
+
+#     categories = models.ManyToManyField(
+#         Category,
+#         on_delete=models.CASCADE,
+#         related_name="products_to_carrossel_by_category",
+#         null=True,
+#         blank=True,
+#         verbose_name='Selecione as Categorias desejadas',
+#     )
+
+#     subcategories = models.ManyToManyField(
+#         Subcategory,
+#         on_delete=models.CASCADE,
+#         related_name="products_to_carrossel_by_subcategory",
+#         null=True,
+#         blank=True,
+#         verbose_name='Selecione as Subategorias desejadas',
+#     )
+
+#     attributes = models.ManyToManyField(
+#         Attribute,
+#         on_delete=models.CASCADE,
+#         related_name="products_to_carrossel_by_attribute",
+#         null=True,
+#         blank=True,
+#         verbose_name='Selecione os Atributos desejadas',
+#     )
+
+#     attribute_options = models.ManyToManyField(
+#         AttributeOption,
+#         on_delete=models.CASCADE,
+#         related_name="products_to_carrossel_by_attribute_option",
+#         null=True,
+#         blank=True,
+#         verbose_name='Selecione as Opções de Atributos desejadas',
+#     )
+
+#     products = models.ManyToManyField(
+#         Product,
+#         on_delete=models.CASCADE,
+#         related_name="products_to_carrossel_by_product",
+#         null=True,
+#         blank=True,
+#     )
+
+#     def __str__(self):
+#         return "{}{}".format(self.title, self.subtitle)
+
+#     class Meta:
+#         verbose_name = 'Carrossel de Produtos'
+#         verbose_name_plural = 'Carrossíes de Produtos'
