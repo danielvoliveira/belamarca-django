@@ -258,3 +258,217 @@ class BannerPlugin3(CMSPlugin):
 
     def __str__(self):
         return self.title
+
+#------------------------------------------------------
+# 4 - Banner
+#------------------------------------------------------
+
+class BannerPlugin4(CMSPlugin):
+
+    first_title = models.CharField(
+        max_length=150,
+        verbose_name='Título do bloco principal',
+        default='',
+        help_text='Insira o título.',
+        null=False,
+        blank=False,
+    )
+
+    first_subtitle = HTMLField(
+        max_length=1500,
+        verbose_name='Subtítulo do bloco princiapal',
+        configuration='CKEDITOR_SETTINGS',
+        default='',
+        null=False,
+        blank=False,
+    )
+
+    b4_first_image_resize = FilerImageField(
+        null=True,
+        blank=True,
+        related_name='b4_first_image_resize',
+        verbose_name='Imagem a esquerda',
+        help_text='Tamanho ideal 1020x880',
+        on_delete=models.PROTECT
+    )
+
+    b4_first_image_size = models.CharField(
+        max_length=100,
+        default='1020x880',
+        editable=False
+    )
+
+    first_text_alt = models.CharField(
+        verbose_name='Nome da imagem do bloco principal',
+        max_length=100,
+        help_text='Digite o nome descritivo para a imagem.',
+        null=False,
+        blank=False,
+    )
+
+    second_title = models.CharField(
+        max_length=150,
+        verbose_name='Título do segundo bloco',
+        default='',
+        help_text='Insira o título.',
+        null=False,
+        blank=False,
+    )
+
+    second_subtitle = HTMLField(
+        max_length=1500,
+        verbose_name='Subtítulo do segundo bloco',
+        configuration='CKEDITOR_SETTINGS',
+        default='',
+        null=False,
+        blank=False,
+    )
+
+    b4_second_image_resize = FilerImageField(
+        null=True,
+        blank=True,
+        related_name='b4_second_image_resize',
+        verbose_name='Imagem a esquerda',
+        help_text='Tamanho ideal 1020x880',
+        on_delete=models.PROTECT
+    )
+
+    b4_second_image_size = models.CharField(
+        max_length=100,
+        default='1020x880',
+        editable=False
+    )
+
+    second_text_alt = models.CharField(
+        verbose_name='Nome da imagem do segundo bloco',
+        max_length=100,
+        help_text='Digite o nome descritivo para a imagem.',
+        null=False,
+        blank=False,
+    )
+
+    third_title = models.CharField(
+        max_length=150,
+        verbose_name='Título do terceiro bloco',
+        default='',
+        help_text='Insira o título.',
+        null=False,
+        blank=False,
+    )
+
+    third_subtitle = HTMLField(
+        max_length=1500,
+        verbose_name='Subtítulo do terceiro bloco',
+        configuration='CKEDITOR_SETTINGS',
+        default='',
+        null=False,
+        blank=False,
+    )
+
+    b4_third_image_resize = FilerImageField(
+        null=True,
+        blank=True,
+        related_name='b4_third_image_resize',
+        verbose_name='Imagem a esquerda',
+        help_text='Tamanho ideal 1020x880',
+        on_delete=models.PROTECT
+    )
+
+    b4_third_image_size = models.CharField(
+        max_length=100,
+        default='1020x880',
+        editable=False
+    )
+
+    third_text_alt = models.CharField(
+        verbose_name='Nome da imagem do terceiro bloco',
+        max_length=100,
+        help_text='Digite o nome descritivo para a imagem.',
+        null=False,
+        blank=False,
+    )
+
+    fourth_title = models.CharField(
+        max_length=150,
+        verbose_name='Título do quarto bloco',
+        default='',
+        help_text='Insira o título.',
+        null=False,
+        blank=False,
+    )
+
+    fourth_subtitle = HTMLField(
+        max_length=1500,
+        verbose_name='Subtítulo do quarto bloco',
+        configuration='CKEDITOR_SETTINGS',
+        default='',
+        null=False,
+        blank=False,
+    )
+
+    b4_fourth_image_resize = FilerImageField(
+        null=True,
+        blank=True,
+        related_name='b4_fourth_image_resize',
+        verbose_name='Imagem a esquerda',
+        help_text='Tamanho ideal 1020x880',
+        on_delete=models.PROTECT
+    )
+
+    b4_fourth_image_size = models.CharField(
+        max_length=100,
+        default='1020x880',
+        editable=False
+    )
+
+    fourth_text_alt = models.CharField(
+        verbose_name='Nome da imagem do quarto bloco',
+        max_length=100,
+        help_text='Digite o nome descritivo para a imagem.',
+        null=False,
+        blank=False,
+    )
+
+    fifth_title = models.CharField(
+        max_length=150,
+        verbose_name='Título do quinto bloco',
+        default='',
+        help_text='Insira o título.',
+        null=False,
+        blank=False,
+    )
+
+    fifth_subtitle = HTMLField(
+        max_length=1500,
+        verbose_name='Subtítulo do quinto bloco',
+        configuration='CKEDITOR_SETTINGS',
+        default='',
+        null=False,
+        blank=False,
+    )
+
+    b4_fifth_image_resize = FilerImageField(
+        null=True,
+        blank=True,
+        related_name='b4_fifth_image_resize',
+        verbose_name='Imagem a esquerda',
+        help_text='Tamanho ideal 1020x880',
+        on_delete=models.PROTECT
+    )
+
+    b4_fifth_image_size = models.CharField(
+        max_length=100,
+        default='1020x880',
+        editable=False
+    )
+
+    fifth_text_alt = models.CharField(
+        verbose_name='Nome da imagem do quinto bloco',
+        max_length=100,
+        help_text='Digite o nome descritivo para a imagem.',
+        null=False,
+        blank=False,
+    )
+
+    def __str__(self):
+        return self.first_title
