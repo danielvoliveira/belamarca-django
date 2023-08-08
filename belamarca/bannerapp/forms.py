@@ -10,6 +10,7 @@ from .models import (
     BannerPlugin1,
     BannerPlugin2,
     BannerPlugin3,
+    BannerPlugin4,
 )
 
 #------------------------------------------------------
@@ -52,3 +53,22 @@ class BannerPlugin3Form(ModelForm):
     def __init__(self, *args, **kwargs):
         super(BannerPlugin3Form, self).__init__(*args, **kwargs)
 
+
+#------------------------------------------------------
+# 4 - Banner
+#------------------------------------------------------
+
+class BannerPlugin4Form(ModelForm):
+
+    class Meta:
+        model = BannerPlugin4
+        exclude = (
+            'b4_first_image_size',
+            'b4_second_image_size',
+            'b4_third_image_size',
+            'b4_fourth_image_size',
+            'b4_fifth_image_size',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(BannerPlugin4Form, self).__init__(*args, **kwargs)
