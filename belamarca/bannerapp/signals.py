@@ -10,6 +10,7 @@ from .models import (
     BannerPlugin1,
     BannerPlugin2,
     BannerPlugin3,
+    BannerPlugin4,
 )
 
 
@@ -65,4 +66,18 @@ def delete_banner_plugin_3(sender, instance, **kwargs):
     delete_images_resized_signals(
         instance,
         model=BannerPlugin3,
+    )
+
+@receiver(post_save, sender=BannerPlugin4)
+def create_banner_plugin_4(sender, instance, **kwargs):
+    create_images_resized_signals(
+        instance,
+        model=BannerPlugin4,
+    )
+
+@receiver(post_delete, sender=BannerPlugin4)
+def delete_banner_plugin_4(sender, instance, **kwargs):
+    delete_images_resized_signals(
+        instance,
+        model=BannerPlugin4,
     )
