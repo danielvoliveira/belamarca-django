@@ -17,12 +17,14 @@ from .models import (
     BannerPlugin1,
     BannerPlugin2,
     BannerPlugin3,
+    BannerPlugin4,
 )
 
 from .forms import (
     BannerPlugin1Form,
     BannerPlugin2Form,
     BannerPlugin3Form,
+    BannerPlugin4Form,
 )
 
 
@@ -191,5 +193,109 @@ class BannerPlugin3(CMSPluginBase):
             'first_image': first_image,
             'second_image': second_image,
             'third_image': third_image,
+        })
+        return context
+
+#------------------------------------------------------
+# 4 - Banner
+#------------------------------------------------------
+
+@plugin_pool.register_plugin
+class BannerPlugin4(CMSPluginBase):
+    module = 'Banner'
+    model = BannerPlugin4
+    form = BannerPlugin4Form
+    name = "04 - Banner - Cinco blocos quadrados com texto e imagem"
+    render_template = "bannerapp/banner_plugin_4.html"
+    allow_children = False
+
+    fieldsets = [
+        ('Bloco Principal', {
+            'fields': (
+                ('first_title'),
+                ('first_subtitle'),
+                ('b4_first_image_resize', 'first_text_alt'),
+            )
+        }),
+        ('Segundo Bloco', {
+            'fields': (
+                ('second_title'),
+                ('second_subtitle'),
+                ('b4_second_image_resize', 'second_text_alt'),
+            )
+        }),
+        ('Terceiro Bloco', {
+            'fields': (
+                ('third_title'),
+                ('third_subtitle'),
+                ('b4_third_image_resize', 'third_text_alt'),
+            )
+        }),
+        ('Quarto Bloco', {
+            'fields': (
+                ('fourth_title'),
+                ('fourth_subtitle'),
+                ('b4_fourth_image_resize', 'fourth_text_alt'),
+            )
+        }),
+        ('Quinto Bloco', {
+            'fields': (
+                ('fifth_title'),
+                ('fifth_subtitle'),
+                ('b4_fifth_image_resize', 'fifth_text_alt'),
+            )
+        }),
+    ]
+
+    def render(self, context, instance, placeholder):
+        model_name = BannerPlugin4.__name__
+        resized_images = None
+        first_image = None
+        second_image = None
+        third_image = None
+        fourth_image = None
+        fifth_image = None
+
+        if ImagesResized.objects.filter(model_id=instance.id, model_name=model_name).exists():
+            resized_images = ImagesResized.objects.filter(
+                model_id=instance.id, model_name=model_name)
+
+            first_image = {
+                'desktop':resized_images[0].image_desktop.url,
+                'tablet':resized_images[0].image_tablet.url,
+                'mobile':resized_images[0].image_mobile.url,
+            }
+
+            second_image = {
+                'desktop':resized_images[1].image_desktop.url,
+                'tablet':resized_images[1].image_tablet.url,
+                'mobile':resized_images[1].image_mobile.url,
+            }
+
+            third_image = {
+                'desktop':resized_images[2].image_desktop.url,
+                'tablet':resized_images[2].image_tablet.url,
+                'mobile':resized_images[2].image_mobile.url,
+            }
+
+            fourth_image = {
+                'desktop':resized_images[3].image_desktop.url,
+                'tablet':resized_images[3].image_tablet.url,
+                'mobile':resized_images[3].image_mobile.url,
+            }
+
+            fifth_image = {
+                'desktop':resized_images[4].image_desktop.url,
+                'tablet':resized_images[4].image_tablet.url,
+                'mobile':resized_images[4].image_mobile.url,
+            }
+
+        context.update({
+            'instance': instance,
+            'first_image': first_image,
+            'second_image': second_image,
+            'third_image': third_image,
+            'fourth_image': fourth_image,
+            'fifth_image': fifth_image,
         })
         return context
