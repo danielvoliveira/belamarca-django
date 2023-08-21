@@ -283,4 +283,3 @@ PRODUCSTS_PRINTS_IMAGES = (
     ('Zebra Nude e Rosa', 'estampa_3.jpg'),
 )
 # END - DEFAULTS SETTINGS
-
