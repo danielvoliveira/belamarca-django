@@ -64,7 +64,7 @@ $(document).ready(function(){
 	  var box = $('#top').height();
 	  var header = $('header').height();
 
-	  if (scroll >= box - header) {
+	  if (scroll >= header + 20) {
 	    $("header").addClass("background-header");
 	  } else {
 	    $("header").removeClass("background-header");
