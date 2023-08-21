@@ -12,22 +12,22 @@
 
 @font-face {
     font-family: "Marisa Bold";
-    src: url('../fonts/Marisa-Bold.ttf') format('truetype');
+    src: url('../fonts/Marisa-Bold.otf') format('opentype');
 }
 
 @font-face {
     font-family: "Marisa Light";
-    src: url('../fonts/Marisa-Light.ttf') format('truetype');
+    src: url('../fonts/Marisa-Light.otf') format('opentype');
 }
 
 @font-face {
     font-family: "Marisa Medium";
-    src: url('../fonts/Marisa-Medium.ttf') format('truetype');
+    src: url('../fonts/Marisa-Medium.otf') format('opentype');
 }
 
 @font-face {
     font-family: 'Marisa';
-    src: url('../fonts/Marisa.ttf') format('truetype');
+    src: url('../fonts/Marisa.otf') format('opentype');
 }
 
 @font-face {
@@ -49,6 +49,76 @@
     border-radius: 5px;
     background-color: var(--blue-belamarca);
     outline: 1px solid var(--blue-belamarca);
+}
+
+/* Classes para cores de texto*/
+
+.text-dark-pink-belamarca{
+    color: var(--dark-pink-belamarca) !important;
+}
+
+.text-pink-belamarca{
+    color: var(--pink-belamarca) !important;
+}
+
+.text-blue-belamarca{
+    color: var(--blue-belamarca) !important;
+}
+
+.text-orange-belamarca{
+    color: var(--orange-belamarca) !important;
+}
+
+.text-yellow-belamarca{
+    color: var(--yellow-belamarca) !important;
+}
+
+.text-dark-text-belamarca{
+    color: var(--dark-text-belamarca) !important;
+}
+
+.text-light-text-belamarca{
+    color: var(--light-text-belamarca) !important;
+}
+
+.dark-filter::before{
+    background-color: rgba(0,0,0,0.3) !important;
+}
+
+.text-dark-pink-belamarca p{
+    color: var(--dark-pink-belamarca) !important;
+}
+
+.text-pink-belamarca p{
+    color: var(--pink-belamarca) !important;
+}
+
+.text-blue-belamarca p{
+    color: var(--blue-belamarca) !important;
+}
+
+.text-orange-belamarca p{
+    color: var(--orange-belamarca) !important;
+}
+
+.text-yellow-belamarca p{
+    color: var(--yellow-belamarca) !important;
+}
+
+.text-dark-text-belamarca p{
+    color: var(--dark-text-belamarca) !important;
+}
+
+.text-light-text-belamarca p{
+    color: var(--light-text-belamarca) !important;
+}
+
+.dark-filter::before p{
+    background-color: rgba(0,0,0,0.3) !important;
+}
+
+.withe-filter::before{
+    background-color: rgba(255,255,255,0.4) !important;
 }
 
 /* GERAL */
