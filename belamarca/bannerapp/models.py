@@ -11,6 +11,19 @@ from mainsite.utils.external_and_internal_link import (
     clean,
 )
 
+class ColorClassesToTexts(models.TextChoices):
+    ROSA_ESCURO = 'text-dark-pink-belamarca', 'Rosa Escuro'
+    ROSA_CLARO = 'text-pink-belamarca', 'Rosa Claro'
+    AZUL = 'text-blue-belamarca', 'Azul'
+    LARANJA = 'text-orange-belamarca', 'Laranja'
+    AMARELO = 'text-yellow-belamarca', 'Amarelo'
+    PRETO = 'text-dark-text-belamarca', 'Preto'
+    BRANCO = 'text-light-text-belamarca', 'Branco'
+
+class FilterColorClassesToImages(models.TextChoices):
+    DARK_FILTER = 'dark-filter', 'Filtro Escuro'
+    WHITE_FILTER = 'withe-filter', 'Filtro Claro'
+
 #------------------------------------------------------
 # 1 - Banner
 #------------------------------------------------------
@@ -468,6 +481,22 @@ class BannerPlugin4(CMSPlugin):
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
         blank=False,
+    )
+
+    text_color = models.CharField(
+        max_length=30,
+        choices=ColorClassesToTexts.choices,
+        default=ColorClassesToTexts.BRANCO,
+        verbose_name='Somente os textos da capa',
+        help_text='Selecione a cor dos textos',
+    )
+
+    image_filter_color = models.CharField(
+        max_length=30,
+        choices=FilterColorClassesToImages.choices,
+        default=FilterColorClassesToImages.DARK_FILTER,
+        verbose_name='Usar somente a opção',
+        help_text='Selecione o tipo de filtro das imagens',
     )
 
     def __str__(self):
