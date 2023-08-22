@@ -215,6 +215,7 @@ class BannerPlugin4(CMSPluginBase):
                 ('first_title'),
                 ('first_subtitle'),
                 ('b4_first_image_resize', 'first_text_alt'),
+                ('first_button_text', 'first_button_url'),
             )
         }),
         ('Segundo Bloco', {
@@ -222,6 +223,7 @@ class BannerPlugin4(CMSPluginBase):
                 ('second_title'),
                 ('second_subtitle'),
                 ('b4_second_image_resize', 'second_text_alt'),
+                ('second_button_text', 'second_button_url'),
             )
         }),
         ('Terceiro Bloco', {
@@ -229,6 +231,7 @@ class BannerPlugin4(CMSPluginBase):
                 ('third_title'),
                 ('third_subtitle'),
                 ('b4_third_image_resize', 'third_text_alt'),
+                ('third_button_text', 'third_button_url'),
             )
         }),
         ('Quarto Bloco', {
@@ -236,6 +239,7 @@ class BannerPlugin4(CMSPluginBase):
                 ('fourth_title'),
                 ('fourth_subtitle'),
                 ('b4_fourth_image_resize', 'fourth_text_alt'),
+                ('fourth_button_text', 'fourth_button_url'),
             )
         }),
         ('Quinto Bloco', {
@@ -243,6 +247,13 @@ class BannerPlugin4(CMSPluginBase):
                 ('fifth_title'),
                 ('fifth_subtitle'),
                 ('b4_fifth_image_resize', 'fifth_text_alt'),
+                ('fifth_button_text', 'fifth_button_url'),
+            )
+        }),
+        ('Opções de Estilo', {
+            'fields': (
+                ('text_color'),
+                ('image_filter_color'),
             )
         }),
     ]
