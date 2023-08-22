@@ -296,6 +296,23 @@ class BannerPlugin4(CMSPlugin):
         blank=False,
     )
 
+    first_button_text = models.CharField(
+        max_length=100,
+        verbose_name='Texto do botão do bloco princiapal',
+        default='Acesse Agora!',
+        help_text='Insira o texto do botão.',
+        null=False,
+        blank=False,
+    )
+
+    first_button_url = models.URLField(
+        verbose_name='Link para o botão do bloco princiapal',
+        max_length=400,
+        default='',
+        null=True,
+        blank=True,
+    )
+
     b4_first_image_resize = FilerImageField(
         null=True,
         blank=True,
@@ -335,6 +352,23 @@ class BannerPlugin4(CMSPlugin):
         default='',
         null=False,
         blank=False,
+    )
+
+    second_button_text = models.CharField(
+        max_length=100,
+        verbose_name='Texto do botão do segundo bloco',
+        default='Acesse Agora!',
+        help_text='Insira o texto do botão.',
+        null=False,
+        blank=False,
+    )
+
+    second_button_url = models.URLField(
+        verbose_name='Link para o botão do segundo bloco',
+        max_length=400,
+        default='',
+        null=True,
+        blank=True,
     )
 
     b4_second_image_resize = FilerImageField(
@@ -378,6 +412,23 @@ class BannerPlugin4(CMSPlugin):
         blank=False,
     )
 
+    third_button_text = models.CharField(
+        max_length=100,
+        verbose_name='Texto do botão do terceiro bloco',
+        default='Acesse Agora!',
+        help_text='Insira o texto do botão.',
+        null=False,
+        blank=False,
+    )
+
+    third_button_url = models.URLField(
+        verbose_name='Link para o botão do terceiro bloco',
+        max_length=400,
+        default='',
+        null=True,
+        blank=True,
+    )
+
     b4_third_image_resize = FilerImageField(
         null=True,
         blank=True,
@@ -419,6 +470,23 @@ class BannerPlugin4(CMSPlugin):
         blank=False,
     )
 
+    fourth_button_text = models.CharField(
+        max_length=100,
+        verbose_name='Texto do botão do quarto bloco',
+        default='Acesse Agora!',
+        help_text='Insira o texto do botão.',
+        null=False,
+        blank=False,
+    )
+
+    fourth_button_url = models.URLField(
+        verbose_name='Link para o botão do quarto bloco',
+        max_length=400,
+        default='',
+        null=True,
+        blank=True,
+    )
+
     b4_fourth_image_resize = FilerImageField(
         null=True,
         blank=True,
@@ -458,6 +526,23 @@ class BannerPlugin4(CMSPlugin):
         default='',
         null=False,
         blank=False,
+    )
+
+    fifth_button_text = models.CharField(
+        max_length=100,
+        verbose_name='Texto do botão do quinto bloco',
+        default='Acesse Agora!',
+        help_text='Insira o texto do botão.',
+        null=False,
+        blank=False,
+    )
+
+    fifth_button_url = models.URLField(
+        verbose_name='Link para o botão do quinto bloco',
+        max_length=400,
+        default='',
+        null=True,
+        blank=True,
     )
 
     b4_fifth_image_resize = FilerImageField(
