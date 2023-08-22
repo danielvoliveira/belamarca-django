@@ -1,55 +1,100 @@
 {% load static cms_tags %}
 
-<!-- ***** Services Area Starts ***** -->
-<section class="our-services">
-    <div class="container">
+<!-- ***** Main Banner Area Start ***** -->
+<div class="main-banner" id="top">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="service-item">
-                    <h4>{{ instance.first_title }}</h4>
-                    <p>{{ instance.first_subtitle }}</p>
-                    <picture>
-                        <img class="img-generic" src="{{ first_image.desktop }}"  alt="{{ instance.first_text_alt }}"/>
-                    </picture>
+            <div class="col-lg-6">
+                <div class="left-content">
+                    <div class="thumb {{ instance.image_filter_color }}">
+                        <div class="inner-content">
+                            <h4 class="{{ instance.text_color }}">{{ instance.first_title }}</h4>
+                            <span class="{{ instance.text_color }}">{{ instance.first_subtitle }}</span>
+                            <button><p>{{ instance.first_button_text }}</p></button>
+                        </div>
+                        <img src="{{ first_image.desktop }}" alt="{{ instance.first_text_alt }}">
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="service-item">
-                    <h4>{{ instance.second_title }}</h4>
-                    <p>{{ instance.second_subtitle }}</p>
-                    <picture>
-                        <img class="img-generic" src="{{ second_image.desktop }}"  alt="{{ instance.second_text_alt }}"/>
-                    </picture>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="service-item">
-                    <h4>{{ instance.third_title }}</h4>
-                    <p>{{ instance.third_subtitle }}</p>
-                    <picture>
-                        <img class="img-generic" src="{{ third_image.desktop }}"  alt="{{ instance.third_text_alt }}"/>
-                    </picture>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="service-item">
-                    <h4>{{ instance.fourth_title }}</h4>
-                    <p>{{ instance.fourth_subtitle }}</p>
-                    <picture>
-                        <img class="img-generic" src="{{ fourth_image.desktop }}"  alt="{{ instance.fourth_text_alt }}"/>
-                    </picture>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="service-item">
-                    <h4>{{ instance.fifth_title }}</h4>
-                    <p>{{ instance.fifth_subtitle }}</p>
-                    <picture>
-                        <img class="img-generic" src="{{ fifth_image.desktop }}"  alt="{{ instance.fifth_text_alt }}"/>
-                    </picture>
+            <div class="col-lg-6">
+                <div class="right-content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="right-first-image right-block">
+                                <div class="thumb {{ instance.image_filter_color }}">
+                                    <div class="inner-content">
+                                        <h4 class="{{ instance.text_color }}">{{ instance.second_title }}</h4>
+                                        <!-- <span>{{ instance.second_subtitle }}</span> -->
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <h4>{{ instance.second_title }}</h4>
+                                            {{ instance.second_subtitle }}
+                                            <button><p>{{ instance.second_button_text }}</p></button>
+                                        </div>
+                                    </div>
+                                    <img src="{{ second_image.desktop }}" alt="{{ instance.second_text_alt }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image right-block">
+                                <div class="thumb {{ instance.image_filter_color }}">
+                                    <div class="inner-content">
+                                        <h4 class="{{ instance.text_color }}">{{ instance.third_title }}</h4>
+                                        <!-- <span>{{ instance.third_subtitle }}</span> -->
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <h4>{{ instance.third_title }}</h4>
+                                            {{ instance.third_subtitle }}
+                                            <button><p>{{ instance.third_button_text }}</p></button>
+                                        </div>
+                                    </div>
+                                    <img src="{{ third_image.desktop }}" alt="{{ instance.third_text_alt }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image right-block">
+                                <div class="thumb {{ instance.image_filter_color }}">
+                                    <div class="inner-content">
+                                        <h4 class="{{ instance.text_color }}">{{ instance.fourth_title }}</h4>
+                                        <!-- <span>{{ instance.fourth_subtitle }}</span> -->
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <h4>{{ instance.fourth_title }}</h4>
+                                            {{ instance.fourth_subtitle }}
+                                            <button><p>{{ instance.fourth_button_text }}</p></button>
+                                        </div>
+                                    </div>
+                                    <img src="{{ fourth_image.desktop }}" alt="{{ instance.fourth_text_alt }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image right-block">
+                                <div class="thumb {{ instance.image_filter_color }}">
+                                    <div class="inner-content">
+                                        <h4 class="{{ instance.text_color }}">{{ instance.fifth_title }}</h4>
+                                        <!-- <span>{{ instance.fifth_subtitle }}</span> -->
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <h4>{{ instance.fifth_title }}</h4>
+                                            {{ instance.fifth_subtitle }}
+                                            <button><p>{{ instance.fifth_button_text }}</p></button>
+                                        </div>
+                                    </div>
+                                    <img src="{{ fifth_image.desktop }}" alt="{{ instance.fifth_text_alt }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- ***** Services Area Ends ***** -->
+</div>
+<!-- ***** Main Banner Area End ***** -->
