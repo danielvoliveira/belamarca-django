@@ -8,17 +8,21 @@ $(document).ready(function(){
 		dots: true,
 		nav: true,
 		margin:30,
-		  responsive:{
-			  0:{
-				  items:1
-			  },
-			  600:{
-				  items:2
-			  },
-			  1000:{
-				  items:3
-			  }
-		 }
+		responsive:{
+			0:{
+				items:1
+			},
+			600:{
+				items:2
+			},
+			1000:{
+				items:3
+			}
+		},
+		navText: [
+			'<img src="/static/assets/images/left-arrow.webp" alt="Seta para esquerda do carrossel" />',
+			'<img src="/static/assets/images/right-arrow.webp" alt="Seta para direita do carrossel" />'
+		]
 	})
 
 	$('.owl-women-item').owlCarousel({
