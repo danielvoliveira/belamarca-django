@@ -221,7 +221,8 @@ p {
 
 .section-heading span {
   font-size: 14px;
-  color: #a1a1a1;
+  color: var(--dark-text-belamarca);
+  opacity: 0.95;
   font-style: italic;
   font-weight: 400;
 }
@@ -1122,16 +1123,16 @@ Men
 
 #men .item .down-content h4 {
   font-size: 22px;
-  color: #2a2a2a;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
 #men .item .down-content span {
   font-size: 18px;
-  color: #a1a1a1;
+  color: var(--dark-text-belamarca);
   font-weight: 500;
   display: block;
+  opacity: 0.95;
 }
 
 #men .item .down-content ul.stars {
@@ -1164,11 +1165,36 @@ Men
 
 #men .item .thumb {
   position: relative;
+  height: 50vh;
+  /* max-height: 80vh; */
+  overflow: hidden;
+}
+
+#men .item .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  z-index: 3;
 }
 
 #men .item .thumb .hover-content ul li {
   display: inline;
   margin: 0px 10px;
+  opacity: 0.85;
+  transition: all .5s;
+}
+
+#men .item .thumb .hover-content ul li:hover {
+  opacity: 1;
+}
+
+#men .item .thumb .hover-content ul li img{
+  position: relative;
+  margin-left: 10.3px;
+  margin-top: 10.5px;
+  width: 30px;
+  height: 30px;
 }
 
 #men .item .thumb .hover-content ul li a {
@@ -1181,7 +1207,6 @@ Men
   background-color: #fff;
 }
 
-
 #men .owl-nav {
   text-align: center;
   position: absolute;
@@ -1193,30 +1218,36 @@ Men
 #men .owl-dots {
   display: none;
 }
-    
+
 #men .owl-nav .owl-prev{
   position: absolute;
   left: -80px;
   outline: none;
+  border: solid 1px var(--blue-belamarca);
+  background-color: var(--blue-belamarca);
+  width: 60px;
+  height: 60px;
+}
+
+#men .owl-nav .owl-prev img{
+  position: relative;
+  left: 0px;
+  width: 35px;
+  height: 35px;
+  margin-left: -5px;
+}
+
+#men .owl-nav .owl-next img{
+  position: relative;
+  right: 0px;
+  width: 35px;
+  height: 35px;
+  margin-right: -5px;
 }
 
 #men .owl-nav .owl-prev span,
 #men .owl-nav .owl-next span {
   opacity: 0;
-}
-
-#men .owl-nav .owl-prev:before {
-  display: inline-block;
-  font-family: 'FontAwesome';
-  color: #2a2a2a;
-  font-size: 25px;
-  font-weight: 700;
-  content: '\f104';
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  line-height: 48px;
-  border :1px solid #2a2a2a;
 }
 
 #men .owl-nav .owl-prev {
@@ -1231,6 +1262,10 @@ Men
 #men .owl-nav .owl-next {
   opacity: 0.75;
   transition: all .5s;
+  border: solid 1px var(--blue-belamarca);
+  background-color: var(--blue-belamarca);
+  width: 60px;
+  height: 60px;
 }
 
 #men .owl-nav .owl-next:hover {
@@ -1240,21 +1275,89 @@ Men
 #men .owl-nav .owl-next{
   outline: none;
   position: absolute;
-  right: -85px;
+  right: -80px;
 }
 
-#men .owl-nav .owl-next:before {
-  display: inline-block;
-  font-family: 'FontAwesome';
-  color: #2a2a2a;
-  font-size: 25px;
-  font-weight: 700;
-  content: '\f105';
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  line-height: 48px;
-  border :1px solid #2a2a2a;
+@media (max-width: 1330px) {
+  #men .owl-nav .owl-prev{
+    left: -20px;
+  }
+
+  #men .owl-nav .owl-next{
+    right: -25px;
+  }
+}
+
+@media (max-width: 1200px) {
+  #men .owl-nav .owl-prev{
+    left: -80px;
+  }
+
+  #men .owl-nav .owl-next{
+    right: -85px;
+  }
+}
+
+@media (max-width: 1200px) {
+  #men .owl-nav .owl-prev{
+    left: -70px;
+  }
+
+  #men .owl-nav .owl-next{
+    right: -70px;
+  }
+}
+
+@media (max-width: 1083px) {
+  #men .owl-nav .owl-prev{
+    left: -30px;
+  }
+
+  #men .owl-nav .owl-next{
+    right: -30px;
+  }
+}
+
+@media (max-width: 990px) {
+  #men .owl-nav .owl-prev{
+    left: -70px;
+  }
+
+  #men .owl-nav .owl-next{
+    right: -70px;
+  }
+
+  @media (max-width: 872px) {
+    #men .owl-nav .owl-prev{
+      left: -30px;
+    }
+
+    #men .owl-nav .owl-next{
+      right: -30px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #men .owl-nav .owl-prev{
+      left: 0px;
+      width: 50px;
+      height: 50px;
+    }
+
+    #men .owl-nav .owl-prev img{
+      margin-left: -5px;
+    }
+
+    #men .owl-nav .owl-next{
+      right: 0px;
+      width: 50px;
+      height: 50px;
+    }
+
+    #men .owl-nav .owl-next img{
+      margin-right: -5px;
+    }
+  }
 }
 
 
