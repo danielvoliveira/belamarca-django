@@ -20,6 +20,15 @@ class ProductCarrosselTypes(models.TextChoices):
     ATTRIBUTE_OPTION = 'attribute_option', 'Opção de Atributo'
     PRODUCT = 'product', 'Produto'
 
+class ColorClassesToTexts(models.TextChoices):
+    ROSA_ESCURO = 'text-dark-pink-belamarca', 'Rosa Escuro'
+    ROSA_CLARO = 'text-pink-belamarca', 'Rosa Claro'
+    AZUL = 'text-blue-belamarca', 'Azul'
+    LARANJA = 'text-orange-belamarca', 'Laranja'
+    AMARELO = 'text-yellow-belamarca', 'Amarelo'
+    PRETO = 'text-dark-text-belamarca', 'Preto'
+    BRANCO = 'text-light-text-belamarca', 'Branco'
+
 # ------------------------------------------
 # 01 - Categorias
 # ------------------------------------------
@@ -501,6 +510,14 @@ class ProductCarrossel(CMSPlugin):
         Product,
         related_name="products_to_carrossel_by_product",
         blank=True,
+    )
+
+    text_color = models.CharField(
+        max_length=30,
+        choices=ColorClassesToTexts.choices,
+        default=ColorClassesToTexts.AZUL,
+        verbose_name='Somente os textos da capa',
+        help_text='Selecione a cor dos textos',
     )
 
     def __str__(self):
