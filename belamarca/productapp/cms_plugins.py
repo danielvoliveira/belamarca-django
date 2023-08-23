@@ -100,10 +100,26 @@ class ProductGridCategory(CMSPluginBase):
 @plugin_pool.register_plugin
 class ProductCarroselPlugin5(CMSPluginBase):
     module = 'Produto'
-    name = '01 - Produtos - Carrossel de Produtos'
+    name = '04 - Produtos - Carrossel de Produtos'
     model = ProductCarrossel
     render_template = "productapp/product_carrossel.html"
     allow_children = False
+
+    fieldsets = [
+        ('Bloco Principal', {
+            'fields': (
+                ('title'),
+                ('subtitle'),
+                ('text_color'),
+                ('show_only'),
+                ('categories'),
+                ('subcategories'),
+                ('attributes'),
+                ('attribute_options'),
+                ('products'),
+            )
+        }),
+    ]
 
     def render(self, context, instance, placeholder):
 
@@ -113,7 +129,7 @@ class ProductCarroselPlugin5(CMSPluginBase):
                 productimage__isnull=False, # Apenas produtos que tenham imagem
                 productprice__price__gt=0, # Apenas produtos com preço > 0
                 disp='disponivel'
-            ).order_by('-id')
+            ).order_by('?')[:12]
 
         elif instance.show_only == 'subcategory':
             carrossel_products = Product.objects.filter(
@@ -121,7 +137,7 @@ class ProductCarroselPlugin5(CMSPluginBase):
                 productimage__isnull=False, # Apenas produtos que tenham imagem
                 productprice__price__gt=0, # Apenas produtos com preço > 0
                 disp='disponivel'
-            ).order_by('-id')
+            ).order_by('?')[:12]
 
         elif instance.show_only == 'attribute':
             carrossel_products = Product.objects.filter(
@@ -129,7 +145,7 @@ class ProductCarroselPlugin5(CMSPluginBase):
                 productimage__isnull=False, # Apenas produtos que tenham imagem
                 productprice__price__gt=0, # Apenas produtos com preço > 0
                 disp='disponivel'
-            ).order_by('-id')
+            ).order_by('?')[:12]
 
         elif instance.show_only == 'attribute_option':
             carrossel_products = Product.objects.filter(
@@ -137,14 +153,14 @@ class ProductCarroselPlugin5(CMSPluginBase):
                 productimage__isnull=False, # Apenas produtos que tenham imagem
                 productprice__price__gt=0, # Apenas produtos com preço > 0
                 disp='disponivel'
-            ).order_by('-id')
+            ).order_by('?')[:12]
 
         elif instance.show_only == 'product':
             carrossel_products = instance.products.filter(
                 productimage__isnull=False, # Apenas produtos que tenham imagem
                 productprice__price__gt=0, # Apenas produtos com preço > 0
                 disp='disponivel'
-            ).order_by('-id')
+            ).order_by('?')[:12]
 
         for product in carrossel_products:
             #Pegando preço dos produtos
