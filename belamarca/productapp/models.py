@@ -520,6 +520,13 @@ class ProductCarrossel(CMSPlugin):
         help_text='Selecione a cor dos textos',
     )
 
+    def copy_relations(self, oldinstance):
+        self.categories.set(oldinstance.categories.all())
+        self.subcategories.set(oldinstance.subcategories.all())
+        self.attributes.set(oldinstance.attributes.all())
+        self.attribute_options.set(oldinstance.attribute_options.all())
+        self.products.set(oldinstance.products.all())
+
     def __str__(self):
         return "{}{}".format(self.title, self.subtitle)
 
