@@ -110,7 +110,7 @@ class ProductCarroselPlugin5(CMSPluginBase):
             'fields': (
                 ('title'),
                 ('subtitle'),
-                ('text_color'),
+                # ('text_color'),
                 ('show_only'),
                 ('categories'),
                 ('subcategories'),
