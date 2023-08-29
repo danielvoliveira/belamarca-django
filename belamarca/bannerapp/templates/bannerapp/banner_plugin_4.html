@@ -10,7 +10,9 @@
                         <div class="inner-content">
                             <h4 class="{{ instance.text_color }}">{{ instance.first_title }}</h4>
                             <span class="{{ instance.text_color }}">{{ instance.first_subtitle }}</span>
-                            <button><p>{{ instance.first_button_text }}</p></button>
+                            <a href="{{ instance.first_button_url }}">
+                                <button><p>{{ instance.first_button_text }}</p></button>
+                            </a>
                         </div>
                         <img src="{{ first_image.desktop }}" alt="{{ instance.first_text_alt }}">
                     </div>
@@ -30,7 +32,9 @@
                                         <div class="inner">
                                             <h4>{{ instance.second_title }}</h4>
                                             {{ instance.second_subtitle }}
-                                            <button><p>{{ instance.second_button_text }}</p></button>
+                                            <a href="{{ instance.second_button_url }}">
+                                                <button><p>{{ instance.second_button_text }}</p></button>
+                                            </a>
                                         </div>
                                     </div>
                                     <img src="{{ second_image.desktop }}" alt="{{ instance.second_text_alt }}">
@@ -48,7 +52,9 @@
                                         <div class="inner">
                                             <h4>{{ instance.third_title }}</h4>
                                             {{ instance.third_subtitle }}
-                                            <button><p>{{ instance.third_button_text }}</p></button>
+                                            <a href="{{ instance.third_button_url }}">
+                                                <button><p>{{ instance.third_button_text }}</p></button>
+                                            </a>
                                         </div>
                                     </div>
                                     <img src="{{ third_image.desktop }}" alt="{{ instance.third_text_alt }}">
@@ -66,7 +72,9 @@
                                         <div class="inner">
                                             <h4>{{ instance.fourth_title }}</h4>
                                             {{ instance.fourth_subtitle }}
-                                            <button><p>{{ instance.fourth_button_text }}</p></button>
+                                            <a href="{{ instance.fourth_button_url }}">
+                                                <button><p>{{ instance.fourth_button_text }}</p></button>
+                                            </a>
                                         </div>
                                     </div>
                                     <img src="{{ fourth_image.desktop }}" alt="{{ instance.fourth_text_alt }}">
@@ -84,7 +92,9 @@
                                         <div class="inner">
                                             <h4>{{ instance.fifth_title }}</h4>
                                             {{ instance.fifth_subtitle }}
-                                            <button><p>{{ instance.fifth_button_text }}</p></button>
+                                            <a href="{{ instance.fifth_button_url }}">
+                                                <button><p>{{ instance.fifth_button_text }}</p></button>
+                                            </a>
                                         </div>
                                     </div>
                                     <img src="{{ fifth_image.desktop }}" alt="{{ instance.fifth_text_alt }}">
