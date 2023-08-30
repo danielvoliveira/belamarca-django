@@ -1,35 +1,60 @@
 
 {% load cms_tags static sekizai_tags menu_tags %}
 {% load product_image %}
-<div class="product_list">
+<!-- ***** Product Carrossel ***** -->
+<section class="section" id="men">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12" id="products">
-                <h1>{{ instance.title }}</h1>
-                <p>{{ instance.subtitle }}</p>
-
-                <div class="row">
-                    {% for product in products %}
-                        <div class="col-lg-4">
-                            <a href="/produto/{{ product.slug }}">
-                                <div class="item">
-                                    <div class="thumb">
-                                        {% with product_image=product|product_image %}
-                                            {% for image in product_image.images %}
-                                                <img src="{% get_media_prefix %}{{ image.path }}" alt="{{ image.alt }}">
-                                            {% endfor %}
-                                        {% endwith %}
-                                    </div>
-                                    <div class="down-content">
-                                        <h4>{{ product.name }}</h4>
-                                        <span>R$ {{ product.price }}</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    {% endfor %}
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2 class="{{ instance.text_color }}">{{ instance.title }}</h2>
+                    <span>{{ instance.subtitle }}</span>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="men-item-carousel">
+                    <div class="owl-men-item owl-carousel">
+                        {% for product in products %}
+                            <div class="item">
+                                <!-- <a href="/produto/{{ product.slug }}"> -->
+                                    <!-- <div class="aspect-ratio-container"> -->
+                                        <div class="thumb">
+                                            <div class="hover-content">
+                                                <ul>
+                                                    <li><a href="/produto/{{ product.slug }}"><img src="/static/assets/images/eye-icon-5.webp" alt=""></i></a></li>
+                                                    <!-- <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li> -->
+                                                </ul>
+                                            </div>
+                                            {% with product_image=product|product_image %}
+                                                {% for image in product_image.images %}
+                                                    <img src="{% get_media_prefix %}{{ image.path }}" alt="{{ image.alt }}">
+                                                {% endfor %}
+                                            {% endwith %}
+                                        </div>
+                                    <!-- </div> -->
+                                    <div class="down-content">
+                                        <h4 class="{{ instance.text_color }}">{{ product.name }}</h4>
+                                        <span>R$ {{ product.price }}</span>
+                                        <!-- <ul class="stars">
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul> -->
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Product Carrossel Ends ***** -->
