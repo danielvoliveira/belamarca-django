@@ -364,7 +364,7 @@ header
 }
 
 .header-area {
-  border-bottom: 2px dotted var(--blue-belamarca);
+  border-bottom: 3px dotted var(--blue-belamarca);
   box-shadow: none;
   background-color: #fff;
   position: absolute;
@@ -853,7 +853,7 @@ banner
 */
 
 .main-banner {
-  border-bottom: 2px dotted var(--blue-belamarca);
+  border-bottom: 3px dotted var(--blue-belamarca);
   padding-top: 160px;
   padding-bottom: 40px;
 }
@@ -1107,7 +1107,7 @@ Men
 #men {
   padding-top: 90px;
   padding-bottom: 90px;
-  border-bottom: 3px dotted #eee;
+  border-bottom: 3px dotted var(--blue-belamarca);
 }
 
 #men .section-heading {
@@ -1165,17 +1165,21 @@ Men
 
 #men .item .thumb {
   position: relative;
-  height: 50vh;
+  width: 100%;
+  height: 0;
+  padding-bottom: 150%;
   /* max-height: 80vh; */
   overflow: hidden;
 }
 
 #men .item .thumb img {
-  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
   height: 100%;
   object-fit: cover;
-  overflow: hidden;
-  z-index: 3;
+  object-position: center center;
 }
 
 #men .item .thumb .hover-content ul li {
@@ -1299,6 +1303,10 @@ Men
 }
 
 @media (max-width: 1200px) {
+  #men .owl-nav {
+    top: 37%;
+  }
+
   #men .owl-nav .owl-prev{
     left: -70px;
   }
@@ -1309,6 +1317,10 @@ Men
 }
 
 @media (max-width: 1083px) {
+  #men .owl-nav {
+    top: 40%;
+  }
+
   #men .owl-nav .owl-prev{
     left: -30px;
   }
@@ -1326,40 +1338,59 @@ Men
   #men .owl-nav .owl-next{
     right: -70px;
   }
+}
 
-  @media (max-width: 872px) {
-    #men .owl-nav .owl-prev{
-      left: -30px;
-    }
-
-    #men .owl-nav .owl-next{
-      right: -30px;
-    }
+@media (max-width: 872px) {
+  #men .owl-nav {
+    top: 40%;
   }
 
-  @media (max-width: 600px) {
-    #men .owl-nav .owl-prev{
-      left: 0px;
-      width: 50px;
-      height: 50px;
-    }
+  #men .owl-nav .owl-prev{
+    left: -30px;
+  }
 
-    #men .owl-nav .owl-prev img{
-      margin-left: -5px;
-    }
-
-    #men .owl-nav .owl-next{
-      right: 0px;
-      width: 50px;
-      height: 50px;
-    }
-
-    #men .owl-nav .owl-next img{
-      margin-right: -5px;
-    }
+  #men .owl-nav .owl-next{
+    right: -30px;
   }
 }
 
+@media (max-width: 767px) {
+  #men .owl-nav {
+    top: 36%;
+  }
+}
+
+@media (max-width: 600px) {
+  #men .owl-nav .owl-prev{
+    left: 0px;
+    width: 50px;
+    height: 50px;
+  }
+
+  #men .owl-nav .owl-prev img{
+    margin-left: -5px;
+  }
+
+  #men .owl-nav .owl-next{
+    right: 0px;
+    width: 50px;
+    height: 50px;
+  }
+
+  #men .owl-nav .owl-next img{
+    margin-right: -5px;
+  }
+}
+
+@media (max-width: 590px) {
+  #men .owl-nav {
+    top: 40%;
+  }
+
+  #men .item .thumb {
+    padding-bottom: 150%;
+  }
+}
 
 /*
 ---------------------------------------------
@@ -3117,8 +3148,8 @@ About Us Page
 .our-services {
   padding-top: 90px;
   padding-bottom: 90px;
-  border-top: 3px dotted #eee;
-  border-bottom: 3px dotted #eee;
+  border-top: 3px dotted var(--blue-belamarca);
+  border-bottom: 3px dotted var(--blue-belamarca);
 }
 
 .our-services .section-heading {
