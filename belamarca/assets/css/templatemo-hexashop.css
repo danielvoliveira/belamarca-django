@@ -223,7 +223,6 @@ p {
 }
 
 .section-heading span {
-  font-size: 14px;
   color: var(--dark-text-belamarca);
   opacity: 0.95;
   font-style: italic;
@@ -902,9 +901,9 @@ banner
 .main-banner .left-content .inner-content h4 {
   /* color: #fff; */
   margin-top: -10px;
-  font-size: 52px;
+  font-size: 3em;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .main-banner .left-content .inner-content span p{
@@ -989,7 +988,7 @@ banner
 
 .main-banner .right-content .right-first-image .thumb .inner-content h4 {
   /* color: #fff; */
-  font-size: 38px;
+  font-size: 2.4em;
   font-weight: 700;
   margin-bottom: 15px;
   max-width: 85%;
@@ -1062,18 +1061,18 @@ banner
 
 .main-banner .right-content .right-first-image .thumb .hover-content h4 {
   color: #fff;
-  /* font-size: 30px; */
   font-weight: 700;
   margin-bottom: 10px;
-  font-size: 38px;
+  font-size: 2.4em;
   max-width: 85%;
-    margin-left: 7.5%;
+  margin-left: 7.5%;
 }
 
 .main-banner .right-content .right-first-image .thumb .hover-content p {
   color: #fff;
   padding: 0px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
 }
 
 .main-banner .right-content .right-first-image .thumb .hover-content button{
@@ -1129,13 +1128,13 @@ Men
 }
 
 #men .item .down-content h4 {
-  font-size: 22px;
+  font-size: 1.6em;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
 #men .item .down-content span {
-  font-size: 18px;
+  font-size: 1.2em;
   color: var(--dark-text-belamarca);
   font-weight: 500;
   display: block;
@@ -2758,13 +2757,19 @@ Single Product Page
 }
 
 #product .right-content h4 {
-  font-size: 34px;
+  font-size: 2.4em;
   color: var(--blue-belamarca);
   margin-bottom: 0px;
 }
 
+@media (max-width: 860px) {
+  #product .right-content h4 {
+    font-size: 2em;
+  }
+}
+
 #product .right-content span.price {
-  font-size: 18px;
+  font-size: 1.2em;
   color: var(--dark-text-belamarca);
   font-weight: 500;
   display: block;
@@ -2786,7 +2791,7 @@ Single Product Page
 
 #product .right-content p {
   font-family: "Questrial Regular" !important;
-  font-size: 17px;
+  font-size: 1.2em;
   color: #2a2a2a;
   display: block;
   margin-top: 25px;
@@ -2834,7 +2839,7 @@ Single Product Page
   }
 
   h5.attribute_name{
-    font-size: 18px;
+    font-size: 1.2em;
     font-family: "Questrial Regular" !important;
     /* padding-top: 5px; */
     padding-bottom: 0px;
@@ -2863,7 +2868,7 @@ Single Product Page
           height: 100%;
           padding-top: 3px;
           border-radius: 25px;
-          font-size: 15px;
+          font-size: .95em;
           color: var(--dark-text-belamarca);
         }
       }
@@ -2906,6 +2911,7 @@ Single Product Page
   right: 0px;
   font-family: "Questrial Regular" !important;
   border-radius: 25px;
+  font-size: 1.2em;
 }
 
 #product .right-content .whats .love_it {
@@ -3362,7 +3368,7 @@ form .contact-check input.form-check-input:checked{
   border: 1px solid transparent;
   color: #fff;
   transition: all 0.3s;
-  font-size: 18px;
+  font-size: 1.2em;
   border-radius: 25px;
 }
 
@@ -3469,17 +3475,32 @@ responsive
 
 @media (max-width: 767px) {
   .main-banner .left-content .thumb .inner-content {
-    left: 50%;
-    top: 47.5%;
-    transform: translate(-50%,-50%);
+    width: 80%;
+    left: 10%;
+    /* top: 47.5%; */
+    /* transform: translate(-50%,-50%); */
     text-align: center;
   }
+
+  .main-banner .left-content .inner-content h4 {
+    font-size: 2.6em;
+  }
+
+  .main-banner .right-content .right-first-image .thumb .inner-content h4 {
+    font-size: 2.6em;
+  }
+    .main-banner .right-content .right-first-image .thumb .hover-content h4 {
+    font-size: 2.6em;
+  }
+
   .subscribe button {
     width: 100%;
   }
+
   footer {
     text-align: center;
   }
+
   footer h4 {
     margin-top: 30px;
   }
