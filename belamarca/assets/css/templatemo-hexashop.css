@@ -2032,7 +2032,8 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-  color: var(--dark-pink-belamarca);
+  color: #fff;
+  text-decoration: underline !important;
 }
 
 footer ul li p {
@@ -2042,7 +2043,8 @@ footer ul li p {
 }
 
 footer ul li a p:hover {
-  color: var(--dark-pink-belamarca);
+  color: #fff;
+  text-decoration: underline !important;
 }
 
 footer ul li p.phone {
