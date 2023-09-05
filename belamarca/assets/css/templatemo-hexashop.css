@@ -92,6 +92,10 @@ header, nav, section, article, aside, footer, hgroup {
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none !important;
+}
+
 html, body {
   font-family: 'Questrial Regular' !important;
   font-weight: 400;
@@ -136,7 +140,7 @@ h1, h2, h3, h4, h5 {
 
 p {
   font-family: 'Questrial Regular' !important;
-  font-size: 1.3em;
+  font-size: 1.2em;
   line-height: 32px;
 }
 
@@ -381,6 +385,12 @@ header
   transition: all .5s ease 0s;
 }
 
+.header-compensation{
+  position: relative;
+  height: 99px;
+  /* border: solid 1px #000; */
+}
+
 .header-area .main-nav {
   min-height: 80px;
   background: transparent;
@@ -427,8 +437,9 @@ header
 }
 
 .header-area .main-nav .nav li {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: -1px;
 }
 
 .header-area .main-nav .nav li:last-child {
@@ -448,10 +459,6 @@ header
   line-height: 40px;
   border: transparent;
   letter-spacing: 1px;
-}
-
-.header-area .main-nav .nav li a {
-  color: var(--blue-belamarca);
 }
 
 .header-area .main-nav .nav li:hover a,
@@ -723,6 +730,7 @@ header
   .header-area.header-sticky .nav {
     margin-top: 100px !important;
   }
+
   .header-area .main-nav .nav li {
     width: 100%;
     background: #fff;
@@ -737,6 +745,7 @@ header
     border: none !important;
     background: var(--background-belamarca) !important;
     color: var(--blue-belamarca) !important;
+    padding-top: 2px !important;
   }
   .header-area .main-nav .nav li a:hover {
     background: var(--background-belamarca) !important;
@@ -824,10 +833,10 @@ header
 
 .privacy-policy {
   border-bottom: 3px dotted #eee;
-  margin-top: 13vh;
+  margin-top: 6vh;
   padding-right: 10px;
   padding-left: 10px;
-  padding-bottom: 30px;
+  padding-bottom: 6vh;
   width: 100%;
 }
 
@@ -837,7 +846,6 @@ header
   font-weight: 700;
   font-size: 2.4em;
   color: #55CFC4;
-  width: 41rem;
 }
 
 @media (max-width: 860px) {
@@ -860,8 +868,9 @@ banner
 
 .main-banner {
   border-bottom: 3px dotted var(--blue-belamarca);
-  padding-top: 160px;
-  padding-bottom: 40px;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  position:relative;
 }
 
 .main-banner .left-content .thumb{
@@ -1111,13 +1120,23 @@ Men
 */
 
 #men {
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 5.5vh;
+  padding-bottom: 5.5vh;
   border-bottom: 3px dotted var(--blue-belamarca);
 }
 
+#top + #men {
+  border-bottom: none; /* Example border-bottom style */
+  padding-bottom: 5vh;
+}
+
+#men + .our-services {
+  border-top: 3px dotted var(--blue-belamarca);
+  margin-top: 5vh;
+}
+
 #men .section-heading {
-  margin-bottom: 60px;
+  margin-bottom: 5vh;
 }
 
 #men .item .down-content {
@@ -1897,15 +1916,14 @@ Subscribe
 */
 
 .subscribe {
-  margin-top: 80px;
+  margin-top: 7vh;
 }
 
 .subscribe .section-heading {
-  margin-bottom: 30px;
+  margin-bottom: 7vh;
 }
 
 .subscribe .section-heading h2 {
-  line-height: 55px;
   color: var(--blue-belamarca);
 }
 
@@ -1935,9 +1953,22 @@ Subscribe
   line-height: 18px;
 }
 
-.subscribe form .newsletter-check input#contact-check{
+/* .subscribe form .newsletter-check input#contact-check{
   width: 20px;
   height: 20px;
+} */
+
+.subscribe form .newsletter-check .form-check-input {
+  margin-right: 15px;
+  width: 20px !important;
+  height: 20px !important;
+  background-color: #fff;
+}
+
+.subscribe form .newsletter-check .form-check-input:checked {
+  width: 20px !important;
+  height: 20px !important;
+  background-color: var(--blue-belamarca) !important;
 }
 
 .subscribe form .newsletter-check label{
@@ -2002,8 +2033,8 @@ footer
 */
 
 footer {
-  margin-top: 60px;
-  padding: 60px 0px 30px 0px;
+  margin-top: 0px;
+  padding: 5vh 0px 2.5vh 0px;
   background-color: var(--blue-belamarca);
 }
 
@@ -2018,7 +2049,7 @@ footer .logo img{
 
 footer ul li {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   line-height: 24px;
 }
 
@@ -2119,8 +2150,8 @@ Products Page
 */
 
 .page-heading {
-  margin-top: 160px;
-  margin-bottom: 100px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
   height: 45vh;
 }
 
@@ -2166,7 +2197,8 @@ Products Page
 }
 
 #products {
-  margin-top: 2vw;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 #products .section-heading {
@@ -2327,7 +2359,7 @@ Category Product
 #menu-filters{
   display: inline-block;
   width: 100%;
-  margin-top: 120px;
+  margin-top: 3vh;
   border-bottom: none !important;
 }
 
@@ -2702,8 +2734,6 @@ Category Product
     border-bottom: solid 1px var(--gray-belamarca);
     display: inline-block;
     width: 100%;
-    margin-top: 80px;
-    padding-bottom: 15px;
   }
 
   #menu-filters .filters{
@@ -2735,14 +2765,14 @@ Single Product Page
 */
 
 #product {
-  margin-top: 20vh;
+  margin-top: 7vh;
 }
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
   #product {
     margin-top: 12vh;
   }
-}
+} */
 
 #product .left-images img {
   width: 100%;
@@ -2888,6 +2918,7 @@ Single Product Page
 
 #product .right-content .whats{
   margin-top: 30px;
+  margin-bottom: 5vh;
   /*display: flex;*/
   /*align-items: flex-start;*/
   /*justify-content: space-between;*/
@@ -3045,8 +3076,16 @@ About Us Page
 */
 
 .about-us {
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 7vh;
+  padding-bottom: 7vh;
+  border-bottom: 3px dotted var(--blue-belamarca);
+}
+
+@media (max-width: 575px) {
+  .about-us {
+    margin-top: 5vh;
+    padding-bottom: 5vh;
+  }
 }
 
 .about-us .left-image img {
@@ -3073,6 +3112,7 @@ About Us Page
   font-weight: 500;
   display: block;
   margin-top: 25px;
+  color: var(--dark-text-belamarca);
 }
 
 @media (max-width: 990px) {
@@ -3179,14 +3219,13 @@ About Us Page
 }
 
 .our-services {
-  padding-top: 90px;
-  padding-bottom: 90px;
-  border-top: 3px dotted var(--blue-belamarca);
+  padding-top: 7vh;
+  padding-bottom: 5vh;
   border-bottom: 3px dotted var(--blue-belamarca);
 }
 
 .our-services .section-heading {
-  margin-bottom: 60px;
+  margin-bottom: 5vh;
   text-align: center;
 }
 
@@ -3239,27 +3278,9 @@ contact Us Page
 */
 
 .contact-us {
-  margin-top: 14vh;
+  margin-top: 7vh;
   /*border-bottom: 3px dotted #eee;*/
-  padding-bottom: 60px;
-}
-
-@media (max-width: 1199px) {
-  .contact-us {
-    margin-top: 12vw;
-  }
-}
-
-@media (max-width: 767px) {
-  .contact-us {
-    margin-top: 16vw;
-  }
-}
-
-@media (max-width: 569px) {
-  .contact-us {
-    margin-top: 20vw;
-  }
+  padding-bottom: 5vh;
 }
 
 .contact-us .section-heading {
@@ -3295,7 +3316,7 @@ contact Us Page
 }
 
 .contact-us form input:focus {
-  border-color: var(--dark-pink-belamarca);
+  border-color: var(--pink-belamarca);
   border-radius: 0px;
 }
 
@@ -3315,7 +3336,7 @@ contact Us Page
 }
 
 .contact-us form select::focus {
-  border-color: var(--dark-pink-belamarca);
+  border-color: var(--pink-belamarca);
   border-radius: 0px;
 }
 
@@ -3341,15 +3362,23 @@ form .contact-check{
   margin-bottom: 30px;
 }
 
-form .contact-check input.form-check-input {
+/* form .contact-check input.form-check-input {
   width: 25px;
   height: 25px;
   margin-right: 15px;
+} */
+
+form .contact-check input.form-check-input {
+  margin-right: 15px;
+  width: 35px;
+  height: 35px;
+  background-color: #fff;
 }
 
-form .contact-check input.form-check-input:checked{
-  width: 40px;
-  height: 40px;
+form .contact-check input.form-check-input:checked {
+  width: 35px !important;
+  height: 35px !important;
+  background-color: var(--blue-belamarca) !important;
 }
 
 .contact-us form textarea:focus {
@@ -3451,6 +3480,20 @@ responsive
 
   .subscribe form .newsletter-check label{
     margin-top: -30px;
+  }
+
+  .subscribe form .form-check-input {
+    width: 15px !important;
+    height: 15px !important;
+    margin-left: 1px !important;
+    margin-right: 15px !important;
+  }
+
+  .subscribe form .form-check-input:checked {
+    width: 15px !important;
+    height: 15px !important;
+    margin-left: 1px !important;
+    margin-right: 15px !important;
   }
 
   .about-us .right-content {
@@ -3598,7 +3641,7 @@ responsive
 }
 
 #informations-faq {
-  padding: 60px 0 60px;
+  padding: 7vh 0 7vh;
 }
 
 #informations-faq h3{
@@ -3611,6 +3654,12 @@ responsive
 @media (max-width: 830px) {
   #informations-faq h3{
     font-size: 2em;
+  }
+}
+
+@media (max-width: 490px) {
+  #informations-faq h3{
+    margin-bottom: -5vh;
   }
 }
 
@@ -3631,7 +3680,7 @@ responsive
   font-size: 1.3em;
   /*line-height: 30px;*/
   padding: 10px 18px 18px 10px;
-  padding-top: 20px;
+  padding-top: 2vh;
 }
 
 #informations-faq div{
