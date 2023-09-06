@@ -293,7 +293,6 @@ p {
 }
 
 @media (max-width: 750px){
-
   .modal-default-container {
     /*margin: 13% auto;*/
     background-color: var(--background-belamarca);
@@ -349,6 +348,10 @@ header
   left: 0px;
   right: 0px;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.15)!important;
+}
+
+#cms-top + .header-area {
+  margin-top: 46px !important;
 }
 
 .background-header .main-nav .logo img{
@@ -1126,7 +1129,7 @@ Men
 }
 
 #top + #men {
-  border-bottom: none; /* Example border-bottom style */
+  border-bottom: none;
   padding-bottom: 5vh;
 }
 
