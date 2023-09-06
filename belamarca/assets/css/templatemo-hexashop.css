@@ -437,8 +437,8 @@ header
 }
 
 .header-area .main-nav .nav li {
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 10px;
+  padding-right: 20px;
   margin-top: -1px;
 }
 
@@ -2787,7 +2787,7 @@ Single Product Page
 }
 
 #product .right-content h4 {
-  font-size: 2.4em;
+  font-size: 2.2em;
   color: var(--blue-belamarca);
   margin-bottom: 0px;
 }
@@ -3548,10 +3548,6 @@ responsive
     margin-top: 30px;
   }
 }
-
-
-
-
 
 #preloader {
   overflow: hidden;
