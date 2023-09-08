@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'djangocms_text_ckeditor',
     'cms',
     'menus',
@@ -71,6 +72,7 @@ INSTALLED_APPS = [
     'formapp',
     'faqapp',
     'productapp',
+    'seoapp',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +116,7 @@ TEMPLATES = [
                 'product_detail': 'productapp.templatetags.product_detail',
                 'product_image': 'productapp.templatetags.product_image',
                 'product_filters': 'productapp.templatetags.product_filters',
+                'seo_tags': 'seoapp.templatetags.seo_tags',
             },
         },
     },
