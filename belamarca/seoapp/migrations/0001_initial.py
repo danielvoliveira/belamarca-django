@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('cms', '0023_auto_20230723_2308'),
+        # ('cms', '0023_auto_20230723_2308'),
     ]
 
     operations = [

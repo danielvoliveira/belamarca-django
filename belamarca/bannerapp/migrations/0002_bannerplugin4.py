@@ -10,7 +10,7 @@ import filer.fields.image
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cms', '0023_auto_20230723_2308'),
+        # ('cms', '0023_auto_20230723_2308'),
         migrations.swappable_dependency(settings.FILER_IMAGE_MODEL),
         ('bannerapp', '0001_initial'),
     ]

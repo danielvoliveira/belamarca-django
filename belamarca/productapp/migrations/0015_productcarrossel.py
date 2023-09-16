@@ -8,7 +8,7 @@ import djangocms_text_ckeditor.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cms', '0023_auto_20230723_2308'),
+        # ('cms', '0023_auto_20230723_2308'),
         ('productapp', '0014_alter_attributeoption_p2_image_image_resize'),
     ]
 
