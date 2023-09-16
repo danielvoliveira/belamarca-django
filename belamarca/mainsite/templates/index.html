@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" href="{% static 'assets/favicon/favicon.ico'%}"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-        <title>{% block title %}{% page_attribute "page_title" %}{% endblock title %}</title>
+        <title>{% block title %}{% page_attribute "page_title" %}{% endblock title %} | Bela Marca</title>
         {% render_block "css" %}
 
         {% with seo_tags=request|seo_tags %}
