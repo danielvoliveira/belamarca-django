@@ -265,11 +265,11 @@ class SeoMetaTags(models.Model):
         max_length=12,
         choices=GoogleType.choices,
         default=GoogleType.CORPORATION,
-        editable=False,
+        editable=True,
     )
 
     def __str__(self):
-        return self.social_media_title
+        return self.path
 
     class Meta:
         verbose_name = "SEO Meta Tag"
