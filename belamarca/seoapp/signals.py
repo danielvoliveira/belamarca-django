@@ -4,6 +4,7 @@ from django.dispatch import receiver
 
 from .models import (
     SeoMetaTags,
+    GoogleWebSiteMetaTag,
     GoogleCorporationMetaTag,
     GoogleProductListMetaTag,
     GoogleProductMetaTag,
@@ -19,39 +20,40 @@ from .models import (
 def create_google_corporation_meta_tag(sender, instance, created, **kwargs):
     if created:
         if instance.path == '/produtos/':
-            instance.google_type = GoogleType.PRODUCT_LIST
             GoogleProductListMetaTag.objects.create(seo_meta_tags=instance)
+            GoogleCorporationMetaTag.objects.create(seo_meta_tags=instance)
         elif '/produto/' in instance.path:
-            instance.google_type = GoogleType.PRODUCT
             GoogleProductMetaTag.objects.create(seo_meta_tags=instance)
+            GoogleCorporationMetaTag.objects.create(seo_meta_tags=instance)
         else:
-            instance.google_type = GoogleType.CORPORATION
+            GoogleWebSiteMetaTag.objects.create(seo_meta_tags=instance)
             GoogleCorporationMetaTag.objects.create(seo_meta_tags=instance)
         instance.save()
     else:
-        if(
-            instance.google_type == 'Corporation' or
-            instance.google_type == 'Organization'
+        # Criando GoogleWebSiteMetaTag somente para páginas que não são de produto
+        if (
+            instance.path != '/produtos/' and
+            '/produto/' not in instance.path
         ):
-            corporation_tag, created_corporation = GoogleCorporationMetaTag.objects.get_or_create(seo_meta_tags=instance)
-            if not created_corporation:
-                corporation_tag.save()
+            web_site_tag, created_web_site = GoogleWebSiteMetaTag.objects.get_or_create(seo_meta_tags=instance)
+            if not created_web_site:
+                web_site_tag.save()
 
-            GoogleProductListMetaTag.objects.filter(seo_meta_tags=instance).delete()
-            GoogleProductMetaTag.objects.filter(seo_meta_tags=instance).delete()
-        elif instance.google_type == 'product_list':
+        # Criando GoogleCorporationMetaTag em todos os tipos de página
+        corporation_tag, created_corporation = GoogleCorporationMetaTag.objects.get_or_create(seo_meta_tags=instance)
+        if not created_corporation:
+            corporation_tag.save()
+
+        # Criando GoogleProductListMetaTag somente na página de listagem de produtos
+        if instance.path == '/produtos/':
             product_list_tag, created_product_list = GoogleProductListMetaTag.objects.get_or_create(seo_meta_tags=instance)
             if not created_product_list:
                 product_list_tag.save()
 
-            GoogleCorporationMetaTag.objects.filter(seo_meta_tags=instance).delete()
-            GoogleProductMetaTag.objects.filter(seo_meta_tags=instance).delete()
-        elif instance.google_type == 'product':
+        # Criando GoogleProductMetaTag somente na página de exibição de um produto
+        if '/produto/' in instance.path:
             product_tag, created_product = GoogleProductMetaTag.objects.get_or_create(seo_meta_tags=instance)
             if not created_product:
                 product_tag.save()
-
-            GoogleCorporationMetaTag.objects.filter(seo_meta_tags=instance).delete()
-            GoogleProductListMetaTag.objects.filter(seo_meta_tags=instance).delete()
 
 post_save.connect(create_google_corporation_meta_tag, sender=SeoMetaTags)
