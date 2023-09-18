@@ -4,6 +4,7 @@ from django import forms
 from .models import (
     SeoSinglePagePlugin1,
     SeoMetaTags,
+    GoogleWebSiteMetaTag,
     GoogleCorporationMetaTag,
     GoogleProductListMetaTag,
     GoogleProductMetaTag,
@@ -25,6 +26,11 @@ class SeoSinglePagePlugin1Form(ModelForm):
 class SeoMetaTagsForm(forms.ModelForm):
     class Meta:
         model = SeoMetaTags
+        fields = '__all__'
+
+class GoogleWebSiteMetaTagForm(forms.ModelForm):
+    class Meta:
+        model = GoogleWebSiteMetaTag
         fields = '__all__'
 
 class GoogleCorporationMetaTagForm(forms.ModelForm):
