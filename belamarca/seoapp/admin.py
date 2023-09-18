@@ -7,18 +7,25 @@ from .models import (
 
 from .models import (
     SeoMetaTags,
+    GoogleWebSiteMetaTag,
     GoogleCorporationMetaTag,
     GoogleProductListMetaTag,
     GoogleProductMetaTag,
 )
 from .forms import (
     SeoMetaTagsForm,
+    GoogleWebSiteMetaTagForm,
     GoogleCorporationMetaTagForm,
     GoogleProductListMetaTagForm,
     GoogleProductMetaTagForm,
 )
 
 admin.site.register(SeoSinglePagePlugin1)
+
+class GoogleWebSiteMetaTagInline(admin.StackedInline):
+    model = GoogleWebSiteMetaTag
+    form = GoogleWebSiteMetaTagForm
+    extra = 0  # Number of empty forms to display
 
 class GoogleCorporationMetaTagInline(admin.StackedInline):
     model = GoogleCorporationMetaTag
@@ -40,6 +47,7 @@ class SeoMetaTagsAdmin(admin.ModelAdmin):
     form = SeoMetaTagsForm
     inlines = [
         GoogleCorporationMetaTagInline,
-        GoogleProductListMetaTagInline,
         GoogleProductMetaTagInline,
+        GoogleWebSiteMetaTagInline,
+        GoogleProductListMetaTagInline,
     ]
