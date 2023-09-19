@@ -1,0 +1,136 @@
+{% if current_meta_tags %}
+    <title>{{ current_meta_tags.title }}</title>
+    <meta name="description" content="{{ current_meta_tags.description }}"/>
+    <meta property="og:site_name" content="{{ current_meta_tags.site_name }}" />
+    <meta property="og:type" content="{{ current_meta_tags.social_media_type }}" />
+    <meta property="og:title" content="{{ current_meta_tags.title }}" />
+    <link rel="canonical" href="{{ current_url }}">
+    <meta property="og:url" content="{{ current_url }}" />
+    <meta property="og:description"content="{{ current_meta_tags.description }}" />
+    <meta property="og:image" content="{{ current_meta_tag_image_url }}" />
+    <meta name="twitter:title" content="{{ current_meta_tags.title }}" />
+    <meta name="twitter:description" content="{{ current_meta_tags.description }}" />
+    <meta name="twitter:card" content="site" />
+    <meta name="twitter:site" content="summary" />
+    <meta name="twitter:image" content="{{ current_meta_tag_image_url }}" />
+{% endif %}
+
+{% if google_web_site_meta_tag %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "{{ google_web_site_meta_tag.google_type }}",
+            "name": "{{ current_meta_tags.title }}",
+            "description": "{{ current_meta_tags.description }}",
+            "url": "{{ current_url }}",
+            "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Página 1",
+                "item": "Link da página 1"
+                },
+                {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Página 2",
+                "item": "Link da página 2"
+                },
+                {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Página 3",
+                "item": "Link da página 3"
+                }
+            ]
+            }
+        }
+    </script>
+{% endif %}
+
+{% if google_organization_meta_tag %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "{{ google_organization_meta_tag.google_type }}",
+            "name": "{{ current_meta_tags.site_name }}",
+            "alternateName": "{{ google_organization_meta_tag.google_alterantive_name }}",
+            "description": "{{ current_meta_tags.description }}",
+            "url": "{{ current_url }}",
+            "logo": "{{ google_logo_url }}",
+            "telephone": "{{ google_organization_meta_tag.google_telephone }}",
+            "address":{
+                "@type": "{{ google_organization_meta_tag.google_address_type }}",
+                "streetAddress": "{{ google_organization_meta_tag.google_address_street }}",
+                "addressLocality": "{{ google_organization_meta_tag.google_address_locality }}",
+                "addressRegion":"{{ google_organization_meta_tag.google_address_region }}"
+            },
+            "sameAs": [
+                "{{ google_organization_meta_tag.google_social_media_facebook }}",
+                "{{ google_organization_meta_tag.google_social_media_instagram }}",
+                "{{ google_organization_meta_tag.google_social_media_youtube }}",
+                "{{ google_organization_meta_tag.google_social_media_tiktok }}"
+            ]
+        }
+    </script>
+{% endif %}
+
+{% if google_product_list_meta_tag %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "{{ google_product_list_meta_tag.google_type }}",
+            "name": "{{ current_meta_tags.title }}",
+            {% if google_product_list_meta_tag.product_list %}"itemListElement": [
+                {% for product in google_product_list_meta_tag.product_list %}{
+                    "@type": "ListItem",
+                    "position": {{ product.position }},
+                    "url": "{{ product.product_image_url }}",
+                    "name": "{{ product.name }}",
+                    "item": {
+                        "@type": "Product",
+                        "sku": "{{ product.code }}",
+                        "description": "{{ product.description }}",
+                        "name": "{{ product.name }}",
+                        "image": "{{ product.product_image_url }}",
+                        "brand": {
+                        "@type": "Brand",
+                        "name": "{{ current_meta_tags.site_name }}"
+                        },
+                            "offers": {
+                            "@type": "Offer",
+                            "availability": "https://schema.org/InStock",
+                            "price": "{{ product.price }}",
+                            "priceCurrency": "BRL"
+                        }
+                    }
+                {% endfor %}},
+            ]{% endif %}
+        }
+    </script>
+{% endif %}
+
+{% if google_product_meta_tag %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "{{ google_product_meta_tag.google_type }}",
+            "sku": "{{ google_product_meta_tag.google_product_code }}",
+            "description": "{{ google_product_meta_tag.google_product_description }}",
+            "name": "{{ google_product_meta_tag.google_product_name }}",
+            "image": "{{ google_product_image_url }}",
+            "brand": {
+                "@type": "Brand",
+                "name": "{{ current_meta_tags.site_name }}"
+            },
+            "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock",
+                "price": "{{ google_product_meta_tag.google_product_price }}",
+                "priceCurrency": "BRL"
+            }
+        }
+    </script>
+{% endif %}
