@@ -277,6 +277,7 @@ PRODUCSTS_PRINTS_IMAGES = (
     ('Maya', 'estampa_3.jpg'),
     ('Olho Grego', 'estampa_1.jpg'),
     ('Onça', 'estampa_2.jpg'),
+    ('Onça Nude e Rosa', 'estampa_2.jpg'),
     ('Outuno', 'estampa_3.jpg'),
     ('Poá', 'estampa_1.jpg'),
     ('Tigre', 'estampa_2.jpg'),
