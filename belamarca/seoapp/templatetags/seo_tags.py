@@ -1,6 +1,7 @@
 from django import template
 from django.template.loader import get_template
 from cms.models.pagemodel import Page
+from cms.models import Page
 
 from seoapp.models import (
     SeoMetaTags,
@@ -59,20 +60,55 @@ def seo_tags(request):
             current_meta_tags = False
 
         if len(google_web_site_meta_tag) > 0:
-            print('Tem Web Site')
-            google_web_site_meta_tag = google_web_site_meta_tag[0]
+            google_web_site_meta_tag = GoogleWebSiteMetaTag()
+
+            all_pages = Page.objects.filter(publisher_is_draft=False)
+            pages_name_url_and_position = [
+                {
+                    'name': page.get_title(),
+                    'url': change_http_to_https(
+                        request.build_absolute_uri(page.get_absolute_url())
+                    ),
+                    'position': count_position + 1
+                } for count_position, page in enumerate(all_pages)
+            ]
+
+            # Calculando próxima posição da lista de páginas
+            next_position = len(pages_name_url_and_position)
+
+            # Adicionando páginas de 'Política de Privacidade' e 'Política de Privacidade'
+            pages_name_url_and_position.append(
+                {
+                    'name': 'Políticas de Privacidade',
+                    'url': change_http_to_https(
+                        request.build_absolute_uri('/informacoes/politicas-de-privacidade/')
+                    ),
+                    'position': next_position + 1,
+                }
+            )
+
+            next_position += 1
+
+            pages_name_url_and_position.append(
+                {
+                    'name': 'Termos e Condições',
+                    'url': change_http_to_https(
+                        request.build_absolute_uri('/informacoes/termos-e-condicoes/')
+                    ),
+                    'position': next_position + 1,
+                }
+            )
+
+            google_web_site_meta_tag.pages_list = pages_name_url_and_position
         else:
             google_web_site_meta_tag = False
 
         if len(google_organization_meta_tag) > 0:
-            print('Tem Organization')
             google_organization_meta_tag = google_organization_meta_tag[0]
         else:
             google_organization_meta_tag = False
 
         if len(google_product_list_meta_tag) > 0:
-            print('Tem Lista de Produtos')
-            # google_product_list_meta_tag = google_product_list_meta_tag[0]
             google_product_list_meta_tag = GoogleProductListMetaTag()
 
             # Recuperando Listagem de Produtos
@@ -81,9 +117,12 @@ def seo_tags(request):
             # Variável para criação das posições que vão na meta tag
             position = 1
             for product in products:
-                #Pegando preço dos produtos
+                # Pegando preço dos produto
                 product_price = ProductPrice.objects.filter(id_product=product).last()
                 product.price = product_price.price
+
+                # Pegando url do produto
+                product.product_url = current_domain + '/produto/' + product.slug
 
                 product_image = ProductImage.objects.filter(product_id=product).first()
                 if product_image:
