@@ -26,6 +26,11 @@ from .models import (
     Disponibility,
 )
 
+from seoapp.models import (
+    SeoMetaTags,
+    GoogleProductMetaTag,
+)
+
 
 def get_products_from_csv(request):
 
@@ -472,6 +477,48 @@ def get_products_from_csv(request):
                         )
                         new_product_image.p3_image_resize = image_path
                         new_product_image.save()
+
+                # Cadastrando SEO do produto
+                seo_meta_tag = SeoMetaTags.objects.create(
+                    path='/produto/{}/'.format(slug),
+                    title='{} | Bela Marca'.format(produto),
+                    description=descricao
+                )
+                seo_meta_tag.save()
+
+                try:
+                    google_product_meta_tag = GoogleProductMetaTag.objects.get(seo_meta_tags=seo_meta_tag)
+
+                    google_product_meta_tag.google_product_code = codigo
+                    google_product_meta_tag.google_product_name = '{} | Bela Marca'.format(produto)
+                    google_product_meta_tag.google_product_description = descricao
+                    google_product_meta_tag.google_product_price = price
+
+                    if len(final_imagens_nome) > 0:
+                        seo_image_path = 'products_images/{}'.format(final_imagens_nome[0])
+                        seo_meta_tag.image = seo_image_path
+                        seo_meta_tag.save()
+
+                        google_product_meta_tag.google_product_image = seo_image_path
+
+                    google_product_meta_tag.save()
+                except GoogleProductMetaTag.DoesNotExist:
+                    google_product_meta_tag = GoogleProductMetaTag.objects.create(
+                        seo_meta_tags=seo_meta_tag,
+                        google_product_code=codigo,
+                        google_product_name='{} | Bela Marca'.format(produto),
+                        google_product_description=descricao,
+                        google_product_price=price
+                    )
+
+                    if len(final_imagens_nome) > 0:
+                        seo_image_path = 'products_images/{}'.format(final_imagens_nome[0])
+                        seo_meta_tag.image = seo_image_path
+                        seo_meta_tag.save()
+
+                        google_product_meta_tag.google_product_image = seo_image_path
+
+                    google_product_meta_tag.save()
 
         x += 1
     print('---------------------------------')
