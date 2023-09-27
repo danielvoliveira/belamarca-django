@@ -2774,13 +2774,8 @@ Single Product Page
 
 #product {
   margin-top: 7vh;
+  padding-bottom: 3vh;
 }
-
-/* @media (max-width: 991px) {
-  #product {
-    margin-top: 12vh;
-  }
-} */
 
 #product .left-images img {
   width: 100%;
