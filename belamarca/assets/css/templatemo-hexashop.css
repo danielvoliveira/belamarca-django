@@ -2199,6 +2199,11 @@ Products Page
   font-style: italic;
 }
 
+.page-heading .inner-content span p a{
+  color: #fff;
+  text-decoration: underline !important;
+}
+
 #products {
   margin-top: 3vh;
   margin-bottom: 3vh;
