@@ -2506,6 +2506,36 @@ Category Product
   color: var(--dark-text-belamarca);
 }
 
+#products_category .filters .filter ul li div.double-color{
+  display: flex;
+  justify-content: center;
+}
+
+#products_category .filters .filter ul li div.double-color p:first-child{
+  border-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: 0px solid transparent !important;
+  margin-right: -2px;
+}
+
+#products_category .filters .filter ul li div.double-color p:last-child{
+  border-radius: 25px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-left: 0px solid transparent !important;
+  margin-left: 0px;
+}
+
+#products_category .filters .filter ul li div.double-color p{
+  width: 18.5px;
+  height: 37px;
+}
+
 #products_category .filters .sizes ul li{
   border: solid 0.5px var(--gray-belamarca);
   width: 45px;
@@ -2686,6 +2716,36 @@ Category Product
   border-radius: 30px;
   padding: 0px 4px;
   margin: 5px 5px 5px 0px;
+}
+
+#selected_filters ul li.color .container div.double-color{
+  display: flex;
+  justify-content: center;
+}
+
+#selected_filters ul li.color .container div.double-color p:first-child{
+  border-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: 0px solid transparent !important;
+  margin-right: -2px;
+}
+
+#selected_filters ul li.color .container div.double-color p:last-child{
+  border-radius: 25px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-left: 0px solid transparent !important;
+  margin-left: 0px;
+}
+
+#selected_filters ul li.color .container div.double-color p{
+  width: 18.5px;
+  height: 37px;
 }
 
 #selected_filters ul li.color .container p.name{
