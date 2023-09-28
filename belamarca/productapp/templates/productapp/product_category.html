@@ -66,9 +66,17 @@
                                     <ul>
                                         {% for color in product_filters.colors %}
                                             <li class="{{ color.selected }}" data-filter="color" data-id="{{ color.id }}" data-text="{{ color.name }}" data-color="{{ color.color }}">
-                                                <div class="color">
-                                                    <p style="background-color: {{ color.color }}; border: solid 0.5px #eee;"></p></p>
-                                                </div>
+                                                {% if not color.color.is_double_color %}
+                                                    <div class="color">
+                                                        <p style="background-color: {{ color.color.hexadecimal.0 }}; border: solid 0.5px #eee;"></p></p>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="color double-color">
+                                                        {% for hexadecimal in color.color.hexadecimal %}
+                                                            <p style="background-color: {{ hexadecimal }}; border: solid 0.5px #eee;"></p>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
                                                 <p class="name">{{ color.name }}</p>
                                             </li>
                                         {% endfor %}
@@ -157,9 +165,17 @@
                             {% if color.selected == 'selected' %}
                                 <li class="color unselect_filter" data-filter="color"  data-id="{{ color.id }}">
                                     <div class="container">
-                                        <div>
-                                            <p style="background-color: {{ color.color }}; border: solid 0.5px #eee;"></p></p>
-                                        </div>
+                                        {% if not color.color.is_double_color %}
+                                            <div class="color">
+                                                <p style="background-color: {{ color.color.hexadecimal.0 }}; border: solid 0.5px #eee;"></p></p>
+                                            </div>
+                                        {% else %}
+                                            <div class="color double-color">
+                                                {% for hexadecimal in color.color.hexadecimal %}
+                                                    <p style="background-color: {{ hexadecimal }}; border: solid 0.5px #eee;"></p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                         <p class="name">{{ color.name }}</p>
                                         <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
                                     </div>
