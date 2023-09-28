@@ -122,10 +122,22 @@ def product_filters(request):
                 if attribute_option.id in selected_colors:
                     selected = 'selected'
 
+                if "/" in attribute_option.color:
+                    str_color = attribute_option.color
+                    colors = {
+                        "hexadecimal": str_color.split("/"),
+                        "is_double_color": True,
+                    }
+                else:
+                    colors = {
+                        "hexadecimal": [attribute_option.color],
+                        "is_double_color": False,
+                    }
+
                 final_colors.append({
                     'id': attribute_option.id,
                     'name': attribute_option.name,
-                    'color': attribute_option.color,
+                    'color': colors,
                     'selected': selected,
                 })
 
