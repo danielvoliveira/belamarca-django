@@ -821,15 +821,23 @@ def ProductListView(request):
             productimage__isnull=False, # Apenas produtos que tenham imagem
             productprice__price__gt=0, # Apenas produtos com preço > 0
             disp=Disponibility.DISPONIVEL
-        ).order_by('?')
+        ).order_by('-id')
+
+    unique_product_ids = set()
+    unique_products = []
 
     for product in products:
-        # Pegando preço dos produtos
-        product_price = ProductPrice.objects.filter(id_product=product).get()
-        product.price = product_price.price
+        if product.id not in unique_product_ids:
+            # Pegando preço dos produtos
+            product_price = ProductPrice.objects.filter(id_product=product).get()
+            product.price = product_price.price
+
+            # Inserindo produtos a lista única final
+            unique_product_ids.add(product.id)
+            unique_products.append(product)
 
     context = {
-        'products': products,
+        'products': unique_products,
     }
 
     return render(request, "productapp/product_list.html", context=context)
