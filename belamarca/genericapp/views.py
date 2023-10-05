@@ -158,9 +158,8 @@ def schedule_and_noshow(request):
     return render(request, "genericapp/generic_no_show_plugin_7.html", context=context)
 
 # ------------------------------------------
-# 08 - Página não encontrada 404 - Título e texto
+# 08 - Página 404 - Not found - Título e texto
 # ------------------------------------------
 
-
 def handler404(request, exception):
-    return render(request, 'genericapp/generic_page_not_found_404.html', status=404)
+    return render(request, "genericapp/generic_page_not_found_404.html", context={})
