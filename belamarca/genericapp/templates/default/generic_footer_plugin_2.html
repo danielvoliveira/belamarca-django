@@ -2,7 +2,7 @@
 <footer>
     <source srcset="{{ logo_image.mobile }}"  media="(max-width: 400px)" alt="{{ instance.text_alt }}">
     <source srcset="{{ logo_image.tablet }}"  media="(max-width: 800px)" alt="{{ instance.text_alt }}">
-    <img class="img-generic" src="{{ logo_image.desktop }}"  alt="{{ instance.text_alt }}"/>
+    <img class="img-generic" src="{{ logo_image.desktop }}"  alt="{{ instance.text_alt }}" loading="lazy"/>
     <ul>
         <li>{{ instance.text_address }}</li>
         <li><a href="tel:{{ instance.text_phone }}">{{ instance.text_phone }}</a></li>

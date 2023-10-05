@@ -13,7 +13,7 @@
                     {% with product_detail=object|product_detail %}
                         {% if product_detail != False %}
                             {% for image in product_detail.resized_images %}
-                                <img src="{{ image.desktop }}" alt="{{ image.alt }}">
+                                <img src="{{ image.desktop }}" alt="{{ image.alt }}" loading="lazy">
                             {% endfor %}
                         {% endif %}
                     {% endwith %}
@@ -38,7 +38,7 @@
                                 {% for attribute in garment_print %}
                                     <li>
                                         <div class="product_attribute">
-                                            <img src='{{ attribute.image }}' alt="{{ attribute.alt }}">
+                                            <img src='{{ attribute.image }}' alt="{{ attribute.alt }}" loading="lazy">
                                         </div>
                                     </li>
                                 {% endfor %}

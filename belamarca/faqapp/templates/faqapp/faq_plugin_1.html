@@ -11,7 +11,7 @@
                                 <li id="faq-list">
                                     <div class="faq-item" data-id="{{ quention.number }}">
                                         <h4 class="{{ question.title_color }}">{{ question.number }}. {{ question.title }} </h4>
-                                        <img src="{% static 'assets/icons/icon-chevron-down-thin.svg' %}" alt="Ícone expansível" />
+                                        <img src="{% static 'assets/icons/icon-chevron-down-thin.svg' %}" alt="Ícone expansível" loading="lazy"/>
                                     </div>
                                     <div id="faq-text-{{forloop.counter0}}">
                                         {{ question.description }}

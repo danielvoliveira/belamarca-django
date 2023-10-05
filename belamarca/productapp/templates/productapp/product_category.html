@@ -10,7 +10,7 @@
                 <div class="filters">
                     <div class="filter" id="open_filter">
                         <p>Filtros</p>
-                        <img src="{% static 'assets/images/down-arrow-white.webp' %}" alt="Seta para baixo">
+                        <img src="{% static 'assets/images/down-arrow-white.webp' %}" alt="Seta para baixo" loading="lazy">
                     </div>
                     <!--<div class="filter">
                         <p>Ordem</p>
@@ -90,7 +90,7 @@
                                         {% for print in product_filters.prints %}
                                             <li class="{{ print.selected }}" data-filter="print" data-id="{{ print.id }}" data-text="{{ print.name }}" data-imageurl="{{ print.image.url }}" data-imagealt="{{ print.image.alt }}">
                                                 <div class="print">
-                                                    <img src="{{ print.image.url }}" alt="{{ print.image.alt }}">
+                                                    <img src="{{ print.image.url }}" alt="{{ print.image.alt }}" loading="lazy">
                                                 </div>
                                                 <p class="name">{{ print.name }}</p>
                                             </li>
@@ -133,7 +133,7 @@
                             <li class="category unselect_filter" data-filter="category" data-id="{{ category.id }}">
                                 <div class="container">
                                     <p>{{ category.name }}</p>
-                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo" loading="lazy">
                                 </div>
                             </li>
                             {% endif %}
@@ -144,7 +144,7 @@
                             <li class="size unselect_filter" data-filter="size"  data-id="{{ size.id }}">
                                 <div class="container">
                                     <p>{{ size.text }}</p>
-                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo" loading="lazy">
                                 </div>
                             </li>
                             {% endif %}
@@ -155,7 +155,7 @@
                             <li class="size unselect_filter" data-filter="type"  data-id="{{ type.id }}">
                                 <div class="container">
                                     <p>{{ type.text }}</p>
-                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo" loading="lazy">
                                 </div>
                             </li>
                             {% endif %}
@@ -177,7 +177,7 @@
                                             </div>
                                         {% endif %}
                                         <p class="name">{{ color.name }}</p>
-                                        <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                        <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo" loading="lazy">
                                     </div>
                                 </li>
                             {% endif %}
@@ -191,7 +191,7 @@
                                             <img src="{{ print.image.url }}" alt="{{ print.image.alt }}">
                                         </div>
                                         <p class="name">{{ print.name }}</p>
-                                        <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                        <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo" loading="lazy">
                                     </div>
                                 </li>
                             {% endif %}
@@ -202,7 +202,7 @@
                             <li class="size unselect_filter" data-filter="material"  data-id="{{ material.id }}">
                                 <div class="container">
                                     <p>{{ material.text }}</p>
-                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo">
+                                    <img class='close-filter' src="{% static 'assets/images/close-icon.svg' %}" alt="Seta para baixo" loading="lazy">
                                 </div>
                             </li>
                             {% endif %}

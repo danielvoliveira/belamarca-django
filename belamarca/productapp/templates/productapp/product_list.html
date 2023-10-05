@@ -20,7 +20,7 @@
                                         </div>-->
                                         {% with product_image=product|product_image %}
                                             {% for image in product_image.images %}
-                                                <img src="{% get_media_prefix %}{{ image.path }}" alt="{{ image.alt }}">
+                                                <img src="{% get_media_prefix %}{{ image.path }}" alt="{{ image.alt }}" loading="lazy">
                                             {% endfor %}
                                         {% endwith %}
                                     </div>
