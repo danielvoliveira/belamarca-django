@@ -4,6 +4,12 @@ belamarca/static
 belamarca/webpack-stats.json
 belamarca/mainsite/media
 belamarca/media
+belamarca/bannerapp/migrations
+belamarca/faqapp/migrations
+belamarca/formapp/migrations
+belamarca/genericapp/migrations
+belamarca/productapp/migrations
+belamarca/seoapp/migrations
 
 *.pyc
 
