@@ -37,3 +37,5 @@ urlpatterns += [
     path("produto/", include("productapp.urls")),
     re_path(r'^', include('cms.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'genericapp.views.handler404'
