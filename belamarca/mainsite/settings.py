@@ -256,6 +256,13 @@ PRODUCSTS_COLORS_HEXADECIMAL = (
     ('Scarlet', '#BB0622'),
     ('Laranja', '#FFA500'),
     ('Amarelo', '#FFD200'),
+    ('Fúcsia', ''),
+    ('Laranja Neon', ''),
+    ('Preto Cintilante', ''),
+    ('Rosa Cintilante', ''),
+    ('Verde', ''),
+    ('Verde Musgo', ''),
+    ('Verde Neon', ''),
 )
 
 # PRINTS OPTIONS FOR FILTERS
