@@ -652,7 +652,7 @@ class ProductDetailView(DetailView):
                 garment_material.append(attribute_option.text)
 
         context.update({
-            'price': product_price.price,
+            'price': "{:.2f}".format(product_price.price),
             'garment_size': garment_size,
             'garment_type': garment_type,
             'garment_color': garment_color,
@@ -830,7 +830,7 @@ def ProductListView(request):
         if product.id not in unique_product_ids:
             # Pegando preço dos produtos
             product_price = ProductPrice.objects.filter(id_product=product).get()
-            product.price = product_price.price
+            product.price = "{:.2f}".format(product_price.price)
 
             # Inserindo produtos a lista única final
             unique_product_ids.add(product.id)

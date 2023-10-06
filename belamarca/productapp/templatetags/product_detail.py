@@ -47,7 +47,7 @@ def product_detail(product):
         })
 
     return {
-        'price': product_price.price,
+        'price': "{:.2f}".format(product_price.price),
         'images': images,
         'resized_images': resized_images_url,
     }

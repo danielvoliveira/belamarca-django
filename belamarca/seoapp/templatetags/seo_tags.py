@@ -119,7 +119,7 @@ def seo_tags(request):
             for product in products:
                 # Pegando preço dos produto
                 product_price = ProductPrice.objects.filter(id_product=product).last()
-                product.price = product_price.price
+                product.price = "{:.2f}".format(product_price.price)
 
                 # Pegando url do produto
                 product.product_url = current_domain + '/produto/' + product.slug

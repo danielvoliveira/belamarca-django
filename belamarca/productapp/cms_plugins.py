@@ -46,16 +46,16 @@ class ProductCategoryPlugin2(CMSPluginBase):
     allow_children = False
 
     def render(self, context, instance, placeholder):
-        products = Product.objects.filter(disp='disponivel').order_by('-id')
+        # products = Product.objects.filter(disp='disponivel').order_by('-id')
 
-        for product in products:
-            #Pegando preço dos produtos
-            product_price = ProductPrice.objects.filter(id_product=product).get()
-            product.price = product_price.price
+        # for product in products:
+        #     #Pegando preço dos produtos
+        #     product_price = ProductPrice.objects.filter(id_product=product).get()
+        #     product.price = product_price.price
 
         context.update({
             'instance': instance,
-            'products': products,
+            # 'products': products,
         })
         return context
 
@@ -152,15 +152,23 @@ class ProductCarroselPlugin5(CMSPluginBase):
                 productimage__isnull=False, # Apenas produtos que tenham imagem
                 productprice__price__gt=0, # Apenas produtos com preço > 0
                 disp='disponivel'
-            ).order_by('?')[:12]
+            ).distinct()
+
+        unique_product_ids = set()
+        unique_products = []
 
         for product in carrossel_products:
-            #Pegando preço dos produtos
-            product_price = ProductPrice.objects.filter(id_product=product).get()
-            product.price = product_price.price
+            if product.id not in unique_product_ids:
+                #Pegando preço dos produtos
+                product_price = ProductPrice.objects.filter(id_product=product).get()
+                product.price = "{:.2f}".format(product_price.price)
+
+                # Inserindo produtos a lista única final
+                unique_product_ids.add(product.id)
+                unique_products.append(product)
 
         context.update({
             'instance': instance,
-            'products': carrossel_products,
+            'products': unique_products,
         })
         return context
