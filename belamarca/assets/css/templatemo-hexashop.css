@@ -3179,6 +3179,14 @@ About Us Page
 }
 
 @media (max-width: 990px) {
+  .about-us .left-image{
+    display: none;
+  }
+
+  .about-us {
+    margin-top: 0vh !important;
+  }
+
   .about-us .right-content p {
     margin-top: 18px;
   }
@@ -3283,7 +3291,7 @@ About Us Page
 
 .our-services {
   padding-top: 7vh;
-  padding-bottom: 5vh;
+  padding-bottom: 10vh;
   border-bottom: 3px dotted var(--blue-belamarca);
 }
 
@@ -3316,6 +3324,10 @@ About Us Page
 }
 
 @media (max-width: 990px) {
+  .our-services {
+    padding-bottom: 5vh;
+  }
+
   .our-services .service-item h4 {
     font-size: 1.8em;
   }
@@ -3555,7 +3567,6 @@ responsive
 
   .about-us .right-content {
     margin-left: 0px;
-    margin-top: 30px;
   }
   .our-team .team-item {
     margin-bottom: 30px;
