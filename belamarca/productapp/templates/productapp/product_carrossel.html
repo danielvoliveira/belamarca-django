@@ -2,7 +2,7 @@
 {% load cms_tags static sekizai_tags menu_tags %}
 {% load product_image %}
 <!-- ***** Product Carrossel ***** -->
-<section class="section" id="men">
+<section class="section animation-container" id="men">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -19,7 +19,7 @@
                 <div class="men-item-carousel">
                     <div class="owl-men-item owl-carousel">
                         {% for product in products %}
-                            <div class="item">
+                            <div class="item animate-element animate__animated">
                                 <!-- <a href="/produto/{{ product.slug }}"> -->
                                     <!-- <div class="aspect-ratio-container"> -->
                                         <div class="thumb">
