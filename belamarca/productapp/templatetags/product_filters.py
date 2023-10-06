@@ -122,7 +122,10 @@ def product_filters(request):
                 if attribute_option.id in selected_colors:
                     selected = 'selected'
 
-                if "/" in attribute_option.color:
+                if (
+                    attribute_option.color != None and
+                    "/" in attribute_option.color
+                ):
                     str_color = attribute_option.color
                     colors = {
                         "hexadecimal": str_color.split("/"),
