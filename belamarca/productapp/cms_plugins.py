@@ -46,16 +46,8 @@ class ProductCategoryPlugin2(CMSPluginBase):
     allow_children = False
 
     def render(self, context, instance, placeholder):
-        # products = Product.objects.filter(disp='disponivel').order_by('-id')
-
-        # for product in products:
-        #     #Pegando preço dos produtos
-        #     product_price = ProductPrice.objects.filter(id_product=product).get()
-        #     product.price = product_price.price
-
         context.update({
             'instance': instance,
-            # 'products': products,
         })
         return context
 
