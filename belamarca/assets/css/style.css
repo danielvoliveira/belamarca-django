@@ -201,3 +201,13 @@
         width: auto;
     }
 }
+
+/* CSS para animações */
+
+.animation-container .animate-element {
+    opacity: 0;
+}
+
+.animation-container-faster .animate-element-faster {
+    opacity: 0;
+}
