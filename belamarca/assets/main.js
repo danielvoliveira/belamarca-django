@@ -20,6 +20,7 @@ import "./js/owl-carousel.js"
 import "./js/quantity.js"
 import "./js/scrollreveal.min.js"
 import "./js/slick.js"
+import "./js/elements-animation.js"
 //import "./js/waypoints.min.js"
 
 import "./css/style.css"
@@ -29,3 +30,4 @@ import "./css/font-awesome.css"
 import "./css/lightbox.css"
 import "./css/owl-carousel.css"
 import "./css/templatemo-hexashop.css"
+import "animate.css/animate.min.css";
