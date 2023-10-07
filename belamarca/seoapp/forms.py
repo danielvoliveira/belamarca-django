@@ -2,26 +2,12 @@ from django.forms.models import ModelForm
 from django import forms
 
 from .models import (
-    SeoSinglePagePlugin1,
     SeoMetaTags,
     GoogleWebSiteMetaTag,
     GoogleCorporationMetaTag,
     GoogleProductListMetaTag,
     GoogleProductMetaTag,
 )
-
-#------------------------------
-# 1 - SEO para páginas comuns
-#------------------------------
-
-class SeoSinglePagePlugin1Form(ModelForm):
-
-    class Meta:
-        model = SeoSinglePagePlugin1
-        exclude = ()
-
-    def __init__(self, *args, **kwargs):
-        super(SeoSinglePagePlugin1Form, self).__init__(*args, **kwargs)
 
 class SeoMetaTagsForm(forms.ModelForm):
     class Meta:

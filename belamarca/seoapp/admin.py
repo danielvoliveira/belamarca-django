@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from .models import (
-    SeoSinglePagePlugin1,
     SeoMetaTags,
 )
 
@@ -19,8 +18,6 @@ from .forms import (
     GoogleProductListMetaTagForm,
     GoogleProductMetaTagForm,
 )
-
-admin.site.register(SeoSinglePagePlugin1)
 
 class GoogleWebSiteMetaTagInline(admin.StackedInline):
     model = GoogleWebSiteMetaTag
