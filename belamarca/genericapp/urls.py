@@ -19,9 +19,4 @@ urlpatterns = [
         views.newsletter_cadastro,
         name='newsletter_cadastro'
     ),
-    path(
-        'reagenadamento-cancelamento-e-no-show/',
-        views.schedule_and_noshow,
-        name='schedule_and_noshow'
-    )
 ]

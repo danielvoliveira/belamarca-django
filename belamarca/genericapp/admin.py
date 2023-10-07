@@ -6,7 +6,6 @@ from .models import (
     GenericPrivacyPolicyPlugin4,
     GenericTermsAndConditionsPlugin5,
     NewsLetter,
-    GenericNoShowPlugin7,
     ImagesResized,
     GenericHeaderPlugin1,
     GenericFooterPlugin2
@@ -14,7 +13,6 @@ from .models import (
 
 admin.site.register(GenericPrivacyPolicyPlugin4)
 admin.site.register(GenericTermsAndConditionsPlugin5)
-admin.site.register(GenericNoShowPlugin7)
 admin.site.register(ImagesResized)
 admin.site.register(GenericHeaderPlugin1)
 admin.site.register(GenericFooterPlugin2)

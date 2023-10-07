@@ -6,7 +6,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import (
     GenericPrivacyPolicyPlugin4,
     GenericTermsAndConditionsPlugin5,
-    GenericNoShowPlugin7
 )
 from validate_email import validate_email
 from mainsite.utils.mail_jet_sender import send_simple_email
@@ -138,24 +137,6 @@ def newsletter_cadastro(request):
         'message': 'Cadastro realizado com sucesso.'
     }
     return JsonResponse(context)
-
-
-# ------------------------------------------
-# 07 - Política de Reagendamento, Cancelamento e No-Show - Título e texto
-# ------------------------------------------
-
-#@cache_page(60 * 15)
-def schedule_and_noshow(request):
-    no_show = None
-    if GenericNoShowPlugin7.objects.filter().exists():
-        no_show = GenericNoShowPlugin7.objects.filter()
-        context = {
-            'title': no_show[0].title,
-            'text': no_show[0].text,
-        }
-    else:
-        context = {}
-    return render(request, "genericapp/generic_no_show_plugin_7.html", context=context)
 
 # ------------------------------------------
 # 08 - Página 404 - Not found - Título e texto
