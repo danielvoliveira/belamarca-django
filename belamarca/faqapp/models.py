@@ -58,7 +58,7 @@ class FaqPlugin1(CMSPlugin):
 
     title = models.CharField(
         max_length=200,
-        default='Perguntas Frequentes',
+        default='Tire suas dúvidas aqui!',
         verbose_name='Título do Perguntas Frequentes',
         help_text='Digite um título para o bloco',
         null=False,

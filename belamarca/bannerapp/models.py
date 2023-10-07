@@ -33,7 +33,7 @@ class BannerPlugin1(CMSPlugin):
         null=True,
         blank=True,
         related_name='b1_background_image_resize',
-        verbose_name='Imagem a esquerda',
+        verbose_name='Imagem de fundo',
         help_text='Tamanho ideal 1650x400',
         on_delete=models.PROTECT
     )
@@ -45,7 +45,7 @@ class BannerPlugin1(CMSPlugin):
     )
 
     background_text_alt = models.CharField(
-        verbose_name='Nome da imagem a esquerda',
+        verbose_name='Nome da imagem',
         max_length=100,
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
@@ -54,7 +54,7 @@ class BannerPlugin1(CMSPlugin):
 
     title = models.CharField(
         max_length=150,
-        verbose_name='Título a direita',
+        verbose_name='Título centralizado',
         default='',
         help_text='Insira o título.',
         null=False,
@@ -63,7 +63,7 @@ class BannerPlugin1(CMSPlugin):
 
     subtitle = HTMLField(
         max_length=1500,
-        verbose_name='Descrição a direita',
+        verbose_name='Descrição centralizada',
         configuration='CKEDITOR_SETTINGS',
         default='',
         null=False,
@@ -168,7 +168,7 @@ class BannerPlugin3(CMSPlugin):
         null=True,
         blank=True,
         related_name='b3_first_image_resize',
-        verbose_name='Imagem a esquerda',
+        verbose_name='Primeira imagem',
         help_text='Tamanho ideal 630x508',
         on_delete=models.PROTECT
     )
@@ -180,7 +180,7 @@ class BannerPlugin3(CMSPlugin):
     )
 
     first_text_alt = models.CharField(
-        verbose_name='Nome da imagem a esquerda',
+        verbose_name='Nome da imagem',
         max_length=100,
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
@@ -209,7 +209,7 @@ class BannerPlugin3(CMSPlugin):
         null=True,
         blank=True,
         related_name='b3_second_image_resize',
-        verbose_name='Imagem a esquerda',
+        verbose_name='Segunda imagem',
         help_text='Tamanho ideal 630x508',
         on_delete=models.PROTECT
     )
@@ -221,7 +221,7 @@ class BannerPlugin3(CMSPlugin):
     )
 
     second_text_alt = models.CharField(
-        verbose_name='Nome da imagem a esquerda',
+        verbose_name='Nome da imagem',
         max_length=100,
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
@@ -250,7 +250,7 @@ class BannerPlugin3(CMSPlugin):
         null=True,
         blank=True,
         related_name='b3_left_image_resize',
-        verbose_name='Imagem a esquerda',
+        verbose_name='Terceira imagem',
         help_text='Tamanho ideal 630x508',
         on_delete=models.PROTECT
     )
@@ -262,7 +262,7 @@ class BannerPlugin3(CMSPlugin):
     )
 
     third_text_alt = models.CharField(
-        verbose_name='Nome da imagem a esquerda',
+        verbose_name='Nome da imagem',
         max_length=100,
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
@@ -281,7 +281,7 @@ class BannerPlugin4(CMSPlugin):
     first_title = models.CharField(
         max_length=150,
         verbose_name='Título do bloco principal',
-        default='',
+        default='New collection 2024',
         help_text='Insira o título.',
         null=False,
         blank=False,
@@ -291,7 +291,7 @@ class BannerPlugin4(CMSPlugin):
         max_length=1500,
         verbose_name='Subtítulo do bloco princiapal',
         configuration='CKEDITOR_SETTINGS',
-        default='',
+        default='Modelos exclusivos com a qualidade que você nunca viu!',
         null=False,
         blank=False,
     )
@@ -334,12 +334,13 @@ class BannerPlugin4(CMSPlugin):
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
         blank=False,
+        default='Imagem de destaque com modelo'
     )
 
     second_title = models.CharField(
         max_length=150,
         verbose_name='Título do segundo bloco',
-        default='',
+        default='BIQUÍNIS',
         help_text='Insira o título.',
         null=False,
         blank=False,
@@ -349,7 +350,7 @@ class BannerPlugin4(CMSPlugin):
         max_length=1500,
         verbose_name='Subtítulo do segundo bloco',
         configuration='CKEDITOR_SETTINGS',
-        default='',
+        default='lisos, estampados ou canelados',
         null=False,
         blank=False,
     )
@@ -392,12 +393,13 @@ class BannerPlugin4(CMSPlugin):
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
         blank=False,
+        default='Imagem da parte de baixo de um biquíni'
     )
 
     third_title = models.CharField(
         max_length=150,
         verbose_name='Título do terceiro bloco',
-        default='',
+        default='MAIÔS',
         help_text='Insira o título.',
         null=False,
         blank=False,
@@ -407,7 +409,7 @@ class BannerPlugin4(CMSPlugin):
         max_length=1500,
         verbose_name='Subtítulo do terceiro bloco',
         configuration='CKEDITOR_SETTINGS',
-        default='',
+        default='com diferentes recortes',
         null=False,
         blank=False,
     )
@@ -450,12 +452,13 @@ class BannerPlugin4(CMSPlugin):
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
         blank=False,
+        default='Modelo posando com um maiô'
     )
 
     fourth_title = models.CharField(
         max_length=150,
         verbose_name='Título do quarto bloco',
-        default='',
+        default='SAÍDAS',
         help_text='Insira o título.',
         null=False,
         blank=False,
@@ -465,7 +468,7 @@ class BannerPlugin4(CMSPlugin):
         max_length=1500,
         verbose_name='Subtítulo do quarto bloco',
         configuration='CKEDITOR_SETTINGS',
-        default='',
+        default='para compor seu look',
         null=False,
         blank=False,
     )
@@ -508,12 +511,13 @@ class BannerPlugin4(CMSPlugin):
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
         blank=False,
+        default='Imagem de uma saída de praia sendo amarrada'
     )
 
     fifth_title = models.CharField(
         max_length=150,
         verbose_name='Título do quinto bloco',
-        default='',
+        default='SALE',
         help_text='Insira o título.',
         null=False,
         blank=False,
@@ -523,7 +527,7 @@ class BannerPlugin4(CMSPlugin):
         max_length=1500,
         verbose_name='Subtítulo do quinto bloco',
         configuration='CKEDITOR_SETTINGS',
-        default='',
+        default='até 20% off',
         null=False,
         blank=False,
     )
@@ -566,6 +570,7 @@ class BannerPlugin4(CMSPlugin):
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
         blank=False,
+        default='Imagem com calcinhas aquendar'
     )
 
     text_color = models.CharField(

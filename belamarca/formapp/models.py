@@ -36,7 +36,6 @@ class FormContactPlugin1(CMSPlugin):
     def __str__(self):
         return str(self.id)
 
-
 class ContactSubject(models.Model):
     name = models.CharField(
         verbose_name='Nome do assunto',
@@ -74,7 +73,6 @@ class ContactSubject(models.Model):
     class Meta:
         verbose_name = 'Assunto do formulário de Contato'
         verbose_name_plural = 'Assuntos do formulário de Contato'
-
 
 class Contact(models.Model):
     name = models.CharField(
@@ -126,14 +124,13 @@ class Contact(models.Model):
         verbose_name = "Contato"
         verbose_name_plural = "Contatos"
 
-
 class FormNewsletterPlugin2(CMSPlugin):
 
     title = models.CharField(
         verbose_name='Título',
         help_text= 'Título para o formulário.',
         max_length=100,
-        default='Cupom de 30% off para você',
+        default='HELLO, BELA!',
         blank=False,
         null=False,
     )
@@ -143,7 +140,7 @@ class FormNewsletterPlugin2(CMSPlugin):
         verbose_name='Subtítulo',
         help_text= 'Subtítulo para o formulário.',
         configuration='CKEDITOR_SETTINGS',
-        default='Inscreva-se na nossa newsletter para receber um cumpom de 30% off em seu e-mail.',
+        default='Cadastre-se em nossa newsletter para receber lançamentos e descontos exclusivos para atacado :)',
         null=False,
         blank=False,
     )

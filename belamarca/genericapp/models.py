@@ -14,7 +14,7 @@ class GenericHeaderPlugin1(CMSPlugin):
         null=False,
         blank=False,
         related_name='g1_logo_image_resize',
-        verbose_name='Imagem da logo Ex.: Logo Branca.',
+        verbose_name='Imagem da logo',
         help_text='Tamanho ideal 205x177.',
         on_delete=models.PROTECT
     )
@@ -31,7 +31,7 @@ class GenericHeaderPlugin1(CMSPlugin):
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
         blank=False,
-        default='',
+        default='Logo da Bela Marca',
     )
 
 # ------------------------------------------------------------
@@ -44,7 +44,7 @@ class GenericFooterPlugin2(CMSPlugin):
         null=False,
         blank=False,
         related_name='g2_logo_image_resize',
-        verbose_name='Imagem da logo.',
+        verbose_name='Imagem da logo',
         help_text='Tamanho ideal 205x177.',
         on_delete=models.PROTECT
     )
@@ -61,16 +61,16 @@ class GenericFooterPlugin2(CMSPlugin):
         help_text='Digite o nome descritivo para a imagem.',
         null=False,
         blank=False,
-        default='Logo do Bela Marca',
+        default='Logo da Bela Marca',
     )
 
     text_address = HTMLField(
         verbose_name='Endereço completo',
         max_length=200,
         help_text='Digite o endereço com rua, numero, bairro e cep.',
-        null=False,
-        blank=False,
-        default='<p>Estrada Municipal Linha Ávila,<br>Rua Linha Carazal, 501<br>Gramado/RS - 95670-000</p>',
+        null=True,
+        blank=True,
+        default='-',
     )
 
     text_phone = models.CharField(
@@ -79,7 +79,7 @@ class GenericFooterPlugin2(CMSPlugin):
         help_text='Digite numero de telefone para contato.',
         null=False,
         blank=False,
-        default='+55 54 3050-1700',
+        default='+55 13 99797-7005',
     )
 
     text_email = models.CharField(
@@ -88,7 +88,7 @@ class GenericFooterPlugin2(CMSPlugin):
         help_text='Digite o endereço de e-mail para contato.',
         null=False,
         blank=False,
-        default='acquamotion@gramadoparks.com',
+        default='belamarcastore@gmail.com',
     )
 
     text_hours = HTMLField(
@@ -97,13 +97,13 @@ class GenericFooterPlugin2(CMSPlugin):
         help_text='Digite qual será o texto para indicar o horário de funcionamento. Ex.: Aberto das 09h ás 17h',
         null=False,
         blank=False,
-        default='das 10h às 18h<br>Consulte dias de abertura',
+        default='Segunda a sexta-feira das 08h00 às 18h00',
     )
 
     url_instagram = models.URLField(
         verbose_name='Link para o Instagram',
         max_length=300,
-        default='',
+        default='https://www.instagram.com/belamarcastore/',
         null=True,
         blank=True,
     )
@@ -176,7 +176,6 @@ class GenericFooterPlugin2(CMSPlugin):
 # 3 - Ícones Flutuantes - Voltar ao topo e whatsapp
 # ------------------------------------------------------------
 
-
 class GenericIconsPlugin3(CMSPlugin):
     g3_whatsapp_image_resize = FilerImageField(
         null=False,
@@ -215,7 +214,6 @@ class GenericIconsPlugin3(CMSPlugin):
 # 4 - Política e Privacidade - Título e texto
 # ------------------------------------------------------------
 
-
 class GenericPrivacyPolicyPlugin4(models.Model):
 
     title = models.CharField(
@@ -244,7 +242,6 @@ class GenericPrivacyPolicyPlugin4(models.Model):
 # ------------------------------------------------------------
 # 5 - Termos e Condições - Título subtítulo e texto
 # ------------------------------------------------------------
-
 
 class GenericTermsAndConditionsPlugin5(models.Model):
     '''
@@ -277,7 +274,6 @@ class GenericTermsAndConditionsPlugin5(models.Model):
 # 06 - Newsletter - Nome, e-mail e termos
 # ------------------------------------------
 
-
 class NewsLetter(models.Model):
     nome = models.CharField(
         max_length=100
@@ -298,54 +294,46 @@ class NewsLetter(models.Model):
         verbose_name = "Cadastro da Newsletter"
         verbose_name_plural = "Cadastros das Newsletter"
 
-
-# ------------------------------------------
-# 07 - Política de Reagendamento, Cancelamento e No-Show - Título e texto
-# ------------------------------------------
-
-
-class GenericNoShowPlugin7(models.Model):
-    '''
-    7 - Política e Privacidade - Título e texto
-    '''
-    title = models.CharField(
-        max_length=1000,
-        default=_('Política de Reagendamento, Cancelamento e No-Show'),
-        verbose_name='Título',
-        null=False,
-        blank=False,
-    )
-
-    text = HTMLField(
-        null=False,
-        blank=False,
-        verbose_name='Texto',
-        configuration='CKEDITOR_SETTINGS',
-    )
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = "Política de Reagendamento, Cancelamento e No-Show"
-        verbose_name_plural = "Política de Reagendamento, Cancelamento e No-Show"
-
-
 # ------------------------------------------------------
 # Modelo para armazenamento das imagens redimensionadas
 # ------------------------------------------------------
 
-
 class ImagesResized(models.Model):
     image_mobile = models.ImageField(
-        verbose_name='Imagem mobile', help_text='Gerada Automáticamente.', max_length=400, blank=True)
+        verbose_name='Imagem mobile',
+        help_text='Gerada Automáticamente.',
+        max_length=400,
+        blank=True
+    )
+
     image_tablet = models.ImageField(
-        verbose_name='Imagem tablet', help_text='Gerada Automáticamente.', max_length=400, blank=True)
+        verbose_name='Imagem tablet',
+        help_text='Gerada Automáticamente.',
+        max_length=400,
+        blank=True
+    )
+
     image_desktop = models.ImageField(
-        verbose_name='Imagem desktop', help_text='Gerada Automáticamente.', max_length=400, blank=True)
-    model_name = models.CharField(max_length=150, default='Model Name')
-    model_id = models.BigIntegerField(blank=True, null=True)
-    field_name = models.CharField(max_length=150, default='Field Name')
+        verbose_name='Imagem desktop',
+        help_text='Gerada Automáticamente.',
+        max_length=400,
+        blank=True
+    )
+
+    model_name = models.CharField(
+        max_length=150,
+        default='Model Name'
+    )
+
+    model_id = models.BigIntegerField(
+        blank=True,
+        null=True
+    )
+
+    field_name = models.CharField(
+        max_length=150,
+        default='Field Name'
+    )
 
     def __str__(self):
         return str(self.id)

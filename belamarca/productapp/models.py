@@ -48,56 +48,6 @@ class Category(models.Model):
         verbose_name='Disponibilidade',
     )
 
-    # title = models.CharField(
-    #     verbose_name='Título da categoria',
-    #     max_length=200,
-    #     help_text='Máximo de 200 catacteres.',
-    #     null=True,
-    #     blank=True,
-    #     default='Título',
-    # )
-
-    # subtitle = models.CharField(
-    #     verbose_name='Subtítulo da categoria',
-    #     max_length=300,
-    #     help_text='Máximo de 300 catacteres.',
-    #     null=True,
-    #     blank=True,
-    #     default='Subtítulo',
-    # )
-
-    # url = models.URLField(
-    #     verbose_name='Link da categoria',
-    #     max_length=300,
-    #     default='',
-    #     null=True,
-    #     blank=True,
-    # )
-
-    # category_image_resize = FilerImageField(
-    #     null=True,
-    #     blank=True,
-    #     related_name='g2_logo_image_resize',
-    #     verbose_name='Imagem da categoria',
-    #     help_text='Tamanho ideal 543x465.',
-    #     on_delete=models.PROTECT
-    # )
-
-    # category_image_size = models.CharField(
-    #     max_length=100,
-    #     default='543x465',
-    #     editable=False,
-    # )
-
-    # text_alt = models.CharField(
-    #     verbose_name='Texto alternativo da imagem',
-    #     max_length=100,
-    #     help_text='Digite o nome descritivo para a imagem.',
-    #     null=True,
-    #     blank=True,
-    #     default='Imagem da Categoria',
-    # )
-
     def __str__(self):
         return '{} - {}'.format(self.id, self.name)
 
@@ -105,7 +55,6 @@ class Category(models.Model):
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'
         ordering = ['name']
-
 
 class Subcategory(models.Model):
     name = models.CharField(
@@ -169,7 +118,6 @@ class Attribute(models.Model):
         verbose_name_plural = 'Atributos'
         ordering = ['id']
 
-
 class AttributeOption(models.Model):
     attribute = models.ForeignKey(
         Attribute,
@@ -195,7 +143,6 @@ class AttributeOption(models.Model):
         upload_to ='products_images/prints/',
         null=True,
         blank=True,
-        default='products_images/prints/default.jpg',
         verbose_name='Imagem do atributo.',
         help_text='Enviar arquivos .png ou .jpg. Tamanho ideal 100x100.',
     )
@@ -226,7 +173,6 @@ class AttributeOption(models.Model):
     class Meta:
         verbose_name = 'Opção de Atributo'
         verbose_name_plural = 'Opções de Atributos'
-
 
 # ------------------------------------------
 # 03 - Produtos
@@ -333,7 +279,6 @@ class Product(models.Model):
         verbose_name_plural = 'Produtos'
         ordering = ['name']
 
-
 class ProductPrice(models.Model):
     id_product = models.ForeignKey(
         Product,
@@ -360,7 +305,6 @@ class ProductPrice(models.Model):
     class Meta:
         verbose_name = 'Preço do Produto'
         verbose_name_plural = 'Preços de Produtos'
-
 
 class ProductImage(models.Model):
     product = models.ForeignKey(
@@ -404,7 +348,6 @@ class ProductImage(models.Model):
         verbose_name = 'Imagem do Produto'
         verbose_name_plural = 'Imagens do Produto'
 
-
 class ProductStock(models.Model):
     id_product = models.ForeignKey(
         Product,
@@ -438,9 +381,15 @@ class ProductStock(models.Model):
 
 class ProductCategoryGrid(CMSPlugin):
 
-    main_category = models.ManyToManyField(Category, related_name="main_category_grid")
+    main_category = models.ManyToManyField(
+        Category,
+        related_name="main_category_grid"
+    )
 
-    second_category = models.ManyToManyField(Category, related_name="second_category_grid")
+    second_category = models.ManyToManyField(
+        Category,
+        related_name="second_category_grid"
+    )
 
     def __str__(self):
         return str(self.id)
@@ -510,6 +459,7 @@ class ProductCarrossel(CMSPlugin):
         Product,
         related_name="products_to_carrossel_by_product",
         blank=True,
+        verbose_name='Selecione as Produtos desejados',
     )
 
     text_color = models.CharField(
