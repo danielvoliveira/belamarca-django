@@ -1799,14 +1799,15 @@ Products Page
 
 .page-heading img{
   object-fit: cover;
-  height: 45vh;
+  height: 100%;
   width: 100%;
   position: absolute;
   filter: brightness(70%)
 }
 
 .page-heading .inner-content {
-  padding: 140px 0px;
+  position: relative;
+  top: 55%;
   text-align: center;
 }
 
