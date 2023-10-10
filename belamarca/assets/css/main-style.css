@@ -2877,7 +2877,7 @@ form .contact-check input.form-check-input:checked {
 }
 
 .contact-us form textarea:focus {
-  border-color: var(--dark-pink-belamarca);
+  border-color: var(--pink-belamarca);
   border-radius: 0px;
 }
 
