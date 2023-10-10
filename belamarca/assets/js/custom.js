@@ -70,11 +70,12 @@ $(document).ready(function(){
 
 	  if (scroll >= header + 20) {
 	    $("header").addClass("background-header");
-	  } else {
-	    $("header").removeClass("background-header");
+		$(".nav").addClass("margin-scrolled");
+	} else {
+		$("header").removeClass("background-header");
+		$(".nav").removeClass("margin-scrolled");
 	  }
 	});
-	
 
 	// Window Resize Mobile Menu Fix
 	mobileNav();

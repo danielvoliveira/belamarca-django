@@ -641,6 +641,8 @@ header
   margin-top: 30px;
 }
 
+
+
 .header-area.header-sticky .nav li a.active {
   color: #aaa;
 }
@@ -701,6 +703,10 @@ header
   }
   .header-area.header-sticky .nav {
     margin-top: 100px !important;
+  }
+
+  .header-area.header-sticky .margin-scrolled{
+    margin-top: 80px !important;
   }
 
   .header-area .main-nav .nav li {
