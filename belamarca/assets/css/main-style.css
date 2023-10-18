@@ -411,6 +411,10 @@ header
 .header-area .main-nav .nav li {
   padding-left: 10px;
   padding-right: 20px;
+  margin-top: -2px;
+}
+
+.header-area .main-nav .nav li:first-child {
   margin-top: -1px;
 }
 
@@ -420,7 +424,7 @@ header
 
 .header-area .main-nav .nav li a {
   display: block;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--blue-belamarca) !important;
   text-transform: capitalize;
   -webkit-transition: all 0.3s ease 0s;
