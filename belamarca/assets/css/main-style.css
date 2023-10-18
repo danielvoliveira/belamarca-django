@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5 {
 
 p {
   font-family: 'Questrial Regular' !important;
-  font-size: 1.2em;
+  font-size: 18px;
   line-height: 32px;
 }
 
@@ -189,7 +189,7 @@ p {
 
 @media (max-width: 830px) {
   .section-heading h2 {
-    font-size: 2em;
+    font-size: 28px;
     font-weight: 700;
     color: #2a2a2a;
   }
@@ -420,7 +420,7 @@ header
 
 .header-area .main-nav .nav li a {
   display: block;
-  font-size: 1.2em;
+  font-size: 18px;
   color: var(--blue-belamarca) !important;
   text-transform: capitalize;
   -webkit-transition: all 0.3s ease 0s;
@@ -828,7 +828,7 @@ header
 
 @media (max-width: 860px) {
   .privacy-policy h1 {
-    font-size: 2em;
+    font-size: 28px;
   }
 }
 
@@ -1058,7 +1058,7 @@ banner
   color: #fff;
   padding: 0px 20px;
   margin-bottom: 20px;
-  font-size: 1.2em;
+  font-size: 18px;
 }
 
 .main-banner .right-content .right-first-image .thumb .hover-content button{
@@ -1128,7 +1128,7 @@ Men
 }
 
 #men .item .down-content span {
-  font-size: 1.2em;
+  font-size: 18px;
   color: var(--dark-text-belamarca);
   font-weight: 500;
   display: block;
@@ -1702,7 +1702,7 @@ footer ul li {
 }
 
 footer ul li a {
-  font-size: 1.2em;
+  font-size: 18px;
   color: #fff;
   transition: all .3s;
   text-transform: uppercase;
@@ -1715,7 +1715,7 @@ footer ul li a:hover {
 }
 
 footer ul li p {
-  font-size: 1.2em;
+  font-size: 18px;
   color: #fff;
   font-weight: normal;
 }
@@ -1835,7 +1835,7 @@ Products Page
 
 @media (max-width: 830px) {
   .page-heading .inner-content h2 {
-    font-size: 2.5em;
+    font-size: 30px;
   }
 }
 
@@ -2493,7 +2493,7 @@ Single Product Page
 }
 
 #product .right-content span.price {
-  font-size: 1.2em;
+  font-size: 18px;
   color: var(--dark-text-belamarca);
   font-weight: 500;
   display: block;
@@ -2515,7 +2515,7 @@ Single Product Page
 
 #product .right-content p {
   font-family: "Questrial Regular" !important;
-  font-size: 1.2em;
+  font-size: 18px;
   color: #2a2a2a;
   display: block;
   margin-top: 25px;
@@ -2563,7 +2563,7 @@ Single Product Page
   }
 
   h5.attribute_name{
-    font-size: 1.2em;
+    font-size: 18px;
     font-family: "Questrial Regular" !important;
     /* padding-top: 5px; */
     padding-bottom: 0px;
@@ -2694,7 +2694,7 @@ About Us Page
 
 @media (max-width: 860px) {
   .about-us .right-content h4 {
-    font-size: 2em;
+    font-size: 28px;
   }
 }
 
@@ -2769,7 +2769,8 @@ About Us Page
 
 @media (max-width: 760px) {
   .our-services .service-item h4 {
-    font-size: 1.8em;
+    font-size: 28px;
+    margin-bottom: -12px;
   }
 }
 
@@ -3024,14 +3025,19 @@ responsive
   }
 
   .main-banner .left-content .inner-content h4 {
-    font-size: 2.6em;
+    font-size: 30px;
   }
 
   .main-banner .right-content .right-first-image .thumb .inner-content h4 {
-    font-size: 2.6em;
+    font-size: 28px;
   }
-    .main-banner .right-content .right-first-image .thumb .hover-content h4 {
-    font-size: 2.6em;
+
+  .main-banner .right-content .right-first-image .thumb .hover-content h4 {
+    font-size: 28px;
+  }
+
+  .main-banner .right-content .right-first-image .thumb .hover-content p {
+    margin-bottom: 5px;
   }
 
   .subscribe button {
@@ -3145,8 +3151,13 @@ responsive
 }
 
 @media (max-width: 830px) {
+  #informations-faq {
+    padding: 5vh 0 5vh;
+  }
+
   #informations-faq h3{
-    font-size: 2em;
+    font-size: 28px;
+    line-height: 30px;
   }
 }
 
@@ -3170,7 +3181,7 @@ responsive
 
 #informations-faq h4{
   font-family: 'Questrial Regular' !important;
-  font-size: 1.3em;
+  font-size: 18px;
   /*line-height: 30px;*/
   padding: 10px 18px 18px 10px;
   padding-top: 2vh;
@@ -3189,7 +3200,7 @@ responsive
 }
 
 #informations-faq div.show p {
-  font-size: 1.2em;
+  font-size: 16px;
   color: var(--dark-text-belamarca);
 }
 
