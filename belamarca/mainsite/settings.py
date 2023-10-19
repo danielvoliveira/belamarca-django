@@ -24,7 +24,7 @@ DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'django-insecure-cl*f&v-)*(35k8zkq-5klv0zd4&ro(_cpm^tg+vagkp16nb$al'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['157.245.82.143', '*']
 
