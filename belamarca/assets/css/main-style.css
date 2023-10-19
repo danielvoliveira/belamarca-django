@@ -764,6 +764,65 @@ header
   .header-area .main-nav .nav li.submenu:hover ul, .header-area .main-nav .nav li.submenu:focus ul {
     height: 0px;
   }
+
+  #men .section-heading {
+    margin-bottom: 3vh !important;
+  }
+  #men .item .down-content {
+    padding-top: 20px !important;
+  }
+
+  /* .page-heading {
+    margin-top: 2vh !important;
+    margin-bottom: 2vh !important;
+  } */
+
+  #top + #men {
+    padding-bottom: 1vh !important;
+  }
+
+  #top + .our-services {
+    margin-top: -4vh !important;
+  }
+
+  .our-services {
+    padding-bottom: 3vh !important;
+  }
+
+  .our-services .section-heading {
+    margin-top: -2vh !important;
+  }
+
+  .contact-us {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top: 5vh !important;
+  }
+
+  .about-us .right-content {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .subscribe {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top: 5vh !important;
+  }
+
+  #informations-faq {
+      padding-bottom: 3vh !important;
+  }
+
+  #product {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 1vh !important;
+  }
+
+  #product .right-content div.product_attribute ul li div {
+    margin-bottom: 10px !important;
+  }
 }
 
 @media (min-width: 767px) {
@@ -2678,7 +2737,7 @@ About Us Page
 @media (max-width: 575px) {
   .about-us {
     margin-top: 5vh;
-    padding-bottom: 5vh;
+    padding-bottom: 3vh;
   }
 }
 
