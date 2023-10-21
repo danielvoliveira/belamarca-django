@@ -1193,7 +1193,6 @@ Men
 #men .item .down-content span {
   font-size: 18px;
   color: var(--dark-text-belamarca);
-  font-weight: 500;
   display: block;
   opacity: 0.95;
 }
@@ -1903,8 +1902,6 @@ Products Page
 }
 
 .page-heading .inner-content span p{
-  /* font-size: 16px; */
-  font-weight: 500;
   color: #fff;
   font-style: italic;
   margin-left: 15px;
@@ -1985,7 +1982,6 @@ Products Page
 #products .item .down-content span {
   font-size: 16px;
   color: var(--dark-text-belamarca);
-  font-weight: 500;
   display: block;
   font-family: "Questrial Regular" !important;
 }
@@ -2558,7 +2554,6 @@ Single Product Page
 #product .right-content span.price {
   font-size: 18px;
   color: var(--dark-text-belamarca);
-  font-weight: 500;
   display: block;
   margin-top: 5px;
   border-bottom: 1px solid #eee;
@@ -2762,7 +2757,6 @@ About Us Page
 }
 
 .about-us .right-content p {
-  font-weight: 500;
   display: block;
   margin-top: 25px;
   color: var(--dark-text-belamarca);
@@ -3248,6 +3242,7 @@ responsive
   /*line-height: 30px;*/
   padding: 10px 18px 18px 10px;
   padding-top: 2vh;
+  font-weight: normal;
 }
 
 #informations-faq div{
