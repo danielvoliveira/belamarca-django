@@ -105,6 +105,15 @@ def seo_tags(request):
 
         if len(google_organization_meta_tag) > 0:
             google_organization_meta_tag = google_organization_meta_tag[0]
+
+            if google_organization_meta_tag['google_social_media_facebook'] == '':
+                google_organization_meta_tag['google_social_media_facebook'] = False
+            if google_organization_meta_tag['google_social_media_instagram'] == '':
+                google_organization_meta_tag['google_social_media_instagram'] = False
+            if google_organization_meta_tag['google_social_media_youtube'] == '':
+                google_organization_meta_tag['google_social_media_youtube'] = False
+            if google_organization_meta_tag['google_social_media_tiktok'] == '':
+                google_organization_meta_tag['google_social_media_tiktok'] = False
         else:
             google_organization_meta_tag = False
 
