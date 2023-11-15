@@ -1662,7 +1662,7 @@ Subscribe
 }
 
 .subscribe form input:focus {
-  border-color: var(--dark-pink-belamarca);
+  border-color: var(--pink-belamarca);
   border-radius: 0px;
 }
 
