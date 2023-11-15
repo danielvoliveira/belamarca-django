@@ -56,10 +56,7 @@
                 "addressRegion":"{{ google_organization_meta_tag.google_address_region }}"
             },
             "sameAs": [
-                "{{ google_organization_meta_tag.google_social_media_facebook }}",
-                "{{ google_organization_meta_tag.google_social_media_instagram }}",
-                "{{ google_organization_meta_tag.google_social_media_youtube }}",
-                "{{ google_organization_meta_tag.google_social_media_tiktok }}"
+                {% if google_organization_meta_tag.google_social_media_instagram %}"{{ google_organization_meta_tag.google_social_media_instagram }}",{% endif %}{% if google_organization_meta_tag.google_social_media_facebook %}"{{ google_organization_meta_tag.google_social_media_facebook }}",{% endif %}{% if google_organization_meta_tag.google_social_media_youtube %}"{{ google_organization_meta_tag.google_social_media_youtube }}",{% endif %}{% if google_organization_meta_tag.google_social_media_tiktok %}"{{ google_organization_meta_tag.google_social_media_tiktok }}"{% endif %}
             ]
         }
     </script>
