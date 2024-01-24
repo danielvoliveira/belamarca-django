@@ -32,7 +32,7 @@
 
 @font-face {
     font-family: 'Questrial Regular';
-    src: url('../fonts/Questrial-Regular.ttf') format('truetype');
+    src: url('../fonts/Questrial-Regular.otf') format('truetype');
 }
 
 ::-webkit-scrollbar {
