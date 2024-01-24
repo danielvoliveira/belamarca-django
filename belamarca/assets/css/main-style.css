@@ -901,6 +901,7 @@ header
 .privacy-policy p {
   font-family: 'Questrial Regular' !important;
   margin-top: 30px;
+  color: var(--dark-text-belamarca);
 }
 
 /*
@@ -2580,7 +2581,7 @@ Single Product Page
 #product .right-content p {
   font-family: "Questrial Regular" !important;
   font-size: 18px;
-  color: #2a2a2a;
+  color: var(--dark-text-belamarca);
   display: block;
   margin-top: 25px;
   line-height: 32px;
@@ -2992,9 +2993,6 @@ responsive
 }
 
 @media (max-width: 992px) {
-  .main-banner .right-content .right-first-image .thumb .hover-content p {
-    display: block;
-  }
   .header-area .main-nav .nav li.submenu:after {
     right: 3px;
   }
@@ -3008,8 +3006,11 @@ responsive
   .header-area .main-nav .nav li a {
     letter-spacing: 0px;
   }
-  .main-banner .left-content {
-    margin-bottom: 30px;
+  .main-banner .right-content .right-first-image .thumb .hover-content p {
+    display: block;
+  }
+  .main-banner .right-content{
+    margin-top: 30px;
   }
   #explore .left-content {
     margin-bottom: 30px;
