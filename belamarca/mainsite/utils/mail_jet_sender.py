@@ -1,6 +1,4 @@
-from doctest import REPORTING_FLAGS
 from mailjet_rest import Client
-import os
 
 
 def send_simple_email(to_email=str, to_name=str, content=dict, attachment=None) -> bool:
@@ -23,13 +21,13 @@ def send_simple_email(to_email=str, to_name=str, content=dict, attachment=None) 
     No caso, a função foi testada com o file sendo um objeto do tipo:
     <class 'django.core.files.uploadedfile.InMemoryUploadedFile'>.
     '''
-    api_key = '569b970a6d7157176f840ae31482e219'
-    api_secret = '98a9c96ccddb0c660dea589ea20d4bbe'
+    api_key = '48aae7091c3cbcbd39b459bf2de1d55b'
+    api_secret = '43d90ac1cd8460be84f0204ece5a544b'
 
     mailjet = Client(auth=(api_key, api_secret), version='v3.1')
 
-    from_email = "no-reply@acquamotion.com.br"
-    from_name = "Acquamotion - Gramado parks"
+    from_email = "danielvitol@hotmail.com"
+    from_name = "Bela Marca Store"
 
     if attachment != None:
         import base64
@@ -73,32 +71,36 @@ def send_simple_email(to_email=str, to_name=str, content=dict, attachment=None) 
         else:
             return False
     else:
-        data = {
-            'Messages': [
-                {
-                    "From": {
-                        "Email": from_email,
-                        "Name": from_name
-                    },
-                    "To": [
-                        {
-                            "Email": to_email,
-                            "Name": to_name
-                        }
-                    ],
-                    "Subject": content['Subject'],
-                    "TextPart": content['TextPart'],
-                    "HTMLPart": content['HTMLPart'],
-                    "CustomID": content['CustomID'],
-                }
-            ]
-        }
-        result = mailjet.send.create(data=data)
+        try:
+            data = {
+                'Messages': [
+                    {
+                        "From": {
+                            "Email": from_email,
+                            "Name": from_name
+                        },
+                        "To": [
+                            {
+                                "Email": to_email,
+                                "Name": to_name
+                            }
+                        ],
+                        "Subject": content['Subject'],
+                        "TextPart": content['TextPart'],
+                        "HTMLPart": content['HTMLPart'],
+                        "CustomID": content['CustomID'],
+                    }
+                ]
+            }
+            result = mailjet.send.create(data=data)
 
-        #print (result.status_code)
-        #print (result.json())
+            # print(result.status_code)
+            # print(result.json())
 
-        if int(result.status_code) == 200:
-            return True
-        else:
+            if int(result.status_code) == 200:
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("An error occurred:", e)
             return False
