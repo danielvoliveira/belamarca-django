@@ -1,14 +1,11 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from mainsite.utils.mail_jet_sender import send_simple_email
 from validate_email import validate_email
-import requests
 from .models import (
     Contact,
     ContactSubject,
     NewsLetter,
 )
-
 
 # ------------------------------------------
 # 01 - Contato - Formulário para contato com informações de contato
@@ -93,27 +90,20 @@ def contact_registration(request):
     )
     new_contact.save()
 
-    # Lendo a página HTML do template de e-mail
-
-    # url = "http://s3.amazonaws.com/mailmkt.lo/gramado_parks/Acquamotion_boasvindas_2_v4/Acquamotion_boasvindas_2_v4.html"
-
-    # template_email = requests.get(url)
-
-    #content = {
-    #    'Subject': 'Contato enviado com sucesso.',
-    #    'TextPart': '',
-    #    'HTMLPart': '<p>Olá, tudo bem? <br><br>{name} acabou de se cadastrar no formulário de contato.</p><br><h3>Dados cadastrados:</h3><p>Nome: {name} <br><br> E-mail: {email} <br><br> Telefone: {phone} <br><br> Assunto: {subject} <br><br> Mensagem: {message} <br><br><br> Att., <br>Acquamotion Site. </p>'.format(name=name, email=email, phone=phone, subject=subject, message=message),
-    #    'CustomID': 'TrabalheConosco',
-    #}
+    content = {
+       'Subject': 'Contato enviado com sucesso.',
+       'TextPart': '',
+       'HTMLPart': '<p>Olá, tudo bem? <br><br>{name} acabou de se cadastrar no formulário de contato.</p><br><h3>Dados cadastrados:</h3><p>Nome: {name} <br><br> E-mail: {email} <br><br> Telefone: {phone} <br><br> Assunto: {subject} <br><br> Mensagem: {message} <br><br><br> Att., <br>Acquamotion Site. </p>'.format(name=name, email=email, phone=phone, subject=subject, message=message),
+       'CustomID': 'Contato',
+    }
 
     # Pegando o e-mail responsável pela área
-    #current_subject = ContactSubject.objects.filter(name=subject)
-    #responsible_name = current_subject[0].responsible_name
-    #responsible_email = current_subject[0].responsible_email
+    current_subject = ContactSubject.objects.filter(name=subject)
+    responsible_name = current_subject[0].responsible_name
+    responsible_email = current_subject[0].responsible_email
 
-    #send_to = [str(responsible_email), str(responsible_name)]
+    send_simple_email(responsible_email, responsible_name, content)
 
-    #if send_simple_email(responsible_email, responsible_name, content) == True:
     context = {
         'status': 1,
         'message': 'Contato enviado com sucesso.'
@@ -176,27 +166,22 @@ def newsletter_cadastro(request):
         }
         return JsonResponse(context)
 
-    # Lendo a página HTML do template de e-mail
-
-    # url = "http://s3.amazonaws.com/mailmkt.lo/gramado_parks/Acquamotion_boasvindas_2_v4/Acquamotion_boasvindas_2_v4.html"
-
-    # template_email = requests.get(url)
-
     # Cadastrando dados após validação dos detalhes
     nova_newsletter = NewsLetter(nome=nome, email=email, termos=termos)
     nova_newsletter.save()
-    #content = {
-    #    'Subject': 'Novo cadastro de Newsletter em Acquamotion',
-    #    'TextPart': '',
-    #    'HTMLPart': '<p>Olá!<br><br>{nome} acabou de se cadastrar para receber as newsletters.</p><h3>Dados cadastrados:</h3><p>Nome: {nome} <br> E-mail: {email} <br><br> Att., <br>Acquamotion. </p>'.format(nome=nome, email=email),
-    #    'CustomID': 'Newsletter',
-    #}
 
-    #send_to = {
-    #    'first': ['rosania.silva@gramadoparks.com', 'Rosania Silva'],
-    #}
+    content = {
+       'Subject': 'Novo cadastro de Newsletter em Bela Marca',
+       'TextPart': '',
+       'HTMLPart': '<p>Olá!<br><br>{nome} acabou de se cadastrar para receber as newsletters.</p><h3>Dados cadastrados:</h3><p>Nome: {nome} <br> E-mail: {email} <br><br> Att., <br>Acquamotion. </p>'.format(nome=nome, email=email),
+       'CustomID': 'Newsletter',
+    }
 
-    #send_simple_email(send_to['first'][0], send_to['first'][1], content)
+    send_to = {
+       'first': ['danielvitol@hotmail.com', 'Daniel Oliveira'],
+    }
+
+    send_simple_email(send_to['first'][0], send_to['first'][1], content)
 
     context = {
         'status': 1,
